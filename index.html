@@ -1,11 +1,9 @@
 ---
 layout: page
 ---
-
 {% include JB/setup %}
 
 <section id="article">
-  <h3>Recent posts</h3>
   <ul>
     {% for post in site.posts limit:10 %}
       <li><a href="{{ post.url }}">
