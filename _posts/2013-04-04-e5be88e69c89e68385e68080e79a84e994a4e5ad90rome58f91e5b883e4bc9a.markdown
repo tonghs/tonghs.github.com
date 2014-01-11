@@ -1,0 +1,19 @@
+---
+author: ths
+comments: true
+date: 2013-04-04 14:37:33+00:00
+layout: post
+slug: '%e5%be%88%e6%9c%89%e6%83%85%e6%80%80%e7%9a%84%e9%94%a4%e5%ad%90rom%e5%8f%91%e5%b8%83%e4%bc%9a'
+title: 很有情怀的锤子ROM发布会
+wordpress_id: 1065
+categories:
+- 折腾
+- 资讯
+tags:
+- rom
+- smartisan
+- 锤子
+---
+
+
+

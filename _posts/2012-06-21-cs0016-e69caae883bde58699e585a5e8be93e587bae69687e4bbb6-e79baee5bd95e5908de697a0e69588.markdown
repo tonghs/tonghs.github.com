@@ -1,0 +1,43 @@
+---
+author: ths
+comments: true
+date: 2012-06-21 06:45:00+00:00
+layout: post
+slug: cs0016-%e6%9c%aa%e8%83%bd%e5%86%99%e5%85%a5%e8%be%93%e5%87%ba%e6%96%87%e4%bb%b6-%e7%9b%ae%e5%bd%95%e5%90%8d%e6%97%a0%e6%95%88
+title: 'CS0016: 未能写入输出文件--目录名无效'
+wordpress_id: 817
+categories:
+- 技术
+tags:
+- CS0016
+- 目录名无效
+---
+
+今天在调试网站的时候出现上述错误，通过下面方式解决，特此笔记，以备后用 
+
+
+
+
+
+错误提示信息： 
+
+
+
+
+
+CS0016: 未能写入输出文件“c:/windows/Microsoft.NET/Framework/v2.0.50727/Temporary ASP.NET Files/data/34aae060/b7daa87d/App_Web_addadvice.aspx.cdcab7d2.ekhlcbjd.dll”--“目录名无效。 ”
+
+
+
+
+
+解决方法： 
+
+
+
+
+
+主要是由于管理员在服务器端删除的系统的temp目录，给Users组加上写权限。重新建立此目录在加上权限就好了.其实与c:/windows/Microsoft.NET/Framework/v2.0.50727/Temporary ASP.NET Files/data/34aae060没有什么大的关系.真具有迷惑性.
+
+
+

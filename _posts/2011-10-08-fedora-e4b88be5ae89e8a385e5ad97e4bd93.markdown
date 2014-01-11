@@ -1,0 +1,24 @@
+---
+author: ths
+comments: false
+date: 2011-10-08 07:00:00+00:00
+layout: post
+slug: fedora-%e4%b8%8b%e5%ae%89%e8%a3%85%e5%ad%97%e4%bd%93
+title: fedora 下安装字体
+wordpress_id: 682
+categories:
+- 折腾
+tags:
+- fedora
+- 字体
+---
+
+在 /usr/share/fonts 下建立字体目录  
+将字体文件拷贝到所建目录  
+chmod +x 为字体文件加上运行权限  
+fc-cache -fv 更新字体缓存  
+OK  
+和UBUNTU相比少了mkfontdir 、mkfontscacle两步，挺简单的！
+
+
+

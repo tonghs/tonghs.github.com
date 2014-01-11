@@ -1,0 +1,34 @@
+---
+author: ths
+comments: true
+date: 2011-09-22 11:56:00+00:00
+layout: post
+slug: windows-8%e5%b0%9d%e9%b2%9c
+title: windows 8尝鲜
+wordpress_id: 672
+categories:
+- 折腾
+tags:
+- vmware
+- windows 8
+---
+
+微软放出windows8后我就想装上试试，为了不影响工作，决定现在虚拟机上装一下，但是vmware7.X的试了试不行，提示错误，我又试了微软自己的virtual PC还是出错，于是换vbox，但是仍然出错……
+
+
+
+
+
+google了一番，发现有人已经装上了，用的是vmware8.0，特转帖如下（原帖地址：[http://acer.it168.com/thread-1765597-1-1.html](http://acer.it168.com/thread-1765597-1-1.html)）：
+
+
+
+
+
+工欲善其事，必先利其器，安装之前必须准备好：  
+1、win8镜像，下载地址可以在本版块置顶帖里找到；  
+2、VMWARE 8.0版本虚拟机软件（特别说明：必须使用8.0版本，本人使用7.1.4版本安装出错）  
+115下载地址:http://115.com/file/dn1uo0h9 密钥：MV4YN-0L38Q-2ZK60-XUA7K-AAZ18 
+
+
+

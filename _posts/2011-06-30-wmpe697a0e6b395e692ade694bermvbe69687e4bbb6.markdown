@@ -1,0 +1,19 @@
+---
+author: ths
+comments: true
+date: 2011-06-30 05:36:00+00:00
+layout: post
+slug: wmp%e6%97%a0%e6%b3%95%e6%92%ad%e6%94%bermvb%e6%96%87%e4%bb%b6
+title: WMP无法播放rmvb文件
+wordpress_id: 641
+categories:
+- 折腾
+tags:
+- rmvb
+- WMP
+---
+
+这个问题也比较经典了，最近在公司要看一个电影，无奈没有安装其他播放器，只能用WMP了，想播放rmvb，只需下载rmvb的解码器即可，比如RealOne，下载地址：[http://www.skycn.com/soft/14852.html](http://www.skycn.com/soft/14852.html)
+
+
+

@@ -1,0 +1,67 @@
+---
+author: ths
+comments: true
+date: 2012-09-16 07:53:00+00:00
+layout: post
+slug: '%e6%9f%a5%e8%af%a2%e8%a1%a8%e7%9a%84%e5%ad%97%e6%ae%b5%e5%90%8d%e7%9a%84sql%e8%af%ad%e5%8f%a5%e5%86%99%e6%b3%95'
+title: 查询表的字段名的sql语句写法
+wordpress_id: 869
+categories:
+- 技术
+tags:
+- 查询字段
+---
+
+在sql中没有desc,想获取表的字段除了查看设计外还可以通过sql语句。下面为您介绍的是查询表的字段名的[sql](http://database.51cto.com/art/201009/227658.htm)语句写法，sql语句可以实现许多的功能，希望可以您在学习sql语句使用方面获得启示。
+
+
+
+
+    
+    <ol><li>select name from syscolumns where id = (select id from sysobjects where type = 'u' and name = '相应表名')  </li><li> </li><li>或者  </li><li> </li><li>select name from syscolumns where id = object_id('相应表名')  </li></ol>
+
+
+
+
+
+用以上sql语句输入相应表名就可以查到表的字段名，对应好数据库 查询是否存在该表语句 
+
+
+
+
+
+
+而判断表名在数据库中是否存在的方法是
+
+
+
+
+    
+    <ol><li>if not object_id('相应表名') is null  </li><li> </li><li>print '存在'  </li></ol>
+
+
+
+
+
+这次查询表中的字段名的目标是在写程序的时候需要写一点sql语句，但是表的字段太多了，如果一个一个去复制的话太慢了，而且有可能会复制漏了某个字段，所以利用自己数据库的知识，写了个sql语句直接生成字段名字符串，例如下面我要写一个select语句，需要生成表所有的字段：
+
+
+
+
+    
+    <ol><li>declare @s varchar(1000)  </li><li> </li><li>select @s = isnull(@s+',', '') + [name] from syscolumns where id = object_id('相应表名')  </li><li> </li><li>select @s  </li></ol>
+
+
+
+
+
+获取字段名已经字段类型，类型长度
+
+
+
+
+    
+    <ol><li>SELECT a.colid as ID,a.name as ColumnName,b.name as DataType,a.length   </li><li>as Length FROM syscolumns a,systypes b WHERE a.id=  </li><li>object_id('相应的表名') and a.xtype=b.xtype  </li><li> and b.name <> 'sysname' order by a.colid   </li></ol>
+
+
+

@@ -1,0 +1,41 @@
+---
+author: ths
+comments: true
+date: 2012-07-23 12:12:00+00:00
+layout: post
+slug: cgi%e5%a4%b4%e6%a0%bc%e5%bc%8f
+title: cgi头格式
+wordpress_id: 838
+categories:
+- 技术
+tags:
+- CGI
+- 头信息
+---
+
+今天配了CGI服务器，打开CGI报错： 
+
+
+
+
+
+[Wed Jun 02 13:57:21 2010] [error] [client 192.168.0.1] malformed header from script. Bad header=Hello,World!: index.cgi  
+[Wed Jun 02 13:57:21 2010] [error] [client 192.168.0.1] malformed header from script. Bad header=Hello,World!: index.cgi  
+[Wed Jun 02 13:57:21 2010] [error] [client 192.168.0.1] malformed header from script. Bad header=Hello,World!: index.cgi 
+
+
+
+
+
+在服务器上支持文件是正确的，权限也有了，后面在网上查到是文件头有问题。CGI文件第一句一定要先定义内型，然后跟着是一个新空行，在下来就是主程序了，由于我在定义内型后没有输出文件头及换行，直接就是主程序，所以一才导致上面出现的错误。 
+
+
+
+
+
+CGI不执行，APACHE错误日志：Premature end of script headers，或 malformed header from script. Bad headerXXX，这种情况，还是检查一下CGI输出的第一句话是啥。应该是形如：  
+Content-type:text/htmlnn  
+注意：声明好Content-type后要输出两个空行。
+
+
+

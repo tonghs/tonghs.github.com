@@ -1,0 +1,20 @@
+---
+author: ths
+comments: true
+date: 2009-03-28 13:34:00+00:00
+layout: post
+slug: '%e6%88%90%e5%8a%9f%e5%ae%89%e8%a3%85ubuntu8-10'
+title: 成功安装ubuntu8.10
+wordpress_id: 97
+categories:
+- 折腾
+tags:
+- 汉化
+- 虚拟机
+- 驱动安装
+---
+
+**经过努力，ubuntu8.10终于在虚拟机上安装完成，各种驱动安装上了，有声音了，分辨率哦调好了，汉化了，能播放音乐了。详细安装配置会在几天后发出来。**
+
+
+

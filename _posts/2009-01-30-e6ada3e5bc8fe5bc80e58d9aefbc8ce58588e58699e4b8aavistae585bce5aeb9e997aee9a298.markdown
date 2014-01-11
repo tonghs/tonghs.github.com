@@ -1,0 +1,31 @@
+---
+author: ths
+comments: true
+date: 2009-01-30 09:54:00+00:00
+layout: post
+slug: '%e6%ad%a3%e5%bc%8f%e5%bc%80%e5%8d%9a%ef%bc%8c%e5%85%88%e5%86%99%e4%b8%aavista%e5%85%bc%e5%ae%b9%e9%97%ae%e9%a2%98'
+title: 正式开博，先写个vista兼容问题
+wordpress_id: 119
+categories:
+- 折腾
+tags:
+- cmd
+- vista
+- 搜狗输入法
+- 电脑
+- 科技
+---
+
+
+
+
+**最近我体验完windows
+7回到vista，在录制春晚用cmd定时关机时发现了以vista的兼容问题如下：**
+
+
+
+
+**如果安装了搜狗输入法在cmd下无法切换到英文输入法状态，即使按下了shift键还是没反应，打字时依旧会回到搜狗，很棘手啊，用cmd很不方便啊。**
+
+
+

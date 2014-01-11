@@ -1,0 +1,43 @@
+---
+author: ths
+comments: true
+date: 2013-10-06 09:11:47+00:00
+layout: post
+slug: rss%e9%98%85%e8%af%bb%e5%99%a8%e6%94%be%e5%88%b0%e4%ba%86%e5%85%ac%e7%bd%91%e4%b8%8a
+title: RSS阅读器放到了公网上
+wordpress_id: 1229
+categories:
+- OnlyRSSWeb
+- 技术
+tags:
+- onlyrss
+---
+
+申请了vps后，[OnlyRSS](http://rss.tonghs.com)也就顺利放到了公网上
+
+
+
+
+
+鉴于目前功能不完善，bug太多，只是在vps上做做生产环境测试
+
+
+
+
+
+环境：nginx + uwsgi + python + django
+
+
+
+
+
+目前只有二级域名：[rss.tonghs.com](http://rss.tonghs.com)
+
+
+
+
+
+同时项目代码也在[github](https://github.com/tonghuashuai/OnlyRSSWeb)上放出，代码还需要进一步优化，希望各位大牛不要嘲笑我代码太烂。
+
+
+

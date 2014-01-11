@@ -1,0 +1,34 @@
+---
+author: ths
+comments: true
+date: 2011-05-19 08:20:00+00:00
+layout: post
+slug: mysql%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%88%aa%e5%8f%96
+title: mysql字符串截取
+wordpress_id: 622
+categories:
+- 技术
+tags:
+- mysql
+- 字符串截取
+---
+
+MySQL 字符串函数：字符串截取
+
+
+
+
+
+MySQL 字符串截取函数：left(), right(), substring(), substring_index()。 还有 mid(), substr()。 其中，mid(), substr() 等价于 substring() 函数，substring() 的功能非常强大和灵活。
+
+
+
+
+    
+    1. 字符串截取：<span class="kwrd">left</span>(str, length)<br><br>mysql> <span class="kwrd">select</span> <span class="kwrd">left</span>(<span class="str">'sqlstudy.com'</span>, 3);<br><br>2. 字符串截取：<span class="kwrd">right</span>(str, length)<br><br>mysql> <span class="kwrd">select</span> <span class="kwrd">right</span>(<span class="str">'sqlstudy.com'</span>, 3);<br><br>3. 字符串截取：<span class="kwrd">substring</span>(str, pos); <span class="kwrd">substring</span>(str, pos, len)<br><br>3.1 从字符串的第 4 个字符位置开始取，直到结束。<br><br>3.2 从字符串的第 4 个字符位置开始取，只取 2 个字符。<br><br>mysql> <span class="kwrd">select</span> <span class="kwrd">substring</span>(<span class="str">'sqlstudy.com'</span>, 4, 2);<br><br>3.3 从字符串的第 4 个字符位置（倒数）开始取，直到结束。<br><br>mysql> <span class="kwrd">select</span> <span class="kwrd">substring</span>(<span class="str">'sqlstudy.com'</span>, -4);<br><br>3.4 从字符串的第 4 个字符位置（倒数）开始取，只取 2 个字符。<br><br>mysql> <span class="kwrd">select</span> <span class="kwrd">substring</span>(<span class="str">'sqlstudy.com'</span>, -4, 2);<br><br>我们注意到在函数 <span class="kwrd">substring</span>(str,pos, len)中， pos 可以是负值，但 len 不能取负值。<br><br>4. 字符串截取：substring_index(str,delim,<span class="kwrd">count</span>)<br><br>4.1 截取第二个 <span class="str">'.'</span> 之前的所有字符。<br><br>mysql> <span class="kwrd">select</span> substring_index(<span class="str">'www.sqlstudy.com.cn'</span>, <span class="str">'.'</span>, 2);<br><br>4.2 截取第二个 <span class="str">'.'</span> （倒数）之后的所有字符。<br><br>mysql> <span class="kwrd">select</span> substring_index(<span class="str">'www.sqlstudy.com.cn'</span>, <span class="str">'.'</span>, -2);<br><br>4.3 如果在字符串中找不到 delim 参数指定的值，就返回整个字符串<br><br>mysql> <span class="kwrd">select</span> substring_index(<span class="str">'www.sqlstudy.com.cn'</span>, <span class="str">'.coc'</span>, 1);<br><br>
+
+  
+
+
+
+

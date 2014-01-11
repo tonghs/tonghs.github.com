@@ -1,0 +1,29 @@
+---
+author: ths
+comments: true
+date: 2011-03-04 08:21:00+00:00
+layout: post
+slug: vs2008%e6%95%b0%e6%8d%ae%e5%ba%93%e8%bf%9e%e6%8e%a5%e5%ad%97%e7%ac%a6%e4%b8%b2
+title: vs2008数据库连接字符串
+wordpress_id: 534
+categories:
+- 技术
+tags:
+- .net
+- 数据库连接字符串
+---
+
+配置文件中：  
+<connectionStrings>   
+<add name="connString" connectionString="server=192.168.100.234,1433;database=reception_db;uid=oasa;pwd=pass#word#2010"/>  
+</connectionStrings>
+
+
+
+
+
+应用时：  
+string connStr = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+
+
+

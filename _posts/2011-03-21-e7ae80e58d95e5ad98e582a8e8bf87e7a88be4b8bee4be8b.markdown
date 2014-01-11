@@ -1,0 +1,39 @@
+---
+author: ths
+comments: true
+date: 2011-03-21 08:54:00+00:00
+layout: post
+slug: '%e7%ae%80%e5%8d%95%e5%ad%98%e5%82%a8%e8%bf%87%e7%a8%8b%e4%b8%be%e4%be%8b'
+title: 简单存储过程举例
+wordpress_id: 572
+categories:
+- 技术
+tags:
+- 存储过程
+---
+
+<
+
+
+
+
+
+p>create proc seach  
+@id int,  
+@productName varchar(50) output  
+as  
+select @productName=product.productName   
+from product   
+where id=@id  
+go
+
+
+
+
+
+declare @productName varchar(50);  
+exec dbo.seach 1, @productName out;  
+select @productName;
+
+
+

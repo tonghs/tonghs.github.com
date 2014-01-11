@@ -1,0 +1,21 @@
+---
+author: ths
+comments: true
+date: 2011-06-30 05:42:00+00:00
+layout: post
+slug: word%e9%87%8c%e9%9d%a2%e8%bd%af%e5%9b%9e%e8%bd%a6%e9%97%ae%e9%a2%98%e5%90%91%e4%b8%8b%e7%9a%84%e7%ae%ad%e5%a4%b4
+title: Word里面软回车问题(向下的箭头)
+wordpress_id: 643
+categories:
+- 折腾
+tags:
+- word
+- 回车
+- 硬回车
+- 软回车
+---
+
+Word里面的软回车看着很不爽,但是又不能删,因为要保留分段,只需替换成硬回车就行了方法如下:点击菜单栏中的“编辑”→“替换” ，在“查找内容”里面输入^l， “替换为”里面输入^p，然后点“全部替换” 就OK了.
+
+
+

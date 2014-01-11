@@ -1,0 +1,27 @@
+---
+author: ths
+comments: true
+date: 2013-12-13 08:21:54+00:00
+layout: post
+slug: vim-%e7%b2%98%e8%b4%b4%e6%93%8d%e4%bd%9c%e7%a6%81%e7%94%a8%e8%87%aa%e5%8a%a8%e7%bc%a9%e8%bf%9b
+title: vim 粘贴操作禁用自动缩进
+wordpress_id: 1699
+categories:
+- 未分类
+tags:
+- vim
+- 粘贴
+- 缩进
+---
+
+`vim` 中粘贴操作的自动缩进常常使代码异常混乱，在多次忍受后终于忍无可忍，后 `Google` 得之在粘贴模式下正常，于是在 ~/.vimrc 中添加以下开关，随时开启关闭粘贴模式：
+
+
+
+
+    
+    <code>set pastetoggle=<F11>
+    </code>
+
+
+

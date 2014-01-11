@@ -1,0 +1,19 @@
+---
+author: ths
+comments: true
+date: 2011-06-30 06:03:00+00:00
+layout: post
+slug: '%e6%97%a0%e6%b3%95%e5%90%af%e5%8a%a8task-scheduler%e6%9c%8d%e5%8a%a1-%e9%94%99%e8%af%af1717'
+title: 无法启动Task Scheduler服务.错误1717
+wordpress_id: 649
+categories:
+- 折腾
+tags:
+- Task Scheduler
+- 服务
+---
+
+Event Log服务没有启动
+
+
+

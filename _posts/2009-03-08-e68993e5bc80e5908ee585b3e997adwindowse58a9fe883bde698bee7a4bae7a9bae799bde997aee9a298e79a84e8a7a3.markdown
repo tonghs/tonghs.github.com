@@ -1,0 +1,32 @@
+---
+author: ths
+comments: true
+date: 2009-03-08 15:30:00+00:00
+layout: post
+slug: '%e6%89%93%e5%bc%80%e5%90%8e%e5%85%b3%e9%97%adwindows%e5%8a%9f%e8%83%bd%e6%98%be%e7%a4%ba%e7%a9%ba%e7%99%bd%e9%97%ae%e9%a2%98%e7%9a%84%e8%a7%a3'
+title: ”打开后关闭windows功能“显示空白问题的解
+wordpress_id: 101
+categories:
+- 折腾
+tags:
+- iis
+- vista
+- windows
+- 修复系统
+- 电脑
+---
+
+**今天打算用IIS，进入Control
+Panel-Uninstall a Program-Turn Windows feature on or off
+后发现列表什么也没有，等了很长时间也没有（忘了告诉大家我用的是英文版的vista，相应的中文版应该大家更熟悉了）。我以为系统又反应不过来了呢，于是注销了一下，可是没什么效果，重启，问题依旧，于是我就上网求助，看到坛子里的不少朋友说是UAC的问题，我照做了但是问题很是解决不了，还有人说是系统文件损坏，我想修复系统是下下策，因为我手边没有vista系统盘，修复时很麻烦，于是再找，在无意中发现的一个帖子中提到了两个服务，我看了一下我一个没有，另一个是Windows
+Modules Install确实没有开启，于是开启，再看，问题解决。**
+
+
+
+
+
+
+**总结：遇到问题不要迷信一种答案，要多找几种答案，多试试，最后是修复系统或重装。**
+
+
+

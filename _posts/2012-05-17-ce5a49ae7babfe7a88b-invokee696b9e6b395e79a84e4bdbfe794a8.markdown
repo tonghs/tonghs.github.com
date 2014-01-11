@@ -1,0 +1,58 @@
+---
+author: ths
+comments: true
+date: 2012-05-17 08:39:00+00:00
+layout: post
+slug: c%e5%a4%9a%e7%ba%bf%e7%a8%8b-invoke%e6%96%b9%e6%b3%95%e7%9a%84%e4%bd%bf%e7%94%a8
+title: c#多线程 Invoke方法的使用
+wordpress_id: 746
+categories:
+- 技术
+tags:
+- c
+- Invoke
+- 多线程
+---
+
+在多线程编程中，我们经常要在工作线程中去更新界面显示，而在多线程中直接调用界面控件的方法是错误的做法，Invoke 和 BeginInvoke 就是为了解决这个问题而出现的，使你在多线程中安全的更新界面显示。 
+
+
+
+
+
+**正确的做法是将工作线程中涉及更新界面的代码封装为一个方法，通过 Invoke 或者 BeginInvoke 去调用，两者的区别就是一个导致工作线程等待，而另外一个则不会。**
+
+
+
+
+
+而所谓的“一面响应操作，一面添加节点”永远只能是相对的，使 UI 线程的负担不至于太大而已，因为界面的正确更新始终要通过 UI 线程去做，我们要做的事情是在工作线程中包揽大部分的运算，而将对纯粹的界面更新放到 UI 线程中去做，这样也就达到了减轻 UI 线程负担的目的了。 
+
+
+
+
+
+再举个简单例子说明下使用方法,比如你在启动一个线程,在线程的方法中想更新窗体中的一个TextBox. 
+    
+    <span style="color: #0000ff">using</span> System.Threading;
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">delegate</span> <span style="color: #0000ff">void</span> MyInvoke(<span style="color: #0000ff">string</span> str);
+    <span style="color: #0000ff">private</span> <span style="color: #0000ff">void</span> btnStartThread_Click(<span style="color: #0000ff">object</span> sender, EventArgs e)
+    {
+        Thread thread = <span style="color: #0000ff">new</span> Thread(<span style="color: #0000ff">new</span> ThreadStart(DoWord));
+        thread.Start();
+    }
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> DoWord()
+    {            
+        MyInvoke mi = <span style="color: #0000ff">new</span> MyInvoke(SetTxt);
+        BeginInvoke(mi,<span style="color: #0000ff">new</span> <span style="color: #0000ff">object</span>[]{"<span style="color: #8b0000">abc</span>"});                
+    }
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> SetTxt(<span style="color: #0000ff">string</span> str)
+    {
+        txtReceive.Text += str + System.Environment.NewLine;
+    }
+
+  
+
+
+
+

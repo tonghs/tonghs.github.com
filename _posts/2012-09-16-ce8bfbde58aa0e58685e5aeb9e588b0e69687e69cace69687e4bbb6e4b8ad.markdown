@@ -1,0 +1,26 @@
+---
+author: ths
+comments: true
+date: 2012-09-16 07:56:00+00:00
+layout: post
+slug: c%e8%bf%bd%e5%8a%a0%e5%86%85%e5%ae%b9%e5%88%b0%e6%96%87%e6%9c%ac%e6%96%87%e4%bb%b6%e4%b8%ad
+title: C#追加内容到文本文件中
+wordpress_id: 870
+categories:
+- 技术
+tags:
+- 追加内容
+---
+
+using SYSTEM.IO; 
+    //C#追加文件
+     StreamWriter sw=File.AppendText(Server.MapPath(".")+"\myText.txt");
+     sw.WriteLine("追逐理想");
+     sw.WriteLine("kzlll");
+     sw.WriteLine(".NET笔记");
+     sw.Flush();
+     sw.Close();
+    
+
+
+

@@ -1,0 +1,109 @@
+---
+author: ths
+comments: true
+date: 2010-01-22 01:02:00+00:00
+layout: post
+slug: '%e8%87%aa%e5%ae%9a%e4%b9%89ewebeditor%e7%bc%96%e8%be%91%e5%99%a8%ef%bc%8c%e5%a2%9e%e5%8a%a0%e5%88%86%e9%a1%b5%e6%8c%89%e9%92%ae'
+title: 自定义eWebEditor编辑器，增加分页按钮
+wordpress_id: 73
+categories:
+- 技术
+tags:
+- ewebeditor
+- it
+- 分页
+- 自定义按钮
+---
+
+
+最近修改网站时，新闻显示页面需要用到分页，由于用到了eWebEditor编辑器，我就想在编辑器上做点手脚，网上一查确实有方法，就用了，很好用，特贴在下面，分享给大家：
+
+
+
+
+
+
+1、找一个合适的gif小图片做为按钮图标，放在eWebEditorButtonImagestandard目录下，命名为Page.gif
+
+
+
+
+
+2、打开eWebEditor/Include目录下的Editor.js，添加如下红色部分：  
+
+case "br": // 插入换行符  
+
+insertHTML("<br>")  
+
+break;  
+case "Page": // 插入分页符  
+
+insertHTML("[NextPage]")  
+
+break;  
+case "code": // 代码片段样式
+
+
+
+
+
+3、打开eWebEditor/Include目录下的menu.js，添加如下红色部分：  
+
+sMenu += getMenuRow("", "insert('br')", "br.gif", "插入换行符");  
+sMenu += getMenuRow("", "insert('Page')",
+"Page.gif", "插入分页符");  
+
+height = 204;
+
+
+
+
+
+4、打开eWebEditor数据库，增加一条记录，如图（最后一条）：
+
+
+
+
+
+[![](http://tonghuashuai.jhost.cn/wp-content/uploads/static3.photo_.sina_.com_.cn_bmiddle_5e66e6c9t7db696c9b612690.jpg)](http://tonghuashuai.jhost.cn/wp-content/uploads/static3.photo_.sina_.com_.cn_bmiddle_5e66e6c9t7db696c9b612690.jpg)
+
+
+
+
+
+
+ps:图可能看不太清楚，字段从左到右依次为"Page"，"插入分页符"，"page.gif"，""，"0"，"insert（'Page'）","Btn","2007","1"
+
+
+
+
+
+[](http://blog.photo.sina.com.cn/showpic.html#url=http://static3.photo.sina.com.cn/orignal/5e66e6c9t7db69489be82&690)
+
+
+
+
+
+[](http://blog.photo.sina.com.cn/showpic.html#url=http://static16.photo.sina.com.cn/orignal/5e66e6c9t7db68bff1eef&690)
+
+
+
+
+
+
+5、登录eWebEditor后台，点击样式管理---点击你所使用样式的工具栏---高级工具栏---按钮设置，拉到底，把“插入分页符”添加到已选按钮，为了整齐可以减掉一个用不到的按钮，保存。
+
+
+
+
+
+完成。在KS后台添加或者编辑文章，插入分页符看看效果。
+
+
+
+
+
+剩下的就是修改你的页面的代码实现分页了，再次就不赘述了。
+
+
+

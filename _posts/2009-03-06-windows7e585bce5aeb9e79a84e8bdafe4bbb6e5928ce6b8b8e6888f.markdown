@@ -1,0 +1,205 @@
+---
+author: ths
+comments: true
+date: 2009-03-06 09:07:00+00:00
+layout: post
+slug: windows7%e5%85%bc%e5%ae%b9%e7%9a%84%e8%bd%af%e4%bb%b6%e5%92%8c%e6%b8%b8%e6%88%8f
+title: windows7兼容的软件和游戏!
+wordpress_id: 105
+categories:
+- 折腾
+tags:
+- windows7
+- 兼容列表
+---
+
+
+**完全正常安装使用的软件列表，不需要通过改变兼容方式、使用管理员身份运行等其他方法安装或运行的软件。  
+
+没有特别注明的均为本人或坛友亲身体验。添加原则是，只要有一位能完全正常使用就暂时归为“完美使用“，如有坛友提出异议再做讨论，不知道这样是否科学。  
+
+
+1.QQ2009Preview4build346、build520简体中文版（亲身体验）  
+
+2.Firefox3.0（亲身体验）  
+
+3.Oprea9.50 （亲身体验，我用的版本有点旧了）  
+
+4.360安全浏览器（亲身体验）  
+
+5.Sogou输入法3.x（亲身体验）  
+
+6.Sogou浏览器1.0beta（亲身体验）  
+
+7.QQ游戏2008、2009beta（亲身体验）  
+
+8.QQ飞车圣诞版（亲身体验）  
+
+9.easymuley  
+
+10.迅雷5.8.8.653（亲身体验）  
+
+11.千千静听5.3（亲身体验）  
+
+12.罗技setpoint4.7（感谢chenxiaobai，下略）  
+
+13.AUTO CAD2004，2009  
+
+14.浩方电竞平台（亲身体验）  
+
+15.winrar3.8（感谢fseteen，下略）  
+
+16.MSN9极点五笔6.3  
+
+17.flashget2.4  
+
+18.Avira Antivir Person版（小红伞C版）  
+
+19.KIS2009（亲身体验）  
+
+20.掌智手机助手（亲身体验）  
+
+21.Acronis2009（完全支持windows7系统备份和还原，感谢sxb）  
+
+22.长江证券 7.0（感谢jkjkjk，下略）  
+
+23.Mount&Blade 1.011  
+
+24.McAfee_VirusScan_Enterprise_v8.7  
+
+25.eMule_0.49b  
+
+26.foobar2000  
+
+27.Storm Player暴风影音2009  
+
+28.龙卷风网络收音机 3.0.0.1  
+
+29.Google Chrome  
+
+30.realplayer 11  
+
+31.阿里旺旺2008  
+
+32.QQ2008  
+
+33.Office 2003，2007  
+
+34.瑞星2009  
+
+35.光影魔术手  
+
+36.utorrent  
+
+37.sql 2005或2008  
+
+38.visual 2005或2008  
+
+39.Oracle 10.2.0.3  
+
+40..net framework 1.1  
+
+41.Dreamweaver CS4  
+
+42.Adobe Flash CS4  
+
+43.Adobe Photoshop CS4  
+
+44.Adobe Reader 9.0  
+
+45.CCleaner 2.15.815  
+
+46.ESET NOD32 Antivirus 4.0.68.0  
+
+47.Nokia PC套件 7.1.18.0  
+
+48.超级旋风 1.9.252.203  
+
+49.灵格斯 2.5.3  
+
+50.Opera 10.00 alpha  
+
+51.AI RoboForm  
+
+52.BestCrypt  
+
+53.PowerManager for ThinkPad  
+
+54.coreldraw X4  
+
+55.corel paint pro x2  
+
+56.劲舞团  
+
+57.Nero StartSmart  
+
+58.EssentialsRaySource  
+
+59.红蜻蜓抓图精灵  
+
+60.UltraISO软碟通  
+
+61纳米机器人  
+
+62.ACDSee 10.888  
+
+63.Windows清理助手  
+
+64.AVG Anti-Virus Free  
+
+65.腾讯TT浏览器  
+
+66.iTunes  
+
+67.QQ音速在完全关闭用户控制后正常  
+
+68.PPLive  
+
+69.快播QVOD  
+
+70.dr.web 4.4，5.0  
+
+71.QQ影音  
+
+72.格式工厂  
+
+73.金山WPS2007专业版  
+
+74.Nero 9  
+
+75.UltroISO 9.3.1.2633  
+
+76.Eclipse  
+
+77.3DMARK06 **
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+** **
+
+
+
+
+
+
+
+** **
+
+
+

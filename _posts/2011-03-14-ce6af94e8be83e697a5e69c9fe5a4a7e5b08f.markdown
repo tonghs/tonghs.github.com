@@ -1,0 +1,20 @@
+---
+author: ths
+comments: true
+date: 2011-03-14 08:19:00+00:00
+layout: post
+slug: c%e6%af%94%e8%be%83%e6%97%a5%e6%9c%9f%e5%a4%a7%e5%b0%8f
+title: C#比较日期大小
+wordpress_id: 723
+categories:
+- 技术
+tags:
+- 比较日期
+---
+
+<span style="color: #2b91af">DateTime </span>at = <span style="color: #2b91af">Convert</span>.ToDateTime(attendTime);
+    <span style="color: #2b91af">DateTime </span>it = <span style="color: #2b91af">Convert</span>.ToDateTime(inout);
+    <span style="color: blue">int </span>ret = <span style="color: #2b91af">DateTime</span>.Compare(at, it);<span style="color: green">//考勤时间与上下班时间分界比较</span>
+
+
+

@@ -1,0 +1,22 @@
+---
+author: ths
+comments: true
+date: 2011-06-01 03:01:00+00:00
+layout: post
+slug: '%e8%a7%a3%e5%86%b3vim%e4%b9%b1%e7%a0%81'
+title: 解决vim乱码
+wordpress_id: 635
+categories:
+- 折腾
+tags:
+- vim
+- 乱码
+---
+
+**vim乱码解决方法**：  
+编辑sudo vim /etc/vim/vimrc文件，添加以下两行：  
+`let &termencoding=&encoding  
+set fileencodings=utf-8,gbk,ucs-bom,cp936`
+
+
+

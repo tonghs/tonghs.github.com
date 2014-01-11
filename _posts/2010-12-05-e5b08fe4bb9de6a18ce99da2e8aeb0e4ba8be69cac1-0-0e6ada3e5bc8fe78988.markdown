@@ -1,0 +1,50 @@
+---
+author: ths
+comments: true
+date: 2010-12-05 22:53:47+00:00
+layout: post
+slug: '%e5%b0%8f%e4%bb%9d%e6%a1%8c%e9%9d%a2%e8%ae%b0%e4%ba%8b%e6%9c%ac1-0-0%e6%ad%a3%e5%bc%8f%e7%89%88'
+title: 小仝桌面记事本1.0.0正式版
+wordpress_id: 238
+categories:
+- 分享
+tags:
+- 发布，THS工作室，小仝
+---
+
+[猛击此处下载](http://cid-78f9778b90303c83.office.live.com/embedicon.aspx/.Public/ReminderSetup.msi)或点击以下图标  
+
+    
+
+
+
+
+
+xp系统请安装.net framework 2.0环境
+
+
+
+
+
+详细更新：  
+
+    名称：小仝桌面记事本  
+
+    版本：1.0.0正式版
+
+
+
+
+
+从该版本开始，以THS工作室的名义发布，该版本修正了几个小问题，有beta版转到正式版。  
+
+    1.更改双击最大化后托盘图标消失的问题  
+
+    2.最小化时托盘区气球显示动态内容  
+
+    3.更新关于界面的内容，发布THS工作室相关内容  
+
+    4.上个版本初始状态有测试内容，我的疏忽，本版本已经清空
+
+
+

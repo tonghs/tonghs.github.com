@@ -1,0 +1,26 @@
+---
+author: ths
+comments: true
+date: 2012-05-17 08:47:00+00:00
+layout: post
+slug: c%e6%93%8d%e4%bd%9cexcel%ef%bc%8c%e6%b6%88%e9%99%a4%e5%90%88%e5%b9%b6%e5%8d%95%e5%85%83%e6%a0%bc%e6%93%8d%e4%bd%9c%e7%9a%84%e8%af%a2%e9%97%ae%e5%af%b9%e8%af%9d%e6%a1%86
+title: C#操作excel，消除合并单元格操作的询问对话框
+wordpress_id: 748
+categories:
+- 技术
+tags:
+- c
+- excel
+---
+
+
+
+
+    
+    Excel.ApplicationClass   xlsApp   =   <span style="color: #0000ff">new</span>   Excel.ApplicationClass()   ; 
+    xlsApp.Application.DisplayAlerts   =   <span style="color: #0000ff">false</span>;   <span style="color: #008000">//关闭提示 </span>
+    ((Excel.Range)xlsApp.Selection).MergeCells   =   <span style="color: #0000ff">true</span>; 
+    xlsApp.Application.DisplayAlerts   =   <span style="color: #0000ff">true</span>;     <span style="color: #008000">//恢复提示</span>
+
+
+

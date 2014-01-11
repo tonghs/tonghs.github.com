@@ -1,0 +1,50 @@
+---
+author: ths
+comments: true
+date: 2012-08-10 06:27:00+00:00
+layout: post
+slug: '%e6%90%9e%e6%98%8e%e7%99%bdssh%e5%ae%a2%e6%88%b7%e7%ab%af%e4%b9%b1%e7%a0%81%e7%9a%84%e5%8e%9f%e5%9b%a0'
+title: 搞明白ssh客户端乱码的原因
+wordpress_id: 852
+categories:
+- 折腾
+tags:
+- ssh
+- 乱码
+---
+
+昨天发现ssh到centos5.3下，中文是乱码，以前没有这个问题，按照外面的文档，修改 
+
+
+
+
+
+/etc/sysconfig/i18n 
+
+
+
+
+
+LANG="en_US.UTF-8"  
+SYSFONT="latarcyrheb-sun16" 
+
+
+
+
+
+研究了半天，原来什么都不需要改动，只需要设置ssh客户端，使用utf8，就可以。中文的文件夹都没有问题。 
+
+
+
+
+
+![](http://hiphotos.baidu.com/chenshake/pic/item/95db730614a621580308814e.jpg)
+
+
+
+
+
+![](http://hiphotos.baidu.com/chenshake/pic/item/72b71e4fa7c6dc15aec3ab4a.jpg)
+
+
+

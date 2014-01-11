@@ -1,0 +1,16 @@
+---
+author: ths
+comments: true
+date: 2010-12-14 12:25:18+00:00
+layout: post
+slug: '%e9%a1%b6%e7%ba%a7%e7%9a%84%e6%8a%80%e6%9c%af%e9%a1%b6%e7%ba%a7%e7%9a%84%e5%88%9b%e6%84%8f'
+title: 顶级的技术+顶级的创意
+wordpress_id: 323
+categories:
+- 生活
+tags:
+- 创意
+---
+
+
+

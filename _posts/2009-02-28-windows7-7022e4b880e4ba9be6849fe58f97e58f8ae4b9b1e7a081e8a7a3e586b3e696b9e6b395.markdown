@@ -1,0 +1,32 @@
+---
+author: ths
+comments: true
+date: 2009-02-28 23:42:00+00:00
+layout: post
+slug: windows7-7022%e4%b8%80%e4%ba%9b%e6%84%9f%e5%8f%97%e5%8f%8a%e4%b9%b1%e7%a0%81%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95
+title: windows7 7022一些感受及乱码解决方法
+wordpress_id: 109
+categories:
+- 折腾
+tags:
+- windows7
+- 乱码
+- 注册表
+- 电脑
+---
+
+
+**用了几天的7022了，优化了一下感觉还可以，应该比7000快乐一点，只是一点点，不是太明显，确实有了不少改进，但是也有很多不足，比如微软发布的兼容性更新无法安装，有很多网友反映windows
+update显示的更新很少，最多的还是乱码问题，我用了几个星期了目前只有QQ2008出现乱码，今天我就发给大家解决方法，很简单只需更改两个注册表项就可以了：**
+
+
+
+
+
+
+**以管理员身份打开注册表编辑器，依次定位至“HKEY_LOCAL_MACHINESYSTEMCurrentControlSetControlFontAssocAssociated
+Charset”，双击右侧的“ANSI(00)”打开属性对话框，将其值由默认的“NO”更改为“YES”，接下来对“OEM(FF)”进行同样的操作，重启系统之后即可完美解决Windows
+7 Build 7022的乱码问题。**
+
+
+

@@ -1,0 +1,136 @@
+---
+author: ths
+comments: true
+date: 2012-06-29 02:55:00+00:00
+layout: post
+slug: oracle%e5%b7%a6%e5%8f%b3%e8%bf%9e%e6%8e%a5%e7%9a%84%e5%8f%a6%e5%a4%96%e8%a1%a8%e7%a4%ba%e6%96%b9%e6%b3%95-%e6%8b%ac%e5%8f%b7%e5%8a%a0%e5%8f%b7
+title: oracle左右连接的另外表示方法-括号加号(+)
+wordpress_id: 821
+categories:
+- 技术
+tags:
+- (+)
+- oracle
+- 左连接
+---
+
+Oracle中可以使用“(+) ”来表示，9i可以使用LEFT/RIGHT/FULL OUTER JOIN  
+LEFT OUTER JOIN：左外关联  
+SELECT e.last_name, e.department_id, d.department_name  
+FROM employees e  
+LEFT OUTER JOIN departments d  
+ON (e.department_id = d.department_id);  
+等价于  
+SELECT e.last_name, e.department_id, d.department_name  
+FROM employees e, departments d  
+WHERE e.department_id=d.department_id(+)  
+结果为：所有员工及对应部门的记录，包括没有对应部门编号department_id的员工记录。  
+RIGHT OUTER JOIN：右外关联  
+SELECT e.last_name, e.department_id, d.department_name  
+FROM employees e  
+RIGHT OUTER JOIN departments d  
+ON (e.department_id = d.department_id);  
+等价于  
+SELECT e.last_name, e.department_id, d.department_name  
+FROM employees e, departments d  
+WHERE e.department_id(+)=d.department_id  
+结果为：所有员工及对应部门的记录，包括没有任何员工的部门记录。  
+FULL OUTER JOIN：全外关联  
+SELECT e.last_name, e.department_id, d.department_name  
+FROM employees e  
+FULL OUTER JOIN departments d  
+ON (e.department_id = d.department_id);  
+结果为：所有员工及对应部门的记录，包括没有对应部门编号department_id的员工记录和没有任何员工的部门记录。 
+
+
+
+
+
+================================================================================================
+
+
+
+
+
+数据表的连接有:  
+1、内连接(自然连接): 只有两个表相匹配的行才能在结果集中出现  
+2、外连接: 包括  
+（1）左外连接(左边的表不加限制)  
+（2）右外连接(右边的表不加限制)  
+（3）全外连接(左右两表都不加限制)  
+3、自连接(连接发生在一张基表内) 
+
+
+
+
+
+select a.studentno, a.studentname, b.classname  
+from students a, classes b  
+where a.classid(+) = b.classid; 
+
+
+
+
+
+STUDENTNO STUDENTNAM CLASSNAME  
+---------- ---------- ------------------------------  
+1 周虎 一年级一班  
+2 周林 一年级二班  
+一年级三班 
+
+
+
+
+
+以上语句是右连接：  
+即"(+)"所在位置的另一侧为连接的方向，右连接说明等号右侧的所有  
+记录均会被显示，无论其在左侧是否得到匹配。也就是说上例中，无  
+论会不会出现某个班级没有一个学生的情况，这个班级的名字都会在  
+查询结构中出现。 
+
+
+
+
+
+反之：  
+select a.studentno, a.studentname, b.classname  
+from students a, classes b  
+where a.classid = b.classid(+); 
+
+
+
+
+
+STUDENTNO STUDENTNAM CLASSNAME  
+---------- ---------- ------------------------------  
+1 周虎 一年级一班  
+2 周林 一年级二班  
+3 钟林达 
+
+
+
+
+
+则是左连接，无论这个学生有没有一个能在一个班级中得到匹配的部门号，  
+这个学生的记录都会被显示。 
+
+
+
+
+
+select a.studentno, a.studentname, b.classname  
+from students a, classes b  
+where a.classid = b.classid; 
+
+
+
+
+
+这个则是通常用到的内连接,显示两表都符合条件的记录  
+总之,  
+左连接显示左边全部的和右边与左边相同的  
+右连接显示右边全部的和左边与右边相同的  
+内连接是只显示满足条件的!
+
+
+

@@ -1,0 +1,50 @@
+---
+author: ths
+comments: true
+date: 2013-06-10 04:57:00+00:00
+layout: post
+slug: javascript-with-%e7%9a%84%e7%94%a8%e6%b3%95
+title: javascript with 的用法
+wordpress_id: 1142
+categories:
+- 技术
+tags:
+- javascript
+- with
+---
+
+with (object)
+statements
+参数
+object
+新的默认对象。
+statements
+一个或多个语句，object 是该语句的默认对象。
+说明
+with 语句通常用来缩短特定情形下必须写的代码量。在下面的例子中，请注意 Math 的重复使用：
+
+
+
+
+
+x = Math.cos(3 * Math.PI) + Math.sin(Math.LN10)
+y = Math.tan(14 * Math.E)
+当使用 with 语句时，代码变得更短且更易读：
+
+
+
+
+
+with (Math){
+x = cos(3 * PI) + sin (LN10)
+y = tan(14 * E)
+}
+
+
+
+
+
+就像C#里面的usring。
+
+
+

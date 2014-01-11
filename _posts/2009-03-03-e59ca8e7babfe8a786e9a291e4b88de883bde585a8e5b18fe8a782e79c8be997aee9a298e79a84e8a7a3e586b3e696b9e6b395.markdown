@@ -1,0 +1,29 @@
+---
+author: ths
+comments: true
+date: 2009-03-03 10:53:00+00:00
+layout: post
+slug: '%e5%9c%a8%e7%ba%bf%e8%a7%86%e9%a2%91%e4%b8%8d%e8%83%bd%e5%85%a8%e5%b1%8f%e8%a7%82%e7%9c%8b%e9%97%ae%e9%a2%98%e7%9a%84%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95'
+title: 在线视频不能全屏观看问题的解决方法
+wordpress_id: 106
+categories:
+- 折腾
+tags:
+- flashplayer
+- 全屏
+- 土豆
+- 在线视频
+- 问题解决
+---
+
+**最近在上土豆时发现不能全频播放了，全屏就闪，这个问题是由flash
+player插件引起的，解决方法：**
+
+
+
+
+
+**在视频上右键->设置，取消启用硬件加速，问题解决。**
+
+
+

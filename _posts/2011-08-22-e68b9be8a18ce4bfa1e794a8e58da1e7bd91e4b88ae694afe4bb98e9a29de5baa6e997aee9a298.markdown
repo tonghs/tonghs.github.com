@@ -1,0 +1,43 @@
+---
+author: ths
+comments: true
+date: 2011-08-22 05:54:00+00:00
+layout: post
+slug: '%e6%8b%9b%e8%a1%8c%e4%bf%a1%e7%94%a8%e5%8d%a1%e7%bd%91%e4%b8%8a%e6%94%af%e4%bb%98%e9%a2%9d%e5%ba%a6%e9%97%ae%e9%a2%98'
+title: 招行信用卡网上支付额度问题
+wordpress_id: 660
+categories:
+- 生活
+tags:
+- 招行
+- 网上支付额度
+---
+
+最近在给支付宝充值的实收招行信用卡网银提示累计网上支付额度超过限定额度，我一查杯具了，还有累计支付额度，那怎么办，应该有清空办法吧，google一下，找到了办法：
+
+
+
+
+
+<
+
+
+
+
+
+p>1、登录招商银行主页：  
+![](http://help.tenpay.com/images/svc/90.jpg)  
+2、登录个人信用卡账户：  
+![](http://help.tenpay.com/images/svc/91.jpg)  
+3、进入“网上支付”——“网上支付额度设置”：  
+![](http://help.tenpay.com/images/svc/92.jpg)  
+4、此时可以看到您目前的累计网上支付金额，同时可以修改网上支付额度：  
+5、把您想要修改的支付额度输入：  
+![](http://help.tenpay.com/images/svc/93.jpg)  
+6、此时会提示您额度已设定，核实无误后请点击确定：  
+![](http://help.tenpay.com/images/svc/94.jpg)  
+7、系统会提示当前您的网上支付限额以及累计网上支付金额，您会看到此时的累计网上支付金额已经清空：  
+![](http://help.tenpay.com/images/svc/95.jpg)
+
+
+

@@ -1,0 +1,23 @@
+---
+author: ths
+comments: true
+date: 2013-11-11 12:24:29+00:00
+layout: post
+slug: string-split%e7%94%a8%e6%b3%95%e7%9a%84%e4%b8%80%e7%82%b9%e7%bb%8f%e9%aa%8c
+title: String.split()用法的一点经验
+wordpress_id: 1267
+categories:
+- 技术
+tags:
+- split
+---
+
+
+
+  1. 如果用“.”作为分隔的话，必须是如下写法：String.split("\."),这样才能正确的分隔开，不能用String.split(".");
+
+
+  2. 如果用“|”作为分隔的话，必须是如下写法：String.split("\|"),这样才能正确的分隔开，不能用String.split("|");
+
+
+

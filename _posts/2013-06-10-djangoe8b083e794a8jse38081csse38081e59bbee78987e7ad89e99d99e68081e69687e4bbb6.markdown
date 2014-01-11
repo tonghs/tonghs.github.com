@@ -1,0 +1,30 @@
+---
+author: ths
+comments: true
+date: 2013-06-10 05:06:37+00:00
+layout: post
+slug: django%e8%b0%83%e7%94%a8js%e3%80%81css%e3%80%81%e5%9b%be%e7%89%87%e7%ad%89%e9%9d%99%e6%80%81%e6%96%87%e4%bb%b6
+title: Django调用JS、CSS、图片等静态文件
+wordpress_id: 1151
+categories:
+- 技术
+tags:
+- Django
+- 静态资源
+---
+
+1.在settings.py中设置STATIC_PATH=’./media’ （静态文件所在目录）
+2.在urls.py中导入settings.py
+import settings
+3.在urls.py的URLpartterns中设置
+(’^site_media/(?P<path>.*)’,'django.views.static.serve’,{'document_root’: settins.STATIC_PATH}),
+
+
+
+
+
+文件中调用静态文件的方法：
+例如：<link rel=”StyleSheet” href=”/site_media/css/base.css” type=”text/css” />
+
+
+

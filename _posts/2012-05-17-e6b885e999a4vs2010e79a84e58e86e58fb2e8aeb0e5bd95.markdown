@@ -1,0 +1,31 @@
+---
+author: ths
+comments: true
+date: 2012-05-17 09:29:00+00:00
+layout: post
+slug: '%e6%b8%85%e9%99%a4vs2010%e7%9a%84%e5%8e%86%e5%8f%b2%e8%ae%b0%e5%bd%95'
+title: 清除VS2010的历史记录
+wordpress_id: 758
+categories:
+- 折腾
+tags:
+- 清除记录
+---
+
+把如下粘贴到文本文件里，另存为批处理文件。（后缀为 *.bat）双击执行就可。  
+
+    
+    @echo off
+    cd 
+    @echo on
+    @REG Delete HKEY_CURRENT_USERSoftwareMicrosoftVisualStudio10.0FileMRUList /va /f
+    @REG Delete HKEY_CURRENT_USERSoftwareMicrosoftVisualStudio10.0ProjectMRUList /va /f
+    @echo off
+    cmd
+    @echo on
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+---
+author: ths
+comments: true
+date: 2012-05-29 09:15:00+00:00
+layout: post
+slug: '%e3%80%90%e6%97%a0%e6%b3%95%e5%9c%a8web%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%8a%e5%90%af%e5%8a%a8%e8%b0%83%e8%af%95%e3%80%82%e4%b8%8eweb%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%80%9a%e4%bf%a1%e6%97%b6%e5%87%ba-2'
+title: 【无法在web服务器上启动调试。与Web服务器通信时出现身份验证错误】的解决方案
+wordpress_id: 801
+categories:
+- 技术
+- 折腾
+tags:
+- web
+- 调试
+---
+
+首先查看Web项目属性中是否启用“启用调试”，如果还是不行那么来吧，try下这种方法： 
+
+
+
+
+
+1. 打开注册表编辑器，找到并单击以下注册表项： HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Control/Lsa.  
+3. 右击 Lsa->新建->单击 DWORD 值.  
+4. 类型 DisableLoopbackCheck然后按 Enter.  
+5. 右击 DisableLoopbackCheck ->修改->输入1后确定.
+
+
+

@@ -1,0 +1,26 @@
+---
+author: ths
+comments: true
+date: 2011-06-30 06:00:00+00:00
+layout: post
+slug: visual-studio%e4%bf%9d%e5%ad%98%e6%85%a2%e7%9a%84%e9%97%ae%e9%a2%98
+title: Visual Studio保存慢的问题
+wordpress_id: 647
+categories:
+- 技术
+- 折腾
+tags:
+- visual studio
+- 慢
+---
+
+最近做项目的时候，在vs中保存的时候超慢，我平时写代码都是手离不开Ctrl+S键的，最近发现Ctrl+S一下超级慢，鼠标在那一直转，得等好长时间才可以，想当的不爽，上网查了很多方法，都说优化一下就好了，我做了，起不到作用，后再经过我的努力发现了问题的根源。
+
+
+
+
+
+在vs中，你最近打开的项目会在首页显示，单击就可以快速打开，最近项目比较多，我就从首页直接打开，某天我试了试文件—打开项目或解决方案的方法打开同样的项目，Ctrl+S，又恢复了以前的流畅，问题找到了，但不知道什么原因，可能是最近的项目太多了把，于是清除vs中最近的项目记录，方法见文章：[http://tonghuashuai.jhost.cn/?p=309](http://tonghuashuai.jhost.cn/?p=309)，问题解决。
+
+
+

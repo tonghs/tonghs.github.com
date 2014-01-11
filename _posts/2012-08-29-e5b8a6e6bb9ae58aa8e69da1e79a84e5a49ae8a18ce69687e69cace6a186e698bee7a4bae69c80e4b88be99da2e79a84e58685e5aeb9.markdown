@@ -1,0 +1,34 @@
+---
+author: ths
+comments: true
+date: 2012-08-29 07:30:00+00:00
+layout: post
+slug: '%e5%b8%a6%e6%bb%9a%e5%8a%a8%e6%9d%a1%e7%9a%84%e5%a4%9a%e8%a1%8c%e6%96%87%e6%9c%ac%e6%a1%86%e6%98%be%e7%a4%ba%e6%9c%80%e4%b8%8b%e9%9d%a2%e7%9a%84%e5%86%85%e5%ae%b9'
+title: 带滚动条的多行文本框显示最下面的内容
+wordpress_id: 863
+categories:
+- 技术
+tags:
+- 多行文本框
+---
+
+最近在做一个小工具的时候有了标题中的需求，这应该很正常的，提示信息实时更新，  
+要看的永远是最后更新进来的，我写代码如下：  
+  
+
+    
+    this.txtMsg.Text = string.Format("{0}{1}", this.txtMsg.Text, msg);
+
+  
+然后想再设置显示区域的问题,google了很久没有好的方法,网上也是你抄我的,我抄你的,发出来之前根本没有验证过,于是开始看TextBox的所有属性,有了如下代码:  
+  
+
+
+    
+    this.txtMsg.AppendText(msg);
+
+  
+使用该方法后,文本框自动显示最下面的内容,问题解决.
+
+
+

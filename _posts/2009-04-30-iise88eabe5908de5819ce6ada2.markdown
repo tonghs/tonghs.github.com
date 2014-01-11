@@ -1,0 +1,28 @@
+---
+author: ths
+comments: true
+date: 2009-04-30 13:27:00+00:00
+layout: post
+slug: iis%e8%8e%ab%e5%90%8d%e5%81%9c%e6%ad%a2
+title: IIS莫名停止
+wordpress_id: 92
+categories:
+- 折腾
+tags:
+- iis
+- 电脑
+---
+
+**今天在帮朋友做网站时想调试一个asp网页，打开IIS发现已经停止了，启用后提示没有响应，上百度搜了一圈得解决办法，由于前几天我有话系统吧world
+wide web publishing服务禁用了，这好办，开始——运行——输入services.msc——找到world wide
+web
+publishing服务——右键属性——情动类型改为自动——应用——再点启动，回到IIS，右键启动即可。**
+
+
+
+
+
+**问题解决**
+
+
+

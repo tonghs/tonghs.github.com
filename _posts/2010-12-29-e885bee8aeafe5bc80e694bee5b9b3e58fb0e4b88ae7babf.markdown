@@ -1,0 +1,25 @@
+---
+author: ths
+comments: true
+date: 2010-12-29 10:13:00+00:00
+layout: post
+slug: '%e8%85%be%e8%ae%af%e5%bc%80%e6%94%be%e5%b9%b3%e5%8f%b0%e4%b8%8a%e7%ba%bf'
+title: 腾讯开放平台上线
+wordpress_id: 450
+categories:
+- 资讯
+tags:
+- 开放平台
+- 腾讯
+---
+
+[http://opensns.qq.com/](http://opensns.qq.com/)
+
+
+
+
+
+![](http://pic.yupoo.com/tonghuashuai/AJub0Pqx/HtsIh.png)
+
+
+

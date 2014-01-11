@@ -1,0 +1,26 @@
+---
+author: ths
+comments: true
+date: 2011-09-22 11:45:00+00:00
+layout: post
+slug: div%e6%9c%89%e6%b2%a1%e6%9c%89img%e5%85%83%e7%b4%a0%e7%9a%84alt%e5%b1%9e%e6%80%a7
+title: div有没有img元素的alt属性
+wordpress_id: 671
+categories:
+- 技术
+tags:
+- alt
+- div
+- title
+---
+
+答案是有的，但是它不叫alt，叫title
+
+
+
+
+
+<div title= "你的文字 "> </div>
+
+
+

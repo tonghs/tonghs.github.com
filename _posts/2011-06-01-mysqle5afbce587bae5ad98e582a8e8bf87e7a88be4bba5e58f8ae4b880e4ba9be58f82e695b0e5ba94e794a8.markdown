@@ -1,0 +1,52 @@
+---
+author: ths
+comments: true
+date: 2011-06-01 02:51:00+00:00
+layout: post
+slug: mysql%e5%af%bc%e5%87%ba%e5%ad%98%e5%82%a8%e8%bf%87%e7%a8%8b%e4%bb%a5%e5%8f%8a%e4%b8%80%e4%ba%9b%e5%8f%82%e6%95%b0%e5%ba%94%e7%94%a8
+title: mysql导出存储过程以及一些参数应用
+wordpress_id: 630
+categories:
+- 技术
+tags:
+- mysql
+- 存储过程
+---
+
+最近在工作的时候，要将原来在本机开发的 MySQL存储过程迁往另一Linux操作系统下的MySQL数据库，因为表结构等已经在目标数据库中存在了，不想直接拷贝数据库过去，所以用到了MySQL的存储过程导出和导入，具体用法为：  
+**［root@localhost bin]# mysqldump -uroot -p -hlocalhost -P3306 -n -d -t -R DBName > procedure_name.sql**  
+参数说明：  
+-n: --no-create-db  
+-d: --no-data  
+-t: --no-create-info  
+-R: --routines Dump stored routines (functions and procedures)  
+Mysqldump是客户端工具用来备份数据库或在不同数据库之间进行数据迁移。备份内容包含创建活装载表的SQL语句:  
+主要参数介绍：  
+1.连接选项  
+-u,--user=name  
+-p,--password=name  
+-h,--host=name  
+-P,--port=#  
+2.输出内容选项  
+--add-drop-database  
+--add-drop-table  
+-n;--no-create-db  
+-d;--no-data  
+-t;--no-create-info  
+3.输出格式选项  
+--compact  
+-c --complete-insert  
+-T（指定数据表中的数据备份为单纯的数据文件和建表SQL两个文件）  
+注意：xx.sql建表文件是以linux的root用户创建，而xx.txt文件则是一linux的mysql用户创建，因此这两个文件的存放路径一定要保证mysql用户有读写创建文件的权限。  
+--fields-terminated-by=name（域分隔符）  
+--fields-enclosed-by=name（域引用符）  
+--fields-optionally-enclosed-by=name（域引用可选字符）  
+--fields-escaped-by=name(转义字符)  
+4.字符集选项  
+--default--character-set=xx  
+5.其他选项  
+-F --flush-logs（备份前刷新日志）  
+-l --lock-tables(给所有的表加读锁)
+
+
+

@@ -1,0 +1,33 @@
+---
+author: ths
+comments: true
+date: 2010-12-15 07:49:15+00:00
+layout: post
+slug: '%e9%87%91%e5%b1%b1%e4%b9%9f%e5%85%8d%e8%b4%b9%e4%ba%86'
+title: 金山也免费了
+wordpress_id: 338
+categories:
+- 折腾
+tags:
+- 免费
+- 开源
+---
+
+今天的新闻，金山旗下全部产品都免费了，在此之前，金山表示将金山卫士开源，金山要干什么，越来越给力了，相信此举能抢回很多360的用户，看360怎么回应吧
+
+
+
+
+
+![](http://pic.yupoo.com/tonghuashuai/AHl8LfwE/z57Uq.jpg)  
+
+      
+
+    ![](http://pic.yupoo.com/tonghuashuai/AHl8KKfT/a49D2.jpg)  
+
+      
+
+    ![](http://pic.yupoo.com/tonghuashuai/AHl8LJOT/5pO5u.jpg)
+
+
+

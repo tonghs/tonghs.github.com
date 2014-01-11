@@ -1,0 +1,33 @@
+---
+author: ths
+comments: true
+date: 2013-11-11 12:19:14+00:00
+layout: post
+slug: os-x-mavericks-10-9-u%e7%9b%98%e5%ae%89%e8%a3%85%e6%96%b9%e6%b3%95
+title: OS X Mavericks 10.9 U盘安装方法
+wordpress_id: 1263
+categories:
+- 技术
+- 折腾
+tags:
+- Mac OSX
+- U盘
+---
+
+现今Mac OS 10.9已经免费了，用处应该不大了，但是如果MAS来姨妈更新慢得时候可以用一下，10.9的安装方法已经不同于以前，下面的步骤不一样啊：
+
+
+
+
+    
+    <code>defaults write ~/Library/Preferences/com.apple.finder AppleShowAllFiles -bool true 
+    </code>
+
+
+
+
+
+先用以上命令显示隐藏文件，然后把OS X Install ESD里面的BaseSystem.dmg（隐藏文件）恢复到U盘，然后把OS X Install ESD里面的Packages文件夹直接拷贝到U盘的System/Installation下面（原目录下有个Packages的快捷方式，把它删了才能拷贝），重启按住option即可选择安装
+
+
+

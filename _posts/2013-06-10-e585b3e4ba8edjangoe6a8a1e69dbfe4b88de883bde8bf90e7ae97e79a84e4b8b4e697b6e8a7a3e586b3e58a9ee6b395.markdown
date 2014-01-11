@@ -1,0 +1,50 @@
+---
+author: ths
+comments: true
+date: 2013-06-10 05:12:16+00:00
+layout: post
+slug: '%e5%85%b3%e4%ba%8edjango%e6%a8%a1%e6%9d%bf%e4%b8%8d%e8%83%bd%e8%bf%90%e7%ae%97%e7%9a%84%e4%b8%b4%e6%97%b6%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95'
+title: 关于Django模板不能运算的临时解决办法
+wordpress_id: 1157
+categories:
+- 技术
+tags:
+- Django
+- 模板
+- 运算
+---
+
+今天用django模板显示数据的时候，想根据数据库内id号取模来实现显示不同的CSS类。结果测试了一天也没运算成功。后来查了大量官方文档才知道，模板是不支持数学运算的（真是个让人绝望的缺陷）。没办法，网站还是要做下去的。只能想想别的办法。
+
+
+
+
+
+功夫不负苦心人，在用了N多个关键词google了之后。终于找到一条能实现基本功能的替代方法就是：
+
+
+
+
+
+用django的divisibleby标签实现，如下：
+
+
+
+
+    
+    {% for each in somelist %}
+    {% if forloop.counter0|divisibleby:2 %}
+    <div></div>
+    {% else %}
+    <div></div>
+    {% endif %}
+    {% endfor %}
+
+
+
+
+
+divisibleby标签的意义是用后面的参数去除，除尽为True，否则为False
+
+
+

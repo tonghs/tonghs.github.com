@@ -1,0 +1,210 @@
+---
+author: ths
+comments: true
+date: 2012-07-23 11:54:00+00:00
+layout: post
+slug: cgi%e4%b8%8a%e4%bc%a0%e6%96%87%e4%bb%b6
+title: CGI上传文件
+wordpress_id: 835
+categories:
+- 技术
+tags:
+- CGI
+- 文件上传
+---
+
+表单上传文件的数据格式在rfc1867中有详细的说明，这里我只把其中最重要的一部分简要的说明一下，如果有兴趣可以参考 rfc1867(http://www.faqs.org/rfcs/rfc1867.html)。  
+上传文件的数据编码格式是multipar/form-data,这种格式适合大流量的数据传输。因此当input的类型是file时，必须使用这种编码。  
+假设上传的form是这样定义的:  
+<FORM ACTION="http://yourserver/cgi-bin/handle.cgi"  
+ENCTYPE="multipart/form-data"  
+METHOD=POST>  
+您的姓名? <INPUT TYPE=TEXT NAME=submitter>  
+上传的文件? <INPUT TYPE=FILE NAME=pics>  
+</FORM>  
+<input type=submit value=发送><input type=reset value=重置>  
+如果姓名栏里填写weavedream,  
+上传的文件选中c:imagesimage.gif  
+点击发送后，服务器端将会受到如下的数据:(架设客户端的浏览器是IE2.0以上)  
+Content-type: multipart/form-data, boundary=AaB03x  
+--AaB03x  
+content-disposition: form-data; name="yourname"  
+weavedrem  
+--AaB03x  
+content-disposition: form-data; name="pics";filename="c:imagesimage.gif"  
+Content-Type: image/gif  
+... contents of image.gif ...(二进制数据流)  
+--AaB03x--  
+...  
+第一行(Content-type)将作为环境变量传递给服务器，后面的是二进制数据流,虽然不同的浏览器发送的格式稍微有些不一样，但上面给出的是一定有的。从Content-type里得到的数据最有用的是boundary，因为下面将要用它作为分隔符。你可以观察到在doundary前面加上"--"就成为下面的分隔符了。下面的数据流最重要的部分是有filename的字段，这里有你上传的文件数据。其他的字段都可以看懂，是ASCII 码，不是我们的讨论重点。我们的任务就是把这个有filename的字段里面的文件名和文件内容提取出来。  
+知道这个原理后，用任何语言都可以编写一个提取文件内容的cgi.因为c语言的高效和代码的夸平台性，我用c语言写了这样一个cgi，在Linux和win98下都能测试通过。  
+下面是完整的源程序，请注意看注释，如果您发现有更好的算法完成这些任务请不吝赐教。
+    
+    <span class="preproc">#define</span> CONTENT_TYPE getenv(<span class="str">"CONTENT_TYPE"</span>) 
+    #include <stdio.h > 
+    #include <<span class="kwrd">string</span>.h > 
+    
+    <span class="rem">/* 前面这些都是为了提高以后编程的效率自定义的函数，长期积累这样的函数可以组成自己的编程库 */</span> 
+    <span class="kwrd">void</span> html_header() 
+    { 
+        printf(<span class="str">"Content-type: text/html "</span>); 
+    } 
+    
+    <span class="kwrd">void</span> output_string(<span class="kwrd">char</span> *<span class="kwrd">string</span>) 
+    { 
+        printf(<span class="str">"%s"</span>,<span class="kwrd">string</span>); 
+    } 
+    
+    <span class="kwrd">void</span> html_begin_cn(<span class="kwrd">char</span> *title) 
+    { 
+        printf(<span class="str">"<html> <head> "</span>); 
+        printf(<span class="str">"<title>%s</title> "</span>,title); 
+        printf(<span class="str">"<meta http-equiv="</span>Content-Type<span class="str">" content="</span>text/html; charset=GB2312<span class="str">"> "</span>); 
+        printf(<span class="str">"</head> "</span>); 
+        printf(<span class="str">"<body> "</span>); 
+    } 
+    
+    <span class="kwrd">void</span> html_end() 
+    { 
+        printf(<span class="str">"</body> </html> "</span>); 
+    } 
+    
+    <span class="kwrd">void</span> h3(<span class="kwrd">char</span> *str) 
+    { 
+        printf(<span class="str">"<h3>%s</h3> "</span>,str); 
+    } 
+    
+    <span class="kwrd">void</span> html_error(<span class="kwrd">char</span> *title,<span class="kwrd">char</span> *message){ 
+        printf(<span class="str">"<html><head><title>%s</title></head><body>%s</body></html>"</span>,title,message); 
+    } 
+    
+    
+    
+    <span class="rem">/* 主体从这里开始 */</span> 
+    
+    <span class="kwrd">int</span> main(<span class="kwrd">void</span>) 
+    { 
+        FILE *fp; <span class="rem">/* 文件指针，保存我们要获得的文件 */</span> 
+        <span class="kwrd">char</span> *input; <span class="rem">/* 这是用来接收数据流的字符串 */</span> 
+        <span class="kwrd">int</span> content_length; 
+        <span class="kwrd">char</span> *content_type; 
+        <span class="kwrd">char</span> *boundary; <span class="rem">/* 分隔符*/</span> 
+        <span class="kwrd">char</span> *p; <span class="rem">/* 位移指针 */</span> 
+        <span class="kwrd">char</span> *temp_string; 
+        <span class="kwrd">int</span> temp_length; 
+        <span class="kwrd">char</span> filename[20]; <span class="rem">/* 用来保存文件名,长度有限制 */</span> 
+        <span class="kwrd">int</span> i,j; 
+        <span class="kwrd">int</span> got_it=0; 
+        
+        
+        content_type=CONTENT_TYPE; 
+        temp_string=<span class="str">"boundary="</span>; 
+        temp_length=strlen(temp_string); 
+        
+        html_header(); <span class="rem">/* cgi要做的第一件事是写html头 */</span> 
+        
+        <span class="rem">/* 获得boundary的值 */</span> 
+        <span class="kwrd">for</span>(p=content_type ; p!=NULL && *p!=<span class="str">'?'</span> ; p++){ 
+            <span class="kwrd">if</span>(!strncmp(p,temp_string,temp_length)){ 
+                boundary=newstr(p+temp_length); 
+                <span class="kwrd">break</span>; 
+            } 
+        } 
+    
+    
+    
+        <span class="rem">/* 判断输入是否合法 */</span> 
+        <span class="kwrd">if</span>(boundary==NULL){ 
+            html_error(<span class="str">"输入错误"</span>,<span class="str">"输入的格式不对,请监查表单是否为form/data型"</span>); 
+            exit(1); 
+        } 
+        
+        <span class="kwrd">if</span>(REQUEST_METHOD==NULL){ 
+            html_error(<span class="str">"request method error"</span>,<span class="str">"request method could not be null"</span>); 
+            exit(1); 
+        } 
+        
+        <span class="rem">/* 获得输入的数据流 */</span> 
+        <span class="kwrd">if</span>(!strcmp(REQUEST_METHOD,<span class="str">"POST"</span>)){ 
+            <span class="kwrd">if</span>(CONTENT_LENGTH!=NULL){     
+                content_length=atoi(CONTENT_LENGTH);     
+                input=malloc(<span class="kwrd">sizeof</span>(<span class="kwrd">char</span>)*content_length+1);     
+                <span class="kwrd">if</span>(fread(input,<span class="kwrd">sizeof</span>(<span class="kwrd">char</span>),content_length,stdin)!=content_length){     
+                    fprintf(stderr,<span class="str">"error:input length <CONTENT_LENGTH "</span>);     
+                    exit(1); 
+                } 
+            }<span class="kwrd">else</span> { 
+                html_error(<span class="str">"content_length is zero"</span>,<span class="str">"CONTENT_LENGTH is zero"</span>); 
+                exit(1); 
+            } 
+        }<span class="kwrd">else</span> {     
+            html_error(<span class="str">"input method error"</span>,<span class="str">"method should be POST,but yours is not"</span>);     
+            exit(1); 
+        } 
+        
+        
+        <span class="rem">/* 获得文件名 */</span>     
+        <span class="kwrd">for</span>(p=input; got_it==0;p++)     
+            <span class="kwrd">if</span>(strncmp(p,<span class="str">"filename="</span>,strlen(<span class="str">"filename="</span>))==0) {     
+            p+=strlen(<span class="str">"filename="</span>);     
+            <span class="kwrd">for</span>(i=0,j=0;p!=<span class="str">' '</span> && p!=<span class="str">' '</span> ;i++){     
+                <span class="kwrd">if</span>(p==<span class="str">'\' || p=='</span>/<span class="str">')     
+                    j=0;     
+                else     
+                    if(strchr("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_.",p)!=NULL){     
+                        /*这里是只接收英文文件名，而且把目录部分去掉*/     
+                        filename[j]=p;     
+                        j++;     
+                    }     
+            }     
+            filename[j]='</span>?<span class="str">'     
+            got_it=1;     
+            break; 
+        } 
+        
+        
+        
+        /* 从这里调过3行 */ 
+        do{     
+            p++;     
+        }while(*p!='</span>n<span class="str">'); 
+        
+        do{     
+            p++;     
+        }while(*p!='</span>n<span class="str">'); 
+    
+        do{     
+            p++;     
+        }while(*p!='</span>n'); 
+        
+        
+        <span class="rem">/* 打开文件 */</span> 
+        <span class="kwrd">if</span>((fp=fopen(filename,<span class="str">"w+"</span>))==NULL){ 
+            fprintf(stderr,<span class="str">"open file error "</span>); 
+            exit(1); 
+        } 
+        
+        
+        
+        <span class="rem">/* 开始写文件 */</span> 
+        <span class="kwrd">for</span>(++p;strncmp(p+3,boundary,strlen(boundary))!=0;p++) <span class="rem">/*这里p+3是因为实际的界限要比boundary 长3个字符 */</span> 
+            fputc(*p,fp); 
+        free(input); 
+        fclose(fp); 
+        
+        html_begin_cn(<span class="str">"文件上传成功"</span>); 
+        h3(<span class="str">"上传成功!"</span>);     
+        output_string(<span class="str">"文件"</span>);     
+        output_string(filename);     
+        output_line(<span class="str">"已经成功发送完毕!"</span>);     
+        html_end();     
+        <span class="kwrd">return</span> 0;     
+    } 
+
+
+
+
+
+
+
+

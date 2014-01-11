@@ -1,0 +1,188 @@
+---
+author: ths
+comments: true
+date: 2011-03-08 10:07:00+00:00
+layout: post
+slug: '%e6%90%ad%e5%bb%basvn%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e9%97%ae%e9%a2%98'
+title: 搭建svn服务器的问题
+wordpress_id: 717
+categories:
+- 技术
+- 折腾
+tags:
+- svn
+- 未授权打开根进行编辑操作
+---
+
+<
+
+
+
+
+
+p>下载  
+svn-1.4.0-setup.exe(服务器)
+
+
+
+
+
+<
+
+
+
+
+
+p>[http://subversion.tigris.org/files/documents/15/34093/svn-1.4.0-setup.exe](http://subversion.tigris.org/files/documents/15/34093/svn-1.4.0-setup.exe)  
+TortoiseSVN-1.4.3.8645-win32-svn-1.4.3.msi(客户端)
+
+
+
+
+
+[http://julupanter-informatica-grafica.googlecode.com/files/TortoiseSVN-1.4.3.8645-win32-svn-1.4.3.msi](http://julupanter-informatica-grafica.googlecode.com/files/TortoiseSVN-1.4.3.8645-win32-svn-1.4.3.msi)
+
+
+
+
+
+应该是英文的，英文不好的可以去找中文包。
+
+
+
+
+
+<
+
+
+
+
+
+p>1.安装  
+安装服务器(svn-1.4.0-setup.exe)和客户端(TortoiseSVN-1.4.3.8645-win32-svn-1.4.3.msi)，按照提示即可。  
+2.创建资源库
+
+
+
+
+
+<
+
+
+
+
+
+p>svnadmin create d:/svnroot/repos
+
+
+
+
+
+<
+
+
+
+
+
+p>3.运行svn服务
+
+
+
+
+
+<
+
+
+
+
+
+p>svnserve -d -r d:/svnroot
+
+
+
+
+
+<
+
+
+
+
+
+p>4.授权  
+进入d:/svnroot/repos目录下的conf目录，打开svnserve.conf，去掉anon-access = read前面的#号注释，最好anon-access = read前没有空格也去掉，然后把anon-access = read改为anon-access = none，意思是说没有用户名与密码的不能读写，同样地把auth-access = write和password-db = passwd 去注释（和前面的空格）  
+5.设置密码  
+打开conf/passwd文件，在文件尾加如下：
+
+
+
+
+
+tong = tong
+
+
+
+
+
+
+
+
+
+安装完成后在客户端访问时报错“为授权打开根进行编辑操作”，google一把说是authz文件配置错误，于是修改为如下：
+
+
+
+
+
+<
+
+
+
+
+
+p>[groups]  
+# harry_and_sally = harry,sally  
+tongs = tong
+
+
+
+
+
+<
+
+
+
+
+
+p># [/foo/bar]  
+# harry = rw  
+# * =
+
+
+
+
+
+<
+
+
+
+
+
+p>[/]  
+* = rw
+
+
+
+
+
+# [repository:/baz/fuz]  
+# @harry_and_sally = rw  
+# * = r
+
+
+
+
+
+问题解决
+
+
+

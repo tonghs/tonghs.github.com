@@ -1,0 +1,14 @@
+---
+author: ths
+comments: true
+date: 2011-04-11 08:18:00+00:00
+layout: post
+slug: '%e6%9c%aa%e6%9d%a5%e7%94%9f%e6%b4%bb'
+title: 未来生活
+wordpress_id: 608
+categories:
+- 生活
+---
+
+
+

@@ -1,0 +1,29 @@
+---
+author: ths
+comments: true
+date: 2013-11-11 12:22:48+00:00
+layout: post
+slug: google%e5%9c%b0%e5%9b%be%e7%a6%bb%e7%ba%bf%e7%bc%93%e5%ad%98%e7%9a%84%e6%96%b9%e6%b3%95%e4%bd%a0%e7%94%a8%e4%ba%86%e5%90%97%ef%bc%9f
+title: google地图离线缓存的方法你用了吗？
+wordpress_id: 1265
+categories:
+- 技术
+- 折腾
+---
+
+只需在搜索框输入：ok maps，然后搜索，即可缓存视图中的区域。iOS和Android都可行。
+
+
+
+
+
+google已经开始全线是用 ok xx 命了了，包括：google glass、google now、google map。
+
+
+
+
+
+ps：如果区域过大无法缓存，google map会提示。
+
+
+

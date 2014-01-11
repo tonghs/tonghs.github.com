@@ -1,0 +1,23 @@
+---
+author: ths
+comments: true
+date: 2012-07-23 12:20:00+00:00
+layout: post
+slug: '%e5%a6%82%e4%bd%95%e5%88%a9%e7%94%a8c%e8%af%ad%e8%a8%80%e5%86%99%e6%96%87%e4%bb%b6%e4%bc%a0%e8%be%93%e7%9a%84%e7%a8%8b%e5%ba%8f'
+title: 如何利用C语言写文件传输的程序
+wordpress_id: 842
+categories:
+- 技术
+tags:
+- c
+- 文件传输
+---
+
+**服务器端（发送文件）：**首先打开文件【fopen】，用rb方式打开，既可以发送文本文件，也可以发送二进制文件，在无错时初始化套接字socket，即初始化socket库【WSAStartup】，分配socket【socket】，填充服务器的地址，即填充sockaddr_in结构，然后进行绑定【bind】，设置套接字为监听套接字【listen】，接收连接【accept】，至此服务器阻塞，等待客户端的连接。  
+**客户端（接收文件）：**首先打开文件【fopen】，用wb方式打开，在无错时初始化套接字socket，即初始化socket库【WSAStartup】，分配socket【socket】，填充客户端的地址，即填充sockaddr_in结构，然后进行绑定【bind】，再填充服务器的地址结构，然后调用【connect】进行连接，当连接成功后，第一阶段的工作便结束了。  
+第二阶段，发送文件。  
+**服务器端：**使用循环while，结束条件是（！feof（fp）），fp是文件指针，feof检测当前的文件读取指针是否到达文件尾部，若到达了就返回真，否则返回假。然后在循环内部依次调用【fread】、【send】进行发送。这里有一个问题需要注意，调用fread的时候有两个参数是要每次读多少字节和读多少次，将第一个设置为1，将第二个设置为缓冲区的大小，用一个变量记录实际读到多少字节，即【fread】的返回值，然后将其传递给【send】，就可以实现发送文件了，在发送完成后断开连接【closesocket】，关闭文件【fclose】。  
+**客户端：**使用while死循环，调用【recv】接收文件，【fwrite】写入文件，这里也有个和上面类似的问题，就是要将recv的返回值传递给fwrite的第三个参数，即受到了多少字节，就向文件中写多少字节。当recv返回值为0时（连接断开时）退出循环，【closesocket】关闭套接字，调用【fclose】关闭文件。
+
+
+

@@ -1,0 +1,19 @@
+---
+author: ths
+comments: true
+date: 2011-04-15 00:54:00+00:00
+layout: post
+slug: '%e4%b8%8d%e5%ae%89%e5%85%a8%e4%bb%a3%e7%a0%81%e5%8f%aa%e4%bc%9a%e5%9c%a8%e4%bd%bf%e7%94%a8-unsafe-%e7%bc%96%e8%af%91%e7%9a%84%e6%83%85%e5%86%b5%e4%b8%8b%e5%87%ba%e7%8e%b0%e7%9a%84'
+title: '"不安全代码只会在使用 /unsafe 编译的情况下出现"的解决方法'
+wordpress_id: 617
+categories:
+- 技术
+tags:
+- 异常
+---
+
+原因是：在编译的代码里面有不安全类型unsafe方法或类！  
+解决方法：将项目的“可编译不安全代码”属性设置为true就可以了，方法如下：项目属性对话框->配置属性->生成->允许不安全代码块 设为"true"
+
+
+

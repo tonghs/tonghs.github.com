@@ -1,0 +1,109 @@
+---
+author: ths
+comments: true
+date: 2012-06-11 06:55:00+00:00
+layout: post
+slug: c%e5%8f%8d%e5%b0%84%e6%8a%80%e6%9c%af%e8%af%bb%e5%8f%96%e5%92%8c%e8%ae%be%e7%bd%ae%e7%b1%bb%e7%9a%84%e5%b1%9e%e6%80%a7
+title: C#反射技术:读取和设置类的属性
+wordpress_id: 806
+categories:
+- 技术
+tags:
+- c
+- 反射
+---
+
+要用C#反射技术的话，首先得引入System.Reflection 命名空间，这个命名空间里的类，具有动态加载程序集、类型，动态调用方法、设置和取得属性和字段的值、可以获取类型和方法的信息的功能。  
+要想对一个类型实例的属性或字段进行动态赋值或取值，首先得得到这个实例或类型的Type,微软已经为我们提供了足够多的方法。
+
+
+
+
+    
+     Class MyClass
+      {
+        <span class="kwrd">private</span> <span class="kwrd">int</span> field;
+        <span class="kwrd">public</span> <span class="kwrd">int</span> Field
+        {
+           get
+             {
+                <span class="kwrd">return</span> <span class="kwrd">this</span>.field;
+              }
+          set
+             {
+                <span class="kwrd">this</span>.field = <span class="kwrd">value</span>;
+             }
+       }
+     }
+
+
+
+
+
+
+
+
+
+如果有个这个类型的实例：  
+MyClass myObj = new MyClass();  
+我们要动态的为这个实例的属性Field赋值，那么得先得到这个实例的类型：
+
+
+
+
+
+
+Type t = typeof(MyClass);
+
+
+
+
+
+
+另一种方法是：
+
+
+
+
+
+
+Type t = myObj.GetType();
+
+
+
+
+
+
+只要我们得到了对象的类型那么我们就可以利用反射对这个对象“为所欲为”了，哈哈。
+
+
+
+
+
+
+t.GetProperty("Field").SetValue(myObj,1,null);
+
+
+
+
+
+
+这样我们就为对象里的属性Field赋值了。如果把属性名和要赋的值写道配置文件里的话，我们就可以达到程序运行期间动态的为属性赋值了。  
+利用反射获取属性值的方法：
+
+
+
+
+
+
+int propValue = Convert.ToInt32(t.GetProperty("Field").GetValue(myObj,null));
+
+
+
+
+
+
+好了，关于利用反射动态的为对象的属性赋值取值就到这里了。
+
+
+

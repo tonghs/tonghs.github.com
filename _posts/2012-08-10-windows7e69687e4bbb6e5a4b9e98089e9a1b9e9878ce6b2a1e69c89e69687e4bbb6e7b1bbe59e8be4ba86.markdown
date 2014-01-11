@@ -1,0 +1,19 @@
+---
+author: ths
+comments: true
+date: 2012-08-10 05:59:00+00:00
+layout: post
+slug: windows7%e6%96%87%e4%bb%b6%e5%a4%b9%e9%80%89%e9%a1%b9%e9%87%8c%e6%b2%a1%e6%9c%89%e6%96%87%e4%bb%b6%e7%b1%bb%e5%9e%8b%e4%ba%86
+title: windows7文件夹选项里没有文件类型了
+wordpress_id: 849
+categories:
+- 折腾
+tags:
+- windows7
+- 文件类型
+---
+
+windows7文件夹选项里没有文件类型了？其实这个功能在windows7中还是存在的，不过位置和名字变了一下。你可以打开控制面板然后找到默认程序—打开—在出现的窗口中选择“将文件类型或协议与程序关联”。看看是不是你需要的。稍微有点不同。
+
+
+

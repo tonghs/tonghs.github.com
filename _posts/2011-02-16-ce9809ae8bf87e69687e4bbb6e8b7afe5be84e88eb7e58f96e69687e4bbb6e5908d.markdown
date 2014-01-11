@@ -1,0 +1,28 @@
+---
+author: ths
+comments: true
+date: 2011-02-16 06:45:38+00:00
+layout: post
+slug: c%e9%80%9a%e8%bf%87%e6%96%87%e4%bb%b6%e8%b7%af%e5%be%84%e8%8e%b7%e5%8f%96%e6%96%87%e4%bb%b6%e5%90%8d
+title: 'C#通过文件路径获取文件名 '
+wordpress_id: 525
+categories:
+- 技术
+---
+
+string fullPath = @"WebSite1Default.aspx";
+
+
+
+
+
+string filename = System.IO.Path.GetFileName(fullPath);//文件名 "Default.aspx"  
+
+    string extension = System.IO.Path.GetExtension(fullPath);//扩展名 ".aspx"  
+
+    string fileNameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(fullPath);// 没有扩展名的文件名 "Default"  
+
+    
+
+
+

@@ -1,0 +1,131 @@
+---
+author: ths
+comments: true
+date: 2013-11-17 12:11:47+00:00
+layout: post
+slug: '%e5%b0%8f%e5%86%85%e5%ad%98-vps-%e4%bc%98%e5%8c%96'
+title: 小内存 VPS 优化
+wordpress_id: 1304
+categories:
+- 技术
+- 折腾
+tags:
+- vps
+- 优化
+---
+
+from [http://adchoices.sinaapp.com/topic/46/%E7%BB%99%E5%B0%8F%E5%86%85%E5%AD%98%E7%9A%84vps%E7%B2%BE%E7%AE%80%E5%A4%9A%E4%BD%99%E7%BB%84%E5%BB%BA-%E6%9C%8D%E5%8A%A1](http://adchoices.sinaapp.com/topic/46/%E7%BB%99%E5%B0%8F%E5%86%85%E5%AD%98%E7%9A%84vps%E7%B2%BE%E7%AE%80%E5%A4%9A%E4%BD%99%E7%BB%84%E5%BB%BA-%E6%9C%8D%E5%8A%A1)
+
+
+
+
+
+
+
+  1. apt-get update && apt-get upgrade
+
+
+
+  2. apt-get -y purge apache2-* bind9-* xinetd samba-* nscd-* portmap sendmail-* sasl2-bin
+
+
+
+  3. apt-get -y purge lynx memtester unixodbc odbcinst-*  tcpdump ttf-*
+
+
+
+  4. apt-get autoremove && apt-get clean
+
+
+
+
+
+
+**多余软件说明:**
+
+
+
+
+
+apache2-* //apache服务器，我们一般自己重装或者换Nginx等等
+
+
+
+
+
+bind9-* //dns服务器，我们一般不在自己VPS上搭建DNS服务器，果断卸掉
+
+
+
+
+
+xinetd //xinetd是服务守护进程，比如平时ftp服务器未开启，发现有人访问21端口则自动启动ftp服务器。VPS不需要
+
+
+
+
+
+samba-* //samba能让linux系统使用windows的共享功能，VPS显然不需要
+
+
+
+
+
+nscd-* //DNS缓存软件，同bind9，不需要
+
+
+
+
+
+portmap //端口转发，一般Web服务器不需要
+
+
+
+
+
+sendmail-* //发送邮件用，一般程序都使用php-sendmail，不需要这个
+
+
+
+
+
+sasl2-bin //一个权限程序，不光占用资源，还容易在建立系统账户时候出错，果断删掉
+
+
+
+
+
+**多余的系统组件（不会自启动，但是占用硬盘，也许还会造成冲突什么的）：**
+
+
+
+
+
+lynx //文本浏览器，一般人系用不到滴~~
+
+
+
+
+
+memtester //测试内存有没有坏，我没那么无聊……
+
+
+
+
+
+unixodbc odbcinst-* //odbc数据库，主要给windows用，做网站一般用不到
+
+
+
+
+
+tcpdump //TCP抓包，你用么？
+
+
+
+
+
+ttf-* //桌面环境用的字体，我们只要命令行……
+
+
+

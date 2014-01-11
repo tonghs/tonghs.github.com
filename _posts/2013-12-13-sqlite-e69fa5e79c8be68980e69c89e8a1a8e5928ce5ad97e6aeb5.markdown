@@ -1,0 +1,38 @@
+---
+author: ths
+comments: true
+date: 2013-12-13 08:07:14+00:00
+layout: post
+slug: sqlite-%e6%9f%a5%e7%9c%8b%e6%89%80%e6%9c%89%e8%a1%a8%e5%92%8c%e5%ad%97%e6%ae%b5
+title: sqlite 查看所有表和字段
+wordpress_id: 1693
+categories:
+- 技术
+tags:
+- sqlite
+---
+
+查询所有表
+
+
+
+
+    
+    <code>select table_name from sqlite_master where type='table' order by name; 
+    </code>
+
+
+
+
+
+通过以下语句可查询出某个表的所有字段信息
+
+
+
+
+    
+    <code>PRAGMA table_info([table_name])
+    </code>
+
+
+

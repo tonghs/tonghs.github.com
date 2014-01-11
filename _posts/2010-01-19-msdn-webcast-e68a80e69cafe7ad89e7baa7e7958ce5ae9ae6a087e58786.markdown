@@ -1,0 +1,64 @@
+---
+author: ths
+comments: true
+date: 2010-01-19 12:20:00+00:00
+layout: post
+slug: msdn-webcast-%e6%8a%80%e6%9c%af%e7%ad%89%e7%ba%a7%e7%95%8c%e5%ae%9a%e6%a0%87%e5%87%86
+title: MSDN Webcast  技术等级界定标准
+wordpress_id: 76
+categories:
+- 技术
+tags:
+- it
+- msdn
+- webcast
+- 技术等级
+---
+
+To ensure that participants get the most out of each Support
+WebCast, the technical level of the presentation has been included.
+Classification has been done in accordance with the classic
+undergraduate class model and the description of each level is
+listed below.
+
+
+
+
+
+**100 level:** Is an introduction to the topic or
+overview. The 100-level Support WebCast assumes little or no
+expertise with the topic being covered.
+
+
+
+
+
+**200 level:** Assumes 100-level knowledge and a
+fairly complete understanding of the features. The 200-level
+Support WebCasts may discuss case studies that cover a breadth of
+common scenarios or explain how to use more advanced features.
+
+
+
+
+
+**300 level:** Assumes 200-level knowledge and an
+in-depth understanding of product features in a real-world
+environment. The 300-level Support WebCasts may go into unusual
+case studies that illustrate specific aspects of the product that
+are key to improving performance or interoperability.
+
+
+
+
+
+**400 level:** Assumes the deepest level of
+technical knowledge we expect a customer to have. The 400-level
+Support WebCasts are essentially expert-to-expert sessions. The
+content provides the means for customers to push products to
+maximum performance, achieve the broadest possible
+interoperability, and create applications using even the most
+advanced features.
+
+
+

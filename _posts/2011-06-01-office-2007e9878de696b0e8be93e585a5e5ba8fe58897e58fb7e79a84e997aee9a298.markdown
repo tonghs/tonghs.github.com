@@ -1,0 +1,44 @@
+---
+author: ths
+comments: true
+date: 2011-06-01 02:46:00+00:00
+layout: post
+slug: office-2007%e9%87%8d%e6%96%b0%e8%be%93%e5%85%a5%e5%ba%8f%e5%88%97%e5%8f%b7%e7%9a%84%e9%97%ae%e9%a2%98
+title: office 2007重新输入序列号的问题
+wordpress_id: 628
+categories:
+- 折腾
+tags:
+- office
+- 注册
+- 注册表
+---
+
+<
+
+
+
+
+
+p>1. 运行regedit打开注册表编辑器；
+
+
+
+
+
+<
+
+
+
+
+
+p>2. 找到HKEY_LOCAL_MACHINESoftwareMicrosoftOffice12.0Registration，删除子键ProductName、DigitalProductID 及 ProductID。
+
+
+
+
+
+3. 打开Word 2007，点击帮助按钮，就会出现输入序列号的窗口，按提示进行就可以了。
+
+
+

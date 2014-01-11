@@ -1,0 +1,43 @@
+---
+author: ths
+comments: true
+date: 2010-12-14 11:56:18+00:00
+layout: post
+slug: mfc%e8%bf%90%e8%a1%8c%e9%97%ae%e9%a2%98%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e6%97%a0%e6%b3%95%e5%90%af%e5%8a%a8%ef%bc%8c%e5%9b%a0%e4%b8%ba%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e7%9a%84
+title: MFC运行问题“应用程序无法启动，因为应用程序的并行配置不正确……”
+wordpress_id: 319
+categories:
+- 技术
+tags:
+- C/C++
+- visual studio
+---
+
+网上经常有朋友说，在自己机子上开发的mfc到别人机子上就不能用了，出现如下错误：  
+
+    "应用程序无法启动，因为应用程序的并行配置不正确……"  
+
+    ![](http://pic.yupoo.com/tonghuashuai/AHdiWaQo/3Joav.jpg)
+
+
+
+
+
+这个问题的解决方法如下（以vs2005为例）：  
+
+    1.在项目上右键-属性  
+
+    2.在弹出来的窗口里一次展开配置属性-常规  
+
+    3.在右侧的mfc的使用选项选择第二项"在静态库中使用MFC"  
+
+    4.应用-确定-重新发布即可
+
+
+
+
+
+![](http://pic.yupoo.com/tonghuashuai/AHdlHbg5/gXbvS.jpg)
+
+
+

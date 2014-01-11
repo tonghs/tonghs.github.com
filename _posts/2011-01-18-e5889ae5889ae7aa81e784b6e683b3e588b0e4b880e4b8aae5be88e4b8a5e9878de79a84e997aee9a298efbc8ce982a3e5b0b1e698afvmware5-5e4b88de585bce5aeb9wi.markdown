@@ -1,0 +1,21 @@
+---
+author: ths
+comments: true
+date: 2011-01-18 13:48:00+00:00
+layout: post
+slug: '%e5%88%9a%e5%88%9a%e7%aa%81%e7%84%b6%e6%83%b3%e5%88%b0%e4%b8%80%e4%b8%aa%e5%be%88%e4%b8%a5%e9%87%8d%e7%9a%84%e9%97%ae%e9%a2%98%ef%bc%8c%e9%82%a3%e5%b0%b1%e6%98%afvmware5-5%e4%b8%8d%e5%85%bc%e5%ae%b9wi'
+title: 刚刚突然想到一个很严重的问题，那就是vmware5.5不兼容windows 7
+wordpress_id: 509
+categories:
+- 折腾
+tags:
+- vista
+- vmware
+- windows7
+- 兼容
+---
+
+这确实是个严重的问题，严重的不兼容windows 7 和windows vista也就是说不兼容windows 6.x内核，千万不要试，装上就卸不了，一卸就蓝屏，没有商量的余地，其他卸载软件也无效，安全方式下也不行，目前没找到有效地解决方法，太恐怖了……
+
+
+

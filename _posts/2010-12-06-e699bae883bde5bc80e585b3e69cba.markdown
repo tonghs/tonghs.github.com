@@ -1,0 +1,23 @@
+---
+author: ths
+comments: true
+date: 2010-12-06 15:17:44+00:00
+layout: post
+slug: '%e6%99%ba%e8%83%bd%e5%bc%80%e5%85%b3%e6%9c%ba'
+title: 智能开关机
+wordpress_id: 261
+categories:
+- 分享
+tags:
+- 事件
+- 智能开机
+---
+
+智能开关机软件，非常好用、智能，英文版是收费的，中文版是免费的，能记录键盘鼠标事件，开机后回放记录，非常适合挂机。[猛击此处下载](http://cid-78f9778b90303c83.office.live.com/embedicon.aspx/.Public/auto^_setup.zip)或点击以下图标下载：
+
+
+
+
+
+
+
