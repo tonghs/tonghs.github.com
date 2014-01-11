@@ -22,19 +22,19 @@ tags:
 
 
 
-**最后给出问题解决的方法：****；**
+**最后给出问题解决的方法：**
 
 
 
 
 
-**“网络发现”所依赖的服务如下：  
+“网络发现”所依赖的服务如下：  
 
 Function Discovery Resource Publication  
 
 UPnP Device Host  
 
-SSDP Discovery**
+SSDP Discovery
 
 
 
