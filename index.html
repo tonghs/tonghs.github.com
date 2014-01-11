@@ -7,3 +7,11 @@ title : tonghs
 {% assign posts_collate = site.posts %}
 {% include JB/posts_collate %}
 
+<section id="article">
+  <h3>Recent posts</h3>
+  <ul>
+    {% for post in site.posts limit:10 %}
+      <li><a href="{{ post.url }}">
+    {% endfor %}
+  </ul>
+</section>
