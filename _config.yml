@@ -8,19 +8,13 @@ facebook_appid:   # appid for like button, remove from /_includes/share.html if 
 google_analytics: # set tracking, remove from /javascripts/basic.js if unwanted.
 
 links:
-  - name:         关于
-    url:          /about
   - name:         Blog
     url:          http://tonghs.com
-    external:     true
-  - name:         Email
-    url:          mailto:tonghuashuai@gmail.com
-    external:     true
-  - name:         GitHub
-    url:          http://github.com/tonghuashuai
-    external:     true
+  - name:         About
+    url:          /about
   - name:         曾经
     url:          http://tonghs.cn
+    external:     true
 pygments:         true
 permalink:        pretty
 markdown:         redcarpet
