@@ -8,7 +8,7 @@ facebook_appid:   # appid for like button, remove from /_includes/share.html if 
 google_analytics: # set tracking, remove from /javascripts/basic.js if unwanted.
 
 links:
-  - name:         About
+  - name:         关于
     url:          /about
   - name:         Blog
     url:          http://tonghs.com
@@ -19,6 +19,8 @@ links:
   - name:         GitHub
     url:          http://github.com/tonghuashuai
     external:     true
+  - name:         曾经
+    url:          http://tonghs.cn
 pygments:         true
 permalink:        pretty
 markdown:         redcarpet
