@@ -32,5 +32,5 @@ disqus: false
 ##### V2EX
 > [http://www.v2ex.com/member/tonghuashuai](http://www.v2ex.com/member/tonghuashuai)
 
-#### BitBucket
+##### Bitbucket
 > [https://bitbucket.org/tonghs](https://bitbucket.org/tonghs)
