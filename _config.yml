@@ -1,5 +1,5 @@
 title:            tonghs
-description:      a web developer
+description:      A web developer
 url:              tonghuashuai.github.com # Site url.
 baseurl:          http://tonghuashuai.github.com
 signoff:          tonghs # Your name.
@@ -8,12 +8,8 @@ facebook_appid:   # appid for like button, remove from /_includes/share.html if 
 google_analytics: # set tracking, remove from /javascripts/basic.js if unwanted.
 
 links:
-  - name:         Blog
-    url:          http://tonghs.com
   - name:         About
     url:          /about
-  - name:         Category
-    url:          /category
   - name:         曾经
     url:          http://tonghs.cn
     external:     true
