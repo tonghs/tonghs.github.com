@@ -12,6 +12,8 @@ links:
     url:          http://tonghs.com
   - name:         About
     url:          /about
+  - name:         Category
+    url:          /category
   - name:         曾经
     url:          http://tonghs.cn
     external:     true
