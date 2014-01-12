@@ -1,12 +1,12 @@
 ---
-layout: page
+layout: index
 ---
-{% include JB/setup %}
 
-<section id="article">
-  <ul>
-    {% for post in site.posts limit:10 %}
-      <li><a href="{{ post.url }}">
-    {% endfor %}
-  </ul>
-</section>
+<ul class="posts">
+  {% for post in site.posts %}
+  <li>
+    <small class="datetime muted" data-time="{{ post.date }}">{{ post.date | date_to_string }} </small>
+    <a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
