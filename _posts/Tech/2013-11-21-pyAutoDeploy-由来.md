@@ -12,4 +12,4 @@ pyAutoDeploy，基于 `Python` `web.py`，在各位大牛看来可能是 piece o
 
 GitHub 地址：<https://github.com/tonghuashuai/pyAutoDeploy>，欢迎大家拍砖
 
- [1]: http://www.tonghs.com/?p=1293
+ [1]: http://tonghs.com/2013/11/12/Python-持续集成方案/
