@@ -20,15 +20,10 @@ body {
 }
 
 #go-back-home {
-  border: 0;
   margin: 40px 0 0;
   &:hover {
     background-image: none;
   }
-}
-
-#go-back-home img{
-  border: 0
 }
 
 .capitalize {
@@ -95,7 +90,6 @@ blockquote {
 
 header {
   text-align: center;
-  font-family: 'Segoe print';
 }
 
 footer {
