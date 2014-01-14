@@ -293,10 +293,9 @@ pre {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-.signoff {
-  margin-top: 30px; }
-  .signoff img {
-    width: 20px; }
+#signoff {
+  margin-top: 30px;
+  font-family: "Segoe print", "Nanum Pen Script", "Helvetica Neue", Arial, sans-serif; }
 
 .paging a {
   opacity: 0.25; }
