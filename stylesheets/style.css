@@ -157,7 +157,9 @@ a, .as-link {
   transition: color 0.3s; }
   a.main, a:hover, .as-link.main, .as-link:hover {
     color: #1d5884;
-    text-decoration: underline;}
+    background-image: url(../images/line.png);
+    background-repeat: repeat-x;
+    background-position: left bottom;}
   a.big-button, .as-link.big-button {
     min-width: 30%;
     border-radius: 3px;
