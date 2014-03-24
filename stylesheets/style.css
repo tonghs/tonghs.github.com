@@ -291,8 +291,8 @@ section.post {
 
 pre {
   word-wrap: break-word;
-  color: #eee;
-  background: #29281e;
+  /*color: #eee;*/
+  background: #e9e9e9;
   padding: 1em;
   border-radius: 5px;
   width: 100%;
