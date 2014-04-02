@@ -10,6 +10,9 @@ google_analytics: UA-42638070-1  # set tracking, remove from /javascripts/basic.
 links:
   - name:         Home
     url:          /
+  - name:         Product
+    url:          /product
+    external:     true
   - name:         About
     url:          /about
   - name:         曾经
