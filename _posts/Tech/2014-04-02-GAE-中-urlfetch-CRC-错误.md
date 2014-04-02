@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GAE中 urlfetch CRC 错误
+title: GAE 中 urlfetch CRC 错误
 ---
 在使用 urlfetch.fetch(url) 时遇到 CRC 错误
 
