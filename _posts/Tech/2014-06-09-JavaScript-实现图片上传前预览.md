@@ -3,7 +3,7 @@ layout: post
 title: JavaScript 实现图片上传前预览
 ---
 
-```
+{% highlight html %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -43,4 +43,4 @@ title: JavaScript 实现图片上传前预览
 		</script>
 	</body>
 </html>
-```
+{% endhighlight %}
