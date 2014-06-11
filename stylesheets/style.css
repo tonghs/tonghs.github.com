@@ -303,7 +303,7 @@ section.post {
 
 pre {
   word-wrap: break-word;
-  /*color: #eee;*/
+  color: #eee;
   background: #524949;
   padding: 1em;
   border-radius: 5px;
