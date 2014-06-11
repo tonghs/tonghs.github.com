@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 如果你用 chrome 浏览器，而碰巧又用 Google 搜索
+title: 如果你用 Chrome 浏览器，而碰巧又用 Google 搜索
 ---
 据说：在 Chrome 浏览器中打开「实验性功能」页面（chrome://flags/），启用「实验性 QUIC 协议」和「经由实验性 QUIC 协议发出的 HTTPS 请求」，重启浏览器后可以正常登陆 Google 相关服务。// 我就是手抖。
 
