@@ -26,12 +26,12 @@ pre code{
   margin: 0 2px;
   padding: 0px 5px;
   border: 0;
-  background-color: #524949;
+  background-color: #303030;
   border-radius: 3px;
 }
 
 span{
-  background: #524949;
+  background: #303030;
 }
 
 #go-back-home {
@@ -304,7 +304,7 @@ section.post {
 pre {
   word-wrap: break-word;
   color: #eee;
-  background: #524949;
+  background: #303030;
   padding: 1em;
   border-radius: 5px;
   width: 100%;
