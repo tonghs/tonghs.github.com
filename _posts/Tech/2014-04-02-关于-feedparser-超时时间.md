@@ -6,5 +6,7 @@ title: 关于 feedparser 超时时间
 
 > developers have had the ability to set a global timeout for over seven years by importing the socket library and setting the timeout in this way:
 
-    import socket
-    socket.setdefaulttimeout(<timeout in floating seconds>)
+{% highlight python %}
+import socket
+socket.setdefaulttimeout(<timeout in floating seconds>)
+{% endhighlight %}
