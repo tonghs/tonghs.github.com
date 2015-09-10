@@ -15,10 +15,6 @@ links:
     external:     true
   - name:         About
     url:          /about
-  - name:         曾经
-    url:          http://tonghs.cn
-    external:     true
-    title:        2014 年以前的归档
 pygments:         true
 permalink:        pretty
 markdown:         redcarpet
