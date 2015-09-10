@@ -27,7 +27,7 @@ title: Web API 方案备忘
 
 在`V2EX`跟大家讨论后，确定倾向于第二种方法：全部用一套接口。
 
-*那么有几个问题需要解决：*
+**那么有几个问题需要解决：**
 
 1. token 存在什么地方合适呢？ Cookie ？ LocalStorage ？还是 SessionStorage ？仅仅是一个 token 的话，我更倾向于存在 Cookie 中，如果涉及到记住密码什么的是不是就得存到 LocalStorage 中了。大家怎么做的？
 
@@ -35,7 +35,7 @@ title: Web API 方案备忘
 
 3. 应该会发生跨域的问题吧，假如 API 用子域名的话比如： http://api.test.com/user ，这时在 http://www.test.com/user 页面访问的时候就会有跨域问题吧，怎么破？用 jsonp ？那样就都是 get 方法了，怎么破？
 
-*问题解决如下：*
+**问题解决如下：**
 
 1. token 存在什么地方貌似都没有太大所谓，如果需要记住密码什么的，最好是 Cookie 或 LocalStorage。
 
