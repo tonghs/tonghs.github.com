@@ -22,7 +22,7 @@ disqus: false
 ##### 2014.6 至今 北京天使汇金融信息服务有限公司
 > 天使汇平台组技术 Leader
 
-> 职责：天使汇网站开发、人员培养、团队建设
+> 职责：基础设施、天使汇网站开发、人员培养、团队建设
 
 > Python、Tornado、Mako、MongoDB、Redis、CoffeeScript、前端
 
@@ -58,7 +58,11 @@ disqus: false
 
 > MongoDB Redis MySQL
 
+> Git HG SVN
+
 > Gearman
+
+> Jenkins Redmin Teambition
 
 > 了解
 
