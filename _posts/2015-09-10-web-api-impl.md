@@ -9,6 +9,8 @@ title: Web API 方案备忘
 ### 前提
 网站前后端使用 Ajax + JSON 的方式数据交互，打算用 AngularJS
 
+### 方式
+
 想到的两种方式：
 
 1. 网站按正常方式开发，然后为客户端单独开发 REST 接口
@@ -23,7 +25,9 @@ title: Web API 方案备忘
 
 ### 讨论
 
-在`V2EX`跟大家讨论后，确定倾向于第二种方法：全部用一套接口。那么有几个问题需要解决：
+在`V2EX`跟大家讨论后，确定倾向于第二种方法：全部用一套接口。
+
+*那么有几个问题需要解决：*
 
 1. token 存在什么地方合适呢？ Cookie ？ LocalStorage ？还是 SessionStorage ？仅仅是一个 token 的话，我更倾向于存在 Cookie 中，如果涉及到记住密码什么的是不是就得存到 LocalStorage 中了。大家怎么做的？
 
@@ -31,7 +35,8 @@ title: Web API 方案备忘
 
 3. 应该会发生跨域的问题吧，假如 API 用子域名的话比如： http://api.test.com/user ，这时在 http://www.test.com/user 页面访问的时候就会有跨域问题吧，怎么破？用 jsonp ？那样就都是 get 方法了，怎么破？
 
-问题解决如下：
+*问题解决如下：*
+
 1. token 存在什么地方貌似都没有太大所谓，如果需要记住密码什么的，最好是 Cookie 或 LocalStorage。
 
 2. token 封装到 Request HEADER 中去，算是比较好的处理方法。
@@ -40,6 +45,7 @@ title: Web API 方案备忘
 
 ### 总结
 整个思路如下：
+
 * 写一套通用的 RESTful 接口
 
 * 其他端都当做客户端去开发，包括 网站、APP、桌面应用 等等
