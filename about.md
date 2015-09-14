@@ -62,7 +62,7 @@ disqus: false
 
 > Gearman
 
-> Jenkins Redmin Teambition
+> Scrum Jenkins Redmin Teambition
 
 > 了解
 
