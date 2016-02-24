@@ -7,7 +7,7 @@ layout: post
 
 
 ### 常用命令
-``` shell
+```shell
 
 VBoxManage list vms
 VBoxManage clonevm ubuntu_15.05 --name new_vm_name --register
