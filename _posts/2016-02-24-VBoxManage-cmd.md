@@ -1,5 +1,8 @@
 ---
 published: true
+title: VBoxManage 常用命令
+tagline: VBoxManage
+layout: post
 ---
 
 
