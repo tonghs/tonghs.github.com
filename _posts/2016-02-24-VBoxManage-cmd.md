@@ -1,6 +1,7 @@
 ---
-published: false
+published: true
 ---
+
 
 ### 常用命令
 ```
