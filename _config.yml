@@ -1,7 +1,7 @@
 title:            tonghs
 description:      A web developer
 url:              tonghs.com # Site url.
-baseurl:          http://tonghs.com
+# baseurl:          http://tonghs.com
 signoff:          tonghs # Your name.
 twitter_username: tonghuashuai
 github_username:  tonghuashuai
@@ -17,7 +17,9 @@ links:
     external:     true
   - name:         About
     url:          /about
-pygments:         true
-permalink:        pretty
-markdown: kramdown
+
+highlighter: pygments
 permalink: pretty
+markdown: redcarpet
+redcarpet:
+  extensions: [autolink, tables]

@@ -7,7 +7,7 @@ layout: post
 
 
 ### 常用命令
-```shell
+```Bash
 
 VBoxManage list vms
 VBoxManage clonevm ubuntu_15.05 --name new_vm_name --register
@@ -20,7 +20,7 @@ VBoxManage modifyvm "Windows XP" --memory 2048
 ```
 
 ### 端口映射
-```shell
+``` Bash
 
 VBoxManage modifyvm "ac_gitlab" --natpf1 "ssh,tcp,,2205,,22"
 VBoxManage modifyvm "ac_gitlab" --natpf1 delete ssh
