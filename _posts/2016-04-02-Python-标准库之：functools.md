@@ -16,14 +16,13 @@ functools 模块包括：
 * functool.update_wrapper
 * functool.wraps
 
-### functools.cmp_to_key
+functools.cmp_to_key
 ----
 
 将老式的 比较函数（comparison function） 转化为 关键字函数（key function），是为了兼容 Python3。
 
 ### functools.reduce
 ----
-
 官方解释：
 
 _This is the same function as reduce(). It is made available in this module to allow writing code more forward-compatible with Python 3._
