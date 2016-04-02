@@ -34,7 +34,7 @@ functools.total_ordering
 
 是一个类装饰器，为了方便定义类的比较排序方法，如果某个类定义了 `__lt__()`, `__le__()`, `__gt__()` 或 `__ge__()` 中的至少一个并且定义了 `__eq__()` 方法，那么用 functools.total_ordering 装饰该类，装饰器会补充其余的比较方法，这就减少了自己定义代码的工作量。
 
-``` Python
+``` python
 
 @total_ordering
 class Person:
@@ -50,7 +50,7 @@ functools.partial
 
 函数参数分位置参数和关键字参数两种，而 partial 的作用就是冻结函数的部分参数（可以使位置参数和关键字函数），从而达到“重新定义”函数的签名，这样可以在某些情况下简化函数调用，举例说明：
 
-``` Python
+``` python
 
 # 定义函数 add，实现三个数相加
 def add(x, y, z=1):
@@ -61,7 +61,7 @@ def add(x, y, z=1):
 
 想象如下场景：我们需要多次调用 add 函数，调用时 z 的值都是 3，那么可以这么写：
 
-``` Python
+``` python
 
 add(1, 2, z=3)
 add(2, 3, z=3)
@@ -74,7 +74,7 @@ add(7, 9, z=3)
 
 因为调用时，关键字参数 z 永远等于 3，那么，可以简化不写吗？答案是可以的，下面就用到了 functools.partial 了：
 
-``` Python
+``` python
 
 from functools import partial
 
@@ -92,7 +92,7 @@ add_(7, 9)
 需要注意的是：
 此时，仍可以给 add_ 传递第三个参数 z，但必须这么写
 
-``` Python
+``` python
 
 add_(1, 2, z=5)
 ```
@@ -106,7 +106,7 @@ TypeError: add() got multiple values for keyword argument 'z'
 
 同样用法可以用在位置参数上，但是需要注意的是，partial 提供的参数在原函数的位置关键字前，看 partial 的实现就可以理解：
 
-``` Python
+``` python
 
 # Purely functional, no descriptor behaviour
 def partial(func, *args, **keywords):
@@ -137,7 +137,7 @@ functools.update_wrapper
 
 在上面的例子里，函数 add 是有注释的（一般写明函数的调用方法等等），那么我们自己的 add_ 呢？看下面：
 
-``` Python
+``` python
 
 print add.__doc__
 print add_.__doc__
@@ -151,7 +151,7 @@ partial(func, *args, **keywords) - new function with partial application
 
 所以，这时出现了一个问题，假如有人想用我们的 add_ 函数，但是想看一下 doc ，发现是没有的，那么 update_wrapper 就提供了解决办法：
 
-``` Python
+``` python
 
 update_wrapper(add_, add)
 print add_.__doc__
@@ -167,7 +167,7 @@ print add_.__doc__
 
 源码如下：
 
-``` Python
+``` python
 
 WRAPPER_ASSIGNMENTS = ('__module__', '__name__', '__doc__')
 WRAPPER_UPDATES = ('__dict__',)
@@ -190,7 +190,7 @@ functools.wraps
 
 functools.wraps 就是用 partial 对 update_wrapper 做了包装，看实现：
 
-```python
+``` python
 
 def wraps(wrapped,
           assigned = WRAPPER_ASSIGNMENTS,
