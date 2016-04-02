@@ -21,7 +21,7 @@ functools.cmp_to_key
 
 将老式的 比较函数（comparison function） 转化为 关键字函数（key function），是为了兼容 Python3。
 
-### functools.reduce
+functools.reduce
 ----
 官方解释：
 
@@ -29,7 +29,7 @@ _This is the same function as reduce(). It is made available in this module to a
 
 和内置函数 reduce 功能一样，为了兼容 Python3。
 
-### functools.total_ordering
+functools.total_ordering
 ----
 
 是一个类装饰器，为了方便定义类的比较排序方法，如果某个类定义了 `__lt__()`, `__le__()`, `__gt__()` 或 `__ge__()` 中的至少一个并且定义了 `__eq__()` 方法，那么用 functools.total_ordering 装饰该类，装饰器会补充其余的比较方法，这就减少了自己定义代码的工作量。
@@ -45,7 +45,7 @@ class Person:
 
 ```
 
-### functools.partial
+functools.partial
 ----
 
 函数参数分位置参数和关键字参数两种，而 partial 的作用就是冻结函数的部分参数（可以使位置参数和关键字函数），从而达到“重新定义”函数的签名，这样可以在某些情况下简化函数调用，举例说明：
@@ -132,7 +132,7 @@ def partial(func, *args, **keywords):
 
 ```
 
-### functools.update_wrapper
+functools.update_wrapper
 ----
 
 在上面的例子里，函数 add 是有注释的（一般写明函数的调用方法等等），那么我们自己的 add_ 呢？看下面：
@@ -185,12 +185,12 @@ def update_wrapper(wrapper,
 
 这个功能在定义装饰器的时候应该是非常有用的。
 
-### functools.wraps
+functools.wraps
 ----
 
 functools.wraps 就是用 partial 对 update_wrapper 做了包装，看实现：
 
-``` Python
+```python
 
 def wraps(wrapped,
           assigned = WRAPPER_ASSIGNMENTS,
@@ -203,7 +203,7 @@ def wraps(wrapped,
 
 使用场景：
 
-``` Python
+``` python
 
 from functools import wraps
 def my_decorator(f):
