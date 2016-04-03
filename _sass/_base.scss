@@ -23,6 +23,7 @@ body {
     -o-font-feature-settings: "kern" 1;
     font-feature-settings: "kern" 1;
     font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
 }
 
 
@@ -93,6 +94,10 @@ h1, h2, h3, h4, h5, h6 {
 a {
     color: $brand-color;
     text-decoration: none;
+        transition: all .3s;
+   -moz-transition: all .3s; /* Firefox 4 */
+-webkit-transition: all .3s; /* Safari 和 Chrome */
+     -o-transition: all .3s; /* Opera */
 
     &:visited {
         color: darken($brand-color, 15%);
@@ -100,7 +105,12 @@ a {
 
     &:hover {
         color: $text-color;
-        text-decoration: underline;
+        text-decoration: None;
+
+        transition: all .3s;
+   -moz-transition: all .3s; /* Firefox 4 */
+-webkit-transition: all .3s; /* Safari 和 Chrome */
+     -o-transition: all .3s; /* Opera */
     }
 }
 
