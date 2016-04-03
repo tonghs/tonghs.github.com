@@ -1,0 +1,301 @@
+<html>
+  <head>
+    <title>Python 标准库之：functools - tonghs</title>
+    <link href='/images/fav.png' rel='shortcut icon'>
+<link href='/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href="/feed.xml" rel="alternate" type="application/rss+xml">
+<script src='http://cdn.staticfile.org/jquery/2.0.3/jquery.js' type='text/javascript'></script>
+<script src='/javascripts/basics.js' type='text/javascript'></script>
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42638070-1', 'tonghs.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+  </head>
+  <body>
+    <header>
+<p>&nbsp;</p>
+<p>tonghs</p>
+<p>A web developer</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/" >Home</a>
+  
+    <a target="_blank" class="main" href="/product" >Product</a>
+  
+    <a target="_top" class="main" href="/about" >About</a>
+  
+</div>
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/2016/04/02/MySQL-%E4%B8%80%E4%BA%9B%E6%9C%89%E7%9A%84%E6%B2%A1%E7%9A%84%E5%A4%87%E5%BF%98.html">
+        ‹
+      </a>
+    </div>
+  
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1>
+            <div class='date'>02 Apr 2016</div>
+            Python 标准库之：functools
+          </h1>
+          <p>functools 模块包括：</p>
+
+<ul>
+  <li>functools.cmp_to_key</li>
+  <li>functools.reduce</li>
+  <li>functools.total_ordering</li>
+  <li>functools.partial</li>
+  <li>functool.update_wrapper</li>
+  <li>functool.wraps</li>
+</ul>
+
+<h2 id="functoolscmptokey">functools.cmp_to_key</h2>
+
+<p>将老式的 比较函数（comparison function） 转化为 关键字函数（key function），是为了兼容 Python3。</p>
+
+<h2 id="functoolsreduce">functools.reduce</h2>
+<p>官方解释：</p>
+
+<p><em>This is the same function as reduce(). It is made available in this module to allow writing code more forward-compatible with Python 3.</em></p>
+
+<p>和内置函数 reduce 功能一样，为了兼容 Python3。</p>
+
+<h2 id="functoolstotalordering">functools.total_ordering</h2>
+
+<p>是一个类装饰器，为了方便定义类的比较排序方法，如果某个类定义了 <code class="highlighter-rouge">__lt__()</code>, <code class="highlighter-rouge">__le__()</code>, <code class="highlighter-rouge">__gt__()</code> 或 <code class="highlighter-rouge">__ge__()</code> 中的至少一个并且定义了 <code class="highlighter-rouge">__eq__()</code> 方法，那么用 functools.total_ordering 装饰该类，装饰器会补充其余的比较方法，这就减少了自己定义代码的工作量。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="nd">@total_ordering</span>
+<span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+</code></pre>
+</div>
+
+<h2 id="functoolspartial">functools.partial</h2>
+
+<p>函数参数分位置参数和关键字参数两种，而 partial 的作用就是冻结函数的部分参数（可以使位置参数和关键字函数），从而达到“重新定义”函数的签名，这样可以在某些情况下简化函数调用，举例说明：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="c"># 定义函数 add，实现三个数相加</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="s">"""this is a test method"""</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span>
+
+</code></pre>
+</div>
+
+<p>想象如下场景：我们需要多次调用 add 函数，调用时 z 的值都是 3，那么可以这么写：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">add</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">...</span>
+
+</code></pre>
+</div>
+
+<p>因为调用时，关键字参数 z 永远等于 3，那么，可以简化不写吗？答案是可以的，下面就用到了 functools.partial 了：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+
+<span class="n">add_</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c"># 那么，调用就可以写为：</span>
+<span class="n">add_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">add_</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">add_</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">add_</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="o">...</span>
+
+</code></pre>
+</div>
+<p>需要注意的是：
+此时，仍可以给 add_ 传递第三个参数 z，但必须这么写</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="n">add_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</code></pre>
+</div>
+<p>如果不指定关键字，则会抛出如下异常：</p>
+
+<pre><code class="language-Python">
+TypeError: add() got multiple values for keyword argument 'z'
+
+</code></pre>
+
+<p>同样用法可以用在位置参数上，但是需要注意的是，partial 提供的参数在原函数的位置关键字前，看 partial 的实现就可以理解：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="c"># Purely functional, no descriptor behaviour</span>
+<span class="k">def</span> <span class="nf">partial</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">keywords</span><span class="p">):</span>
+    <span class="s">"""New function with partial application of the given arguments
+    and keywords.
+    """</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="s">'func'</span><span class="p">):</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">args</span> <span class="o">+</span> <span class="n">args</span>
+        <span class="n">tmpkw</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">keywords</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">tmpkw</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">keywords</span><span class="p">)</span>
+        <span class="n">keywords</span> <span class="o">=</span> <span class="n">tmpkw</span>
+        <span class="k">del</span> <span class="n">tmpkw</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">func</span>
+
+    <span class="k">def</span> <span class="nf">newfunc</span><span class="p">(</span><span class="o">*</span><span class="n">fargs</span><span class="p">,</span> <span class="o">**</span><span class="n">fkeywords</span><span class="p">):</span>
+        <span class="n">newkeywords</span> <span class="o">=</span> <span class="n">keywords</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">newkeywords</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">fkeywords</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">args</span> <span class="o">+</span> <span class="n">fargs</span><span class="p">),</span> <span class="o">**</span><span class="n">newkeywords</span><span class="p">)</span>
+    <span class="n">newfunc</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+    <span class="n">newfunc</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="n">newfunc</span><span class="o">.</span><span class="n">keywords</span> <span class="o">=</span> <span class="n">keywords</span>
+    <span class="k">return</span> <span class="n">newfunc</span>
+
+</code></pre>
+</div>
+
+<h2 id="functoolsupdatewrapper">functools.update_wrapper</h2>
+
+<p>在上面的例子里，函数 add 是有注释的（一般写明函数的调用方法等等），那么我们自己的 add_ 呢？看下面：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="k">print</span> <span class="n">add</span><span class="o">.</span><span class="n">__doc__</span>
+<span class="k">print</span> <span class="n">add_</span><span class="o">.</span><span class="n">__doc__</span>
+
+<span class="c"># 输出：</span>
+<span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">test</span> <span class="n">method</span> 
+<span class="n">partial</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">keywords</span><span class="p">)</span> <span class="o">-</span> <span class="n">new</span> <span class="n">function</span> <span class="k">with</span> <span class="n">partial</span> <span class="n">application</span>
+    <span class="n">of</span> <span class="n">the</span> <span class="n">given</span> <span class="n">arguments</span> <span class="ow">and</span> <span class="n">keywords</span><span class="o">.</span>
+
+</code></pre>
+</div>
+
+<p>所以，这时出现了一个问题，假如有人想用我们的 add_ 函数，但是想看一下 doc ，发现是没有的，那么 update_wrapper 就提供了解决办法：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="n">update_wrapper</span><span class="p">(</span><span class="n">add_</span><span class="p">,</span> <span class="n">add</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">add_</span><span class="o">.</span><span class="n">__doc__</span>
+
+<span class="c"># 输出：</span>
+
+
+ <span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">test</span> <span class="n">method</span> 
+
+</code></pre>
+</div>
+
+<p>可以看到，原本属于 add 的 doc ，add_ 也有了，这样在 debug 的时候就很方便了。这就是 <code class="highlighter-rouge">update_wrapper</code> 的功能，它可以把被封装函数的 <code class="highlighter-rouge">__name__</code>、<code class="highlighter-rouge">__module__</code>、<code class="highlighter-rouge">__doc__</code> 和  <code class="highlighter-rouge">__dict__</code> 都复制到封装函数去（模块级别常量WRAPPER_ASSIGNMENTS, WRAPPER_UPDATES）。</p>
+
+<p>源码如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="n">WRAPPER_ASSIGNMENTS</span> <span class="o">=</span> <span class="p">(</span><span class="s">'__module__'</span><span class="p">,</span> <span class="s">'__name__'</span><span class="p">,</span> <span class="s">'__doc__'</span><span class="p">)</span>
+<span class="n">WRAPPER_UPDATES</span> <span class="o">=</span> <span class="p">(</span><span class="s">'__dict__'</span><span class="p">,)</span>
+<span class="k">def</span> <span class="nf">update_wrapper</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span>
+                   <span class="n">wrapped</span><span class="p">,</span>
+                   <span class="n">assigned</span> <span class="o">=</span> <span class="n">WRAPPER_ASSIGNMENTS</span><span class="p">,</span>
+                   <span class="n">updated</span> <span class="o">=</span> <span class="n">WRAPPER_UPDATES</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">assigned</span><span class="p">:</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">attr</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">updated</span><span class="p">:</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="p">{}))</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+    
+</code></pre>
+</div>
+
+<p>这个功能在定义装饰器的时候应该是非常有用的。</p>
+
+<h2 id="functoolswraps">functools.wraps</h2>
+
+<p>functools.wraps 就是用 partial 对 update_wrapper 做了包装，看实现：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">wraps</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span>
+          <span class="n">assigned</span> <span class="o">=</span> <span class="n">WRAPPER_ASSIGNMENTS</span><span class="p">,</span>
+          <span class="n">updated</span> <span class="o">=</span> <span class="n">WRAPPER_UPDATES</span><span class="p">):</span>
+
+    <span class="k">return</span> <span class="n">partial</span><span class="p">(</span><span class="n">update_wrapper</span><span class="p">,</span> <span class="n">wrapped</span><span class="o">=</span><span class="n">wrapped</span><span class="p">,</span>
+                   <span class="n">assigned</span><span class="o">=</span><span class="n">assigned</span><span class="p">,</span> <span class="n">updated</span><span class="o">=</span><span class="n">updated</span><span class="p">)</span>
+
+</code></pre>
+</div>
+
+<p>使用场景：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="k">def</span> <span class="nf">my_decorator</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+     <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+         <span class="k">print</span> <span class="s">'Calling decorated function'</span>
+         <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nd">@my_decorator</span>
+<span class="k">def</span> <span class="nf">example</span><span class="p">():</span>
+    <span class="s">"""这里是文档注释"""</span>
+    <span class="k">print</span> <span class="s">'Called example function'</span>
+
+<span class="n">example</span><span class="p">()</span>
+
+<span class="c"># 下面是输出</span>
+<span class="s">"""
+Calling decorated function
+Called example function
+"""</span>
+<span class="k">print</span> <span class="n">example</span><span class="o">.</span><span class="n">__name__</span> <span class="c"># 'example'</span>
+<span class="k">print</span> <span class="n">example</span><span class="o">.</span><span class="n">__doc__</span> <span class="c"># '这里是文档注释'</span>
+
+</code></pre>
+</div>
+
+          <br />
+<p id="signoff">
+  tonghs
+</p>
+
+        </section>
+      </div>
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/" >Home</a>
+  
+    <a target="_blank" class="main" href="/product" >Product</a>
+  
+    <a target="_top" class="main" href="/about" >About</a>
+  
+</div>
+    </div>
+    <footer class="muted">
+  Based on <a href="http://jekyllrb.com/" class="muted">Jekyll</a> & <a href="http://github.com/chloerei/scribble" class="muted">Scribble</a>
+</footer>
+
+  </body>
+</html>

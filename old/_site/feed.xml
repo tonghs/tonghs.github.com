@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tonghs</title>
+    <description>A web developer</description>
+    <link>tonghs.com</link>
+    <atom:link href="tonghs.com/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Python 标准库之：functools</title>
+        <description>&lt;p&gt;functools 模块包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;functools.cmp_to_key&lt;/li&gt;
+  &lt;li&gt;functools.reduce&lt;/li&gt;
+  &lt;li&gt;functools.total_ordering&lt;/li&gt;
+  &lt;li&gt;functools.partial&lt;/li&gt;
+  &lt;li&gt;functool.update_wrapper&lt;/li&gt;
+  &lt;li&gt;functool.wraps&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;functoolscmptokey&quot;&gt;functools.cmp_to_key&lt;/h2&gt;
+
+&lt;p&gt;将老式的 比较函数（comparison function） 转化为 关键字函数（key function），是为了兼容 Python3。&lt;/p&gt;
+
+&lt;h2 id=&quot;functoolsreduce&quot;&gt;functools.reduce&lt;/h2&gt;
+&lt;p&gt;官方解释：&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This is the same function as reduce(). It is made available in this module to allow writing code more forward-compatible with Python 3.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;和内置函数 reduce 功能一样，为了兼容 Python3。&lt;/p&gt;
+
+&lt;h2 id=&quot;functoolstotalordering&quot;&gt;functools.total_ordering&lt;/h2&gt;
+
+&lt;p&gt;是一个类装饰器，为了方便定义类的比较排序方法，如果某个类定义了 &lt;code class=&quot;highlighter-rouge&quot;&gt;__lt__()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;__le__()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;__gt__()&lt;/code&gt; 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;__ge__()&lt;/code&gt; 中的至少一个并且定义了 &lt;code class=&quot;highlighter-rouge&quot;&gt;__eq__()&lt;/code&gt; 方法，那么用 functools.total_ordering 装饰该类，装饰器会补充其余的比较方法，这就减少了自己定义代码的工作量。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nd&quot;&gt;@total_ordering&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__eq__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__lt__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;functoolspartial&quot;&gt;functools.partial&lt;/h2&gt;
+
+&lt;p&gt;函数参数分位置参数和关键字参数两种，而 partial 的作用就是冻结函数的部分参数（可以使位置参数和关键字函数），从而达到“重新定义”函数的签名，这样可以在某些情况下简化函数调用，举例说明：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;c&quot;&gt;# 定义函数 add，实现三个数相加&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;this is a test method&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;想象如下场景：我们需要多次调用 add 函数，调用时 z 的值都是 3，那么可以这么写：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;因为调用时，关键字参数 z 永远等于 3，那么，可以简化不写吗？答案是可以的，下面就用到了 functools.partial 了：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;functools&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;partial&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;add_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;partial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 那么，调用就可以写为：&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;add_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;add_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;add_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;add_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;需要注意的是：
+此时，仍可以给 add_ 传递第三个参数 z，但必须这么写&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;add_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;如果不指定关键字，则会抛出如下异常：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;
+TypeError: add() got multiple values for keyword argument &#39;z&#39;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;同样用法可以用在位置参数上，但是需要注意的是，partial 提供的参数在原函数的位置关键字前，看 partial 的实现就可以理解：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;c&quot;&gt;# Purely functional, no descriptor behaviour&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;partial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keywords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;New function with partial application of the given arguments
+    and keywords.
+    &quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;hasattr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;func&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;tmpkw&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keywords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;tmpkw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keywords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;keywords&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmpkw&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;del&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmpkw&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;newfunc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fkeywords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;newkeywords&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keywords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;newkeywords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fkeywords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newkeywords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;newfunc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;newfunc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;newfunc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keywords&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keywords&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newfunc&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;functoolsupdatewrapper&quot;&gt;functools.update_wrapper&lt;/h2&gt;
+
+&lt;p&gt;在上面的例子里，函数 add 是有注释的（一般写明函数的调用方法等等），那么我们自己的 add_ 呢？看下面：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__doc__&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__doc__&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 输出：&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt; 
+&lt;span class=&quot;n&quot;&gt;partial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keywords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;partial&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;application&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;given&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keywords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;所以，这时出现了一个问题，假如有人想用我们的 add_ 函数，但是想看一下 doc ，发现是没有的，那么 update_wrapper 就提供了解决办法：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;update_wrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__doc__&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 输出：&lt;/span&gt;
+
+
+ &lt;span class=&quot;n&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt; 
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;可以看到，原本属于 add 的 doc ，add_ 也有了，这样在 debug 的时候就很方便了。这就是 &lt;code class=&quot;highlighter-rouge&quot;&gt;update_wrapper&lt;/code&gt; 的功能，它可以把被封装函数的 &lt;code class=&quot;highlighter-rouge&quot;&gt;__name__&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;__module__&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;__doc__&lt;/code&gt; 和  &lt;code class=&quot;highlighter-rouge&quot;&gt;__dict__&lt;/code&gt; 都复制到封装函数去（模块级别常量WRAPPER_ASSIGNMENTS, WRAPPER_UPDATES）。&lt;/p&gt;
+
+&lt;p&gt;源码如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;WRAPPER_ASSIGNMENTS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;__module__&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;__name__&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;__doc__&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;WRAPPER_UPDATES&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;__dict__&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update_wrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                   &lt;span class=&quot;n&quot;&gt;wrapped&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                   &lt;span class=&quot;n&quot;&gt;assigned&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WRAPPER_ASSIGNMENTS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                   &lt;span class=&quot;n&quot;&gt;updated&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WRAPPER_UPDATES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attr&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assigned&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;setattr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;getattr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wrapped&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attr&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;getattr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;getattr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wrapped&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrapper&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这个功能在定义装饰器的时候应该是非常有用的。&lt;/p&gt;
+
+&lt;h2 id=&quot;functoolswraps&quot;&gt;functools.wraps&lt;/h2&gt;
+
+&lt;p&gt;functools.wraps 就是用 partial 对 update_wrapper 做了包装，看实现：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;wraps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wrapped&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;assigned&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WRAPPER_ASSIGNMENTS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;updated&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WRAPPER_UPDATES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;partial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update_wrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrapped&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wrapped&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                   &lt;span class=&quot;n&quot;&gt;assigned&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assigned&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updated&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;使用场景：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;functools&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wraps&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;my_decorator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+     &lt;span class=&quot;nd&quot;&gt;@wraps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;wrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+         &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Calling decorated function&#39;&lt;/span&gt;
+         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrapper&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@my_decorator&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;example&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;这里是文档注释&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;Called example function&#39;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;example&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 下面是输出&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+Calling decorated function
+Called example function
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# &#39;example&#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__doc__&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# &#39;这里是文档注释&#39;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sat, 02 Apr 2016 00:00:00 +0800</pubDate>
+        <link>tonghs.com/2016/04/02/Python-%E6%A0%87%E5%87%86%E5%BA%93%E4%B9%8B-functools.html</link>
+        <guid isPermaLink="true">tonghs.com/2016/04/02/Python-%E6%A0%87%E5%87%86%E5%BA%93%E4%B9%8B-functools.html</guid>
+      </item>
+    
+      <item>
+        <title>MySQL 一些有的没的备忘</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+CREATE DATABASE `mydb` CHARACTER SET utf8 COLLATE utf8_general_ci;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sat, 02 Apr 2016 00:00:00 +0800</pubDate>
+        <link>tonghs.com/2016/04/02/MySQL-%E4%B8%80%E4%BA%9B%E6%9C%89%E7%9A%84%E6%B2%A1%E7%9A%84%E5%A4%87%E5%BF%98.html</link>
+        <guid isPermaLink="true">tonghs.com/2016/04/02/MySQL-%E4%B8%80%E4%BA%9B%E6%9C%89%E7%9A%84%E6%B2%A1%E7%9A%84%E5%A4%87%E5%BF%98.html</guid>
+      </item>
+    
+      <item>
+        <title>MongoDB 移除 Secondary 节点</title>
+        <description>&lt;p&gt;在不知道节点信息的情况下要移除某个 secondary 节点。&lt;/p&gt;
+
+&lt;p&gt;首先要连接到住节点，然后查看主从状态：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+host_name:PRIMARY&amp;gt; rs.status()
+
+{
+        &quot;set&quot; : &quot;4caa650b-2780-41c2-98cd-547b01f8c49a&quot;,
+        &quot;date&quot; : ISODate(&quot;2016-03-18T04:00:31Z&quot;),
+        &quot;myState&quot; : 1,
+        &quot;members&quot; : [
+                {
+                        &quot;_id&quot; : 0,
+                        &quot;name&quot; : &quot;10.9.9.100:27017&quot;,
+                        &quot;health&quot; : 1,
+                        &quot;state&quot; : 2,
+                        &quot;stateStr&quot; : &quot;SECONDARY&quot;,
+                        &quot;uptime&quot; : 455,
+                        &quot;optime&quot; : Timestamp(1458273610, 2),
+                        &quot;optimeDate&quot; : ISODate(&quot;2016-03-18T04:00:10Z&quot;),
+                        &quot;lastHeartbeat&quot; : ISODate(&quot;2016-03-18T04:00:31Z&quot;),
+                        &quot;lastHeartbeatRecv&quot; : ISODate(&quot;2016-03-18T04:00:30Z&quot;),
+                        &quot;pingMs&quot; : 1,
+                        &quot;syncingTo&quot; : &quot;10.10.9.52:27017&quot;
+                },
+                {
+                        &quot;_id&quot; : 1,
+                        &quot;name&quot; : &quot;10.10.9.52:27017&quot;,
+                        &quot;health&quot; : 1,
+                        &quot;state&quot; : 1,
+                        &quot;stateStr&quot; : &quot;PRIMARY&quot;,
+                        &quot;uptime&quot; : 8560211,
+                        &quot;optime&quot; : Timestamp(1458273610, 2),
+                        &quot;optimeDate&quot; : ISODate(&quot;2016-03-18T04:00:10Z&quot;),
+                        &quot;electionTime&quot; : Timestamp(1458273183, 1),
+                        &quot;electionDate&quot; : ISODate(&quot;2016-03-18T03:53:03Z&quot;),
+                        &quot;self&quot; : true
+                }
+        ],
+        &quot;ok&quot; : 1
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;得知 Secondary 节点的 IP 和端口，即 10.9.9.100:27017，然后确定当前执行命令的节点是否是 Primary 节点：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+host_name:PRIMARY&amp;gt;  db.isMaster()
+{
+        &quot;setName&quot; : &quot;4caa650b-2780-41c2-98cd-547b01f8c49a&quot;,
+        &quot;setVersion&quot; : 148197,
+        &quot;ismaster&quot; : true,  # 表示是 primary 节点
+        &quot;secondary&quot; : false,
+        &quot;hosts&quot; : [
+                &quot;10.10.9.52:27017&quot;,
+                &quot;10.9.9.100:27017&quot;
+        ],
+        &quot;primary&quot; : &quot;10.10.9.52:27017&quot;,
+        &quot;me&quot; : &quot;10.10.9.52:27017&quot;,
+        &quot;maxBsonObjectSize&quot; : 16777216,
+        &quot;maxMessageSizeBytes&quot; : 48000000,
+        &quot;maxWriteBatchSize&quot; : 1000,
+        &quot;localTime&quot; : ISODate(&quot;2016-03-18T04:01:45.969Z&quot;),
+        &quot;maxWireVersion&quot; : 2,
+        &quot;minWireVersion&quot; : 0,
+        &quot;ok&quot; : 1
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;移除节点：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+host_name:PRIMARY&amp;gt;  rs.remove(&quot;10.9.9.100:27017&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;再次查看状态：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+host_name:PRIMARY&amp;gt; rs.status()
+{
+        &quot;set&quot; : &quot;4caa650b-2780-41c2-98cd-547b01f8c49a&quot;,
+        &quot;date&quot; : ISODate(&quot;2016-03-18T04:06:37Z&quot;),
+        &quot;myState&quot; : 1,
+        &quot;members&quot; : [
+                {
+                        &quot;_id&quot; : 1,
+                        &quot;name&quot; : &quot;10.10.9.52:27017&quot;,
+                        &quot;health&quot; : 1,
+                        &quot;state&quot; : 1,
+                        &quot;stateStr&quot; : &quot;PRIMARY&quot;,
+                        &quot;uptime&quot; : 8560577,
+                        &quot;optime&quot; : Timestamp(1458273988, 1),
+                        &quot;optimeDate&quot; : ISODate(&quot;2016-03-18T04:06:28Z&quot;),
+                        &quot;electionTime&quot; : Timestamp(1458273183, 1),
+                        &quot;electionDate&quot; : ISODate(&quot;2016-03-18T03:53:03Z&quot;),
+                        &quot;self&quot; : true
+                }
+        ],
+        &quot;ok&quot; : 1
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Secondary 结点已经移除。&lt;/p&gt;
+</description>
+        <pubDate>Fri, 18 Mar 2016 00:00:00 +0800</pubDate>
+        <link>tonghs.com/2016/03/18/MongoDB-%E7%A7%BB%E9%99%A4-Secondary-%E8%8A%82%E7%82%B9.html</link>
+        <guid isPermaLink="true">tonghs.com/2016/03/18/MongoDB-%E7%A7%BB%E9%99%A4-Secondary-%E8%8A%82%E7%82%B9.html</guid>
+      </item>
+    
+      <item>
+        <title>Ubuntu 14.04 LTS 单网卡设置多个 IP</title>
+        <description>&lt;p&gt;编辑 /etc/network/interfaces
+原来内容为：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto em1
+iface em1 inet static
+
+address 192.168.10.170
+netmask 255.255.255.0
+gateway 192.168.10.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;比如要添加两个个新的 IP，追加以下信息信息即可：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+auto em1:0
+iface em1:0 inet static
+
+address 192.168.10.171
+netmask 255.255.255.0
+
+
+auto em1:1
+iface em1:1 inet static
+
+address 192.168.10.172
+netmask 255.255.255.0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;然后启用&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+sudo ifup em1:0 &amp;amp;&amp;amp; sudo ifup em1:1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;原来的重启方式为：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+sudo /etc/init.d/networking restart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;该方式在 14.04 LTS 中使用无效。&lt;/p&gt;
+</description>
+        <pubDate>Mon, 07 Mar 2016 00:00:00 +0800</pubDate>
+        <link>tonghs.com/2016/03/07/Ubuntu-14.04-LTS-%E5%8D%95%E7%BD%91%E5%8D%A1%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AA-IP.html</link>
+        <guid isPermaLink="true">tonghs.com/2016/03/07/Ubuntu-14.04-LTS-%E5%8D%95%E7%BD%91%E5%8D%A1%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AA-IP.html</guid>
+      </item>
+    
+      <item>
+        <title>VBoxManage 常用命令</title>
+        <description>&lt;h3 id=&quot;section&quot;&gt;常用命令&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;
+VBoxManage list vms
+VBoxManage clonevm ubuntu_15.05 --name new_vm_name --register
+VBoxManage showvminfo ac_jira
+VBoxManage export ubuntu_15.04 -o ubuntu_15.04_base.ova
+VBoxManage import ubuntu_15.04_base.ova
+VBoxManage clonevm ubuntu_15.04 --name ac_jira --register
+VBoxManage unregistervm ubuntu_15.04_jira --delete
+VBoxManage modifyvm &quot;Windows XP&quot; --memory 2048
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;端口映射&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;
+VBoxManage modifyvm &quot;ac_gitlab&quot; --natpf1 &quot;ssh,tcp,,2205,,22&quot;
+VBoxManage modifyvm &quot;ac_gitlab&quot; --natpf1 delete ssh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;快照&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+VBoxManage snapshot ac_jira take ac_jira_init
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Wed, 24 Feb 2016 00:00:00 +0800</pubDate>
+        <link>tonghs.com/2016/02/24/VBoxManage-cmd.html</link>
+        <guid isPermaLink="true">tonghs.com/2016/02/24/VBoxManage-cmd.html</guid>
+      </item>
+    
+      <item>
+        <title>Web API 方案备忘</title>
+        <description>&lt;h3 id=&quot;section&quot;&gt;背景&lt;/h3&gt;
+&lt;p&gt;打算做一个网站，因为考虑开发移动客户端，所以关于 api 的方式有下面两种想法，大家给点意见哪种好，或者还有别的更好的方法。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;前提&lt;/h3&gt;
+&lt;p&gt;网站前后端使用 Ajax + JSON 的方式数据交互，打算用 AngularJS&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;方式&lt;/h3&gt;
+
+&lt;p&gt;想到的两种方式：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;网站按正常方式开发，然后为客户端单独开发 REST 接口&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;这样的问题&lt;/strong&gt;： 网站既然用 Ajax + JSON 也得写 REST 接口，这样就等于写了两套接口，感觉会有重复的工作&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;网站和客户端使用一套接口&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;这样好处&lt;/strong&gt;： 接口就用一套&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;这样的问题&lt;/strong&gt;： 主要是用户验证有点没有想明白，正常网站的用户验证（ Session Cookie ）和客户端的用户验证（ token ) 不一致，导致接口得处理不同的来源使用不同的验证方式，第一种方式倒是没有这个问题。 其实这个问题倒是想到一种解决方法，初步想的是把 token 存到本地，不清楚这样是不是最佳实现方式。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;讨论&lt;/h3&gt;
+
+&lt;p&gt;在&lt;code class=&quot;highlighter-rouge&quot;&gt;V2EX&lt;/code&gt;跟大家讨论后，确定倾向于第二种方法：全部用一套接口。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;那么有几个问题需要解决：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;token 存在什么地方合适呢？ Cookie ？ LocalStorage ？还是 SessionStorage ？仅仅是一个 token 的话，我更倾向于存在 Cookie 中，如果涉及到记住密码什么的是不是就得存到 LocalStorage 中了。大家怎么做的？&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;每次请求一个 API 的时候， token 是添加到 HEADER 中还是当一个参数呢，那种更好？ 我想了下貌似没什么区别。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;应该会发生跨域的问题吧，假如 API 用子域名的话比如： http://api.test.com/user ，这时在 http://www.test.com/user 页面访问的时候就会有跨域问题吧，怎么破？用 jsonp ？那样就都是 get 方法了，怎么破？&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;问题解决如下：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;token 存在什么地方貌似都没有太大所谓，如果需要记住密码什么的，最好是 Cookie 或 LocalStorage。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;token 封装到 Request HEADER 中去，算是比较好的处理方法。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;跨域的解决办法就要靠&lt;code class=&quot;highlighter-rouge&quot;&gt;CORS&lt;/code&gt;了，貌似GibHub API 就是用的这个。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;总结&lt;/h3&gt;
+&lt;p&gt;整个思路如下：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;写一套通用的 RESTful 接口&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;其他端都当做客户端去开发，包括 网站、APP、桌面应用 等等&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;用 token 做用户验证，可以搭建 OAuth Server&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;客户端把 token 写入到 Request HEADER 中去请求接口&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;网站跨域的问题采用 CORS 解决。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Thu, 10 Sep 2015 00:00:00 +0800</pubDate>
+        <link>tonghs.com/2015/09/10/web-api-impl.html</link>
+        <guid isPermaLink="true">tonghs.com/2015/09/10/web-api-impl.html</guid>
+      </item>
+    
+      <item>
+        <title>nginx 反代备忘</title>
+        <description>&lt;p&gt;docker container:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;upstream frontends {
+    server 127.0.0.1:8080;
+}
+
+server {
+    listen 80;  #监听端口
+    server_name static.tonghs.com;
+    location / {
+        root /home/tonghs/sunflower-website;
+    }
+}
+
+server {
+    listen 80;  #监听端口
+    server_name sunflower.tonghs.com;
+    location / {
+        proxy_pass_header Server;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Scheme $scheme;
+        proxy_pass http://frontends;
+    }
+
+    location = /favicon.ico {
+        root /home/tonghs/sunflower-website/img;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;docker host:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server {
+    listen 80;
+    server_name sunflower.tonghs.com static.tonghs.com;
+    location / {
+        proxy_pass http://127.0.0.1:8089;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 29 Jun 2015 00:00:00 +0800</pubDate>
+        <link>tonghs.com/2015/06/29/nginx-%E5%8F%8D%E4%BB%A3%E5%A4%87%E5%BF%98.html</link>
+        <guid isPermaLink="true">tonghs.com/2015/06/29/nginx-%E5%8F%8D%E4%BB%A3%E5%A4%87%E5%BF%98.html</guid>
+      </item>
+    
+      <item>
+        <title>docker 相关操作</title>
+        <description>&lt;h3 id=&quot;dockerfile-build-image&quot;&gt;dockerfile build image&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker build -t tonghs:tag .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;image--container&quot;&gt;从 image 创建 container&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -dt --name xxx imageid -p 2200:22 -p 8080:80
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;debian-&quot;&gt;debian 中文乱码&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install locales
+dpkg-reconfigure locales
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;iptables&quot;&gt;端口映射和 iptables&lt;/h3&gt;
+
+&lt;p&gt;列出nat表的所有规则并显示行号&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;iptables -nvL  -t nat --line-number
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;删除nat表DOCKER链的第13行的规则&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;iptables -t nat -D DOCKER 13
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;用iptables给Docker添加端口映射&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;iptables -t nat -A DOCKER --in-interface !docker0 -p tcp --dport 6666 -j DNAT --to 172.17.0.5:6666
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;docker会在系统中创建一个叫docker0的网卡，本例中172.17.0.5就是docker0的IP地址&lt;/p&gt;
+
+&lt;h3 id=&quot;tar&quot;&gt;容器导出到 tar&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker export xxx &amp;gt; xxx.tar
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;导入&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat xxx.tag | docker import - ac-sys/redmine
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 29 Jun 2015 00:00:00 +0800</pubDate>
+        <link>tonghs.com/2015/06/29/docker-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C.html</link>
+        <guid isPermaLink="true">tonghs.com/2015/06/29/docker-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C.html</guid>
+      </item>
+    
+      <item>
+        <title>MongoDB 相关操作</title>
+        <description>&lt;h4 id=&quot;section&quot;&gt;连接带密码的数据库&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mongo -u user -ppassword host:port/dbname
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;####备份和恢复&lt;/p&gt;
+
+&lt;p&gt;Mongodb自带了mongodump和mongorestore这两个工具来实现对数据的备份和恢复。 mongodump能够在Mongodb运行时进行备份，它的工作原理是对运行的Mongodb做查询，然后将所有查到的文档写入磁盘。但是存在的问题时使用mongodump产生的备份不一定是数据库的实时快照，如果我们在备份时对数据库进行了写入操作，则备份出来的文件可能不完全和Mongodb实时数据相等。另外在备份时可能会对其它客户端性能产生不利的影响。&lt;/p&gt;
+
+&lt;p&gt;备份:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mongodump -d SITE -o ~/download/mongobak/SITE/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;恢复:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mongorestore -d SITE --directoryperdb ~/download/mongobak/SITE/ --drop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;注意: –drop 参数代表恢复前删除原数据&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;官方文档: &lt;a href=&quot;http://docs.mongodb.org/manual/core/import-export/&quot;&gt;http://docs.mongodb.org/manual/core/import-export/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;修改字段名&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;将字段&quot;abc&quot;改为&quot;def&quot;
+db.test.update({}, {$rename : {&quot;abc&quot; : &quot;def&quot;}}, false, true)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;官方参考：&lt;a href=&quot;http://docs.mongodb.org/manual/reference/method/db.collection.update/#db.collection.update&quot;&gt;http://docs.mongodb.org/manual/reference/method/db.collection.update/#db.collection.update&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;建立和删除索引&lt;/h4&gt;
+
+&lt;p&gt;建立索引：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;db.collection.ensureIndex( { orderDate: 1 } )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;删除索引：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;db.pets.dropIndex( &quot;orderDate&quot; )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Wed, 17 Jun 2015 00:00:00 +0800</pubDate>
+        <link>tonghs.com/2015/06/17/mongodb-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C.html</link>
+        <guid isPermaLink="true">tonghs.com/2015/06/17/mongodb-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C.html</guid>
+      </item>
+    
+      <item>
+        <title>如果你用 Chrome 浏览器，而碰巧又用 Google 搜索</title>
+        <description>&lt;p&gt;据说：在 Chrome 浏览器中打开「实验性功能」页面（chrome://flags/），启用「实验性 QUIC 协议」和「经由实验性 QUIC 协议发出的 HTTPS 请求」，重启浏览器后可以正常登陆 Google 相关服务。// 我就是手抖。&lt;/p&gt;
+
+&lt;p&gt;经过实践，可以打开Google搜索了。&lt;/p&gt;
+
+&lt;p&gt;对于这次大面积的封锁行动，大家仍旧保持沉默，但对错自在人心。&lt;/p&gt;
+</description>
+        <pubDate>Mon, 09 Jun 2014 00:00:00 +0800</pubDate>
+        <link>tonghs.com/2014/06/09/%E5%A6%82%E6%9E%9C%E4%BD%A0%E7%94%A8-Chrome-%E6%B5%8F%E8%A7%88%E5%99%A8-%E8%80%8C%E7%A2%B0%E5%B7%A7%E5%8F%88%E7%94%A8-Google-%E6%90%9C%E7%B4%A2.html</link>
+        <guid isPermaLink="true">tonghs.com/2014/06/09/%E5%A6%82%E6%9E%9C%E4%BD%A0%E7%94%A8-Chrome-%E6%B5%8F%E8%A7%88%E5%99%A8-%E8%80%8C%E7%A2%B0%E5%B7%A7%E5%8F%88%E7%94%A8-Google-%E6%90%9C%E7%B4%A2.html</guid>
+      </item>
+    
+  </channel>
+</rss>

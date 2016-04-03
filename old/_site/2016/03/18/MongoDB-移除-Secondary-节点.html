@@ -1,0 +1,197 @@
+<html>
+  <head>
+    <title>MongoDB 移除 Secondary 节点 - tonghs</title>
+    <link href='/images/fav.png' rel='shortcut icon'>
+<link href='/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href="/feed.xml" rel="alternate" type="application/rss+xml">
+<script src='http://cdn.staticfile.org/jquery/2.0.3/jquery.js' type='text/javascript'></script>
+<script src='/javascripts/basics.js' type='text/javascript'></script>
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42638070-1', 'tonghs.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+  </head>
+  <body>
+    <header>
+<p>&nbsp;</p>
+<p>tonghs</p>
+<p>A web developer</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/" >Home</a>
+  
+    <a target="_blank" class="main" href="/product" >Product</a>
+  
+    <a target="_top" class="main" href="/about" >About</a>
+  
+</div>
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/2016/03/07/Ubuntu-14.04-LTS-%E5%8D%95%E7%BD%91%E5%8D%A1%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AA-IP.html">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/2016/04/02/MySQL-%E4%B8%80%E4%BA%9B%E6%9C%89%E7%9A%84%E6%B2%A1%E7%9A%84%E5%A4%87%E5%BF%98.html">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1>
+            <div class='date'>18 Mar 2016</div>
+            MongoDB 移除 Secondary 节点
+          </h1>
+          <p>在不知道节点信息的情况下要移除某个 secondary 节点。</p>
+
+<p>首先要连接到住节点，然后查看主从状态：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+host_name:PRIMARY&gt; rs.status()
+
+{
+        "set" : "4caa650b-2780-41c2-98cd-547b01f8c49a",
+        "date" : ISODate("2016-03-18T04:00:31Z"),
+        "myState" : 1,
+        "members" : [
+                {
+                        "_id" : 0,
+                        "name" : "10.9.9.100:27017",
+                        "health" : 1,
+                        "state" : 2,
+                        "stateStr" : "SECONDARY",
+                        "uptime" : 455,
+                        "optime" : Timestamp(1458273610, 2),
+                        "optimeDate" : ISODate("2016-03-18T04:00:10Z"),
+                        "lastHeartbeat" : ISODate("2016-03-18T04:00:31Z"),
+                        "lastHeartbeatRecv" : ISODate("2016-03-18T04:00:30Z"),
+                        "pingMs" : 1,
+                        "syncingTo" : "10.10.9.52:27017"
+                },
+                {
+                        "_id" : 1,
+                        "name" : "10.10.9.52:27017",
+                        "health" : 1,
+                        "state" : 1,
+                        "stateStr" : "PRIMARY",
+                        "uptime" : 8560211,
+                        "optime" : Timestamp(1458273610, 2),
+                        "optimeDate" : ISODate("2016-03-18T04:00:10Z"),
+                        "electionTime" : Timestamp(1458273183, 1),
+                        "electionDate" : ISODate("2016-03-18T03:53:03Z"),
+                        "self" : true
+                }
+        ],
+        "ok" : 1
+}
+</code></pre>
+</div>
+
+<p>得知 Secondary 节点的 IP 和端口，即 10.9.9.100:27017，然后确定当前执行命令的节点是否是 Primary 节点：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+host_name:PRIMARY&gt;  db.isMaster()
+{
+        "setName" : "4caa650b-2780-41c2-98cd-547b01f8c49a",
+        "setVersion" : 148197,
+        "ismaster" : true,  # 表示是 primary 节点
+        "secondary" : false,
+        "hosts" : [
+                "10.10.9.52:27017",
+                "10.9.9.100:27017"
+        ],
+        "primary" : "10.10.9.52:27017",
+        "me" : "10.10.9.52:27017",
+        "maxBsonObjectSize" : 16777216,
+        "maxMessageSizeBytes" : 48000000,
+        "maxWriteBatchSize" : 1000,
+        "localTime" : ISODate("2016-03-18T04:01:45.969Z"),
+        "maxWireVersion" : 2,
+        "minWireVersion" : 0,
+        "ok" : 1
+}
+</code></pre>
+</div>
+
+<p>移除节点：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+host_name:PRIMARY&gt;  rs.remove("10.9.9.100:27017")
+</code></pre>
+</div>
+
+<p>再次查看状态：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+host_name:PRIMARY&gt; rs.status()
+{
+        "set" : "4caa650b-2780-41c2-98cd-547b01f8c49a",
+        "date" : ISODate("2016-03-18T04:06:37Z"),
+        "myState" : 1,
+        "members" : [
+                {
+                        "_id" : 1,
+                        "name" : "10.10.9.52:27017",
+                        "health" : 1,
+                        "state" : 1,
+                        "stateStr" : "PRIMARY",
+                        "uptime" : 8560577,
+                        "optime" : Timestamp(1458273988, 1),
+                        "optimeDate" : ISODate("2016-03-18T04:06:28Z"),
+                        "electionTime" : Timestamp(1458273183, 1),
+                        "electionDate" : ISODate("2016-03-18T03:53:03Z"),
+                        "self" : true
+                }
+        ],
+        "ok" : 1
+}
+</code></pre>
+</div>
+
+<p>Secondary 结点已经移除。</p>
+
+          <br />
+<p id="signoff">
+  tonghs
+</p>
+
+        </section>
+      </div>
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/" >Home</a>
+  
+    <a target="_blank" class="main" href="/product" >Product</a>
+  
+    <a target="_top" class="main" href="/about" >About</a>
+  
+</div>
+    </div>
+    <footer class="muted">
+  Based on <a href="http://jekyllrb.com/" class="muted">Jekyll</a> & <a href="http://github.com/chloerei/scribble" class="muted">Scribble</a>
+</footer>
+
+  </body>
+</html>

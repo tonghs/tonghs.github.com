@@ -1,0 +1,168 @@
+<html>
+  <head>
+    <title>Web API 方案备忘 - tonghs</title>
+    <link href='/images/fav.png' rel='shortcut icon'>
+<link href='/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href="/feed.xml" rel="alternate" type="application/rss+xml">
+<script src='http://cdn.staticfile.org/jquery/2.0.3/jquery.js' type='text/javascript'></script>
+<script src='/javascripts/basics.js' type='text/javascript'></script>
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42638070-1', 'tonghs.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+  </head>
+  <body>
+    <header>
+<p>&nbsp;</p>
+<p>tonghs</p>
+<p>A web developer</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/" >Home</a>
+  
+    <a target="_blank" class="main" href="/product" >Product</a>
+  
+    <a target="_top" class="main" href="/about" >About</a>
+  
+</div>
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/2015/06/29/nginx-%E5%8F%8D%E4%BB%A3%E5%A4%87%E5%BF%98.html">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/2016/02/24/VBoxManage-cmd.html">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1>
+            <div class='date'>10 Sep 2015</div>
+            Web API 方案备忘
+          </h1>
+          <h3 id="section">背景</h3>
+<p>打算做一个网站，因为考虑开发移动客户端，所以关于 api 的方式有下面两种想法，大家给点意见哪种好，或者还有别的更好的方法。</p>
+
+<h3 id="section-1">前提</h3>
+<p>网站前后端使用 Ajax + JSON 的方式数据交互，打算用 AngularJS</p>
+
+<h3 id="section-2">方式</h3>
+
+<p>想到的两种方式：</p>
+
+<ol>
+  <li>
+    <p>网站按正常方式开发，然后为客户端单独开发 REST 接口</p>
+
+    <p><strong>这样的问题</strong>： 网站既然用 Ajax + JSON 也得写 REST 接口，这样就等于写了两套接口，感觉会有重复的工作</p>
+  </li>
+  <li>
+    <p>网站和客户端使用一套接口</p>
+
+    <p><strong>这样好处</strong>： 接口就用一套</p>
+
+    <p><strong>这样的问题</strong>： 主要是用户验证有点没有想明白，正常网站的用户验证（ Session Cookie ）和客户端的用户验证（ token ) 不一致，导致接口得处理不同的来源使用不同的验证方式，第一种方式倒是没有这个问题。 其实这个问题倒是想到一种解决方法，初步想的是把 token 存到本地，不清楚这样是不是最佳实现方式。</p>
+  </li>
+</ol>
+
+<h3 id="section-3">讨论</h3>
+
+<p>在<code class="highlighter-rouge">V2EX</code>跟大家讨论后，确定倾向于第二种方法：全部用一套接口。</p>
+
+<p><strong>那么有几个问题需要解决：</strong></p>
+
+<ol>
+  <li>
+    <p>token 存在什么地方合适呢？ Cookie ？ LocalStorage ？还是 SessionStorage ？仅仅是一个 token 的话，我更倾向于存在 Cookie 中，如果涉及到记住密码什么的是不是就得存到 LocalStorage 中了。大家怎么做的？</p>
+  </li>
+  <li>
+    <p>每次请求一个 API 的时候， token 是添加到 HEADER 中还是当一个参数呢，那种更好？ 我想了下貌似没什么区别。</p>
+  </li>
+  <li>
+    <p>应该会发生跨域的问题吧，假如 API 用子域名的话比如： http://api.test.com/user ，这时在 http://www.test.com/user 页面访问的时候就会有跨域问题吧，怎么破？用 jsonp ？那样就都是 get 方法了，怎么破？</p>
+  </li>
+</ol>
+
+<p><strong>问题解决如下：</strong></p>
+
+<ol>
+  <li>
+    <p>token 存在什么地方貌似都没有太大所谓，如果需要记住密码什么的，最好是 Cookie 或 LocalStorage。</p>
+  </li>
+  <li>
+    <p>token 封装到 Request HEADER 中去，算是比较好的处理方法。</p>
+  </li>
+  <li>
+    <p>跨域的解决办法就要靠<code class="highlighter-rouge">CORS</code>了，貌似GibHub API 就是用的这个。</p>
+  </li>
+</ol>
+
+<h3 id="section-4">总结</h3>
+<p>整个思路如下：</p>
+
+<ul>
+  <li>
+    <p>写一套通用的 RESTful 接口</p>
+  </li>
+  <li>
+    <p>其他端都当做客户端去开发，包括 网站、APP、桌面应用 等等</p>
+  </li>
+  <li>
+    <p>用 token 做用户验证，可以搭建 OAuth Server</p>
+  </li>
+  <li>
+    <p>客户端把 token 写入到 Request HEADER 中去请求接口</p>
+  </li>
+  <li>
+    <p>网站跨域的问题采用 CORS 解决。</p>
+  </li>
+</ul>
+
+
+          <br />
+<p id="signoff">
+  tonghs
+</p>
+
+        </section>
+      </div>
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/" >Home</a>
+  
+    <a target="_blank" class="main" href="/product" >Product</a>
+  
+    <a target="_top" class="main" href="/about" >About</a>
+  
+</div>
+    </div>
+    <footer class="muted">
+  Based on <a href="http://jekyllrb.com/" class="muted">Jekyll</a> & <a href="http://github.com/chloerei/scribble" class="muted">Scribble</a>
+</footer>
+
+  </body>
+</html>

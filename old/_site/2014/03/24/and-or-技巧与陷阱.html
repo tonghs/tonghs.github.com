@@ -1,0 +1,156 @@
+<html>
+  <head>
+    <title>and-or 技巧与陷阱 - tonghs</title>
+    <link href='/images/fav.png' rel='shortcut icon'>
+<link href='/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href="/feed.xml" rel="alternate" type="application/rss+xml">
+<script src='http://cdn.staticfile.org/jquery/2.0.3/jquery.js' type='text/javascript'></script>
+<script src='/javascripts/basics.js' type='text/javascript'></script>
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42638070-1', 'tonghs.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+  </head>
+  <body>
+    <header>
+<p>&nbsp;</p>
+<p>tonghs</p>
+<p>A web developer</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/" >Home</a>
+  
+    <a target="_blank" class="main" href="/product" >Product</a>
+  
+    <a target="_top" class="main" href="/about" >About</a>
+  
+</div>
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/2014/03/24/Python-%E4%B8%AD%E7%9A%84%E6%B5%85%E5%A4%8D%E5%88%B6%E5%92%8C%E6%B7%B1%E5%A4%8D%E5%88%B6.html">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/2014/03/24/src-refspec-master-does-not-match-any.html">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1>
+            <div class='date'>24 Mar 2014</div>
+            and-or 技巧与陷阱
+          </h1>
+          <p>在 C 语言中，三目运算符 bool ? a : b 使用起来想当方便，遗憾的是 Python 中并没有这个运算，但是我们可以是用 and-or 实现。</p>
+
+<p><strong>and-or 技巧</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="ow">in</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="s">'aa'</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s">'bb'</span>
+<span class="n">w1</span> <span class="o">=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">a</span> <span class="ow">or</span> <span class="n">b</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">a</span> <span class="ow">or</span> <span class="n">b</span>
+
+<span class="k">print</span> <span class="n">w1</span>
+<span class="k">print</span> <span class="n">w2</span>
+
+<span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+<span class="n">aa</span>
+<span class="n">bb</span>
+</code></pre>
+</div>
+
+<p>由此可见，and-or 可以实现 bool ? a : b.</p>
+
+<p><strong>and-or 陷阱</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="ow">in</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s">'bb'</span>
+<span class="n">w1</span> <span class="o">=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">a</span> <span class="ow">or</span> <span class="n">b</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">a</span> <span class="ow">or</span> <span class="n">b</span>
+
+<span class="k">print</span> <span class="n">w1</span>
+<span class="k">print</span> <span class="n">w2</span>
+
+<span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+
+<span class="n">bb</span>
+<span class="n">bb</span>
+</code></pre>
+</div>
+
+<p>当 a 空字符串时（False），并没有实现想要的功能，此时 1 and a 用于为 False，所以此时只输出 b。所以，在使用此技巧时，注意 a 的值。</p>
+
+<p>Python cookbook 中提到一个优化方法可以避免 a 为空时的问题：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="ow">in</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s">'bb'</span>
+
+<span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="ow">and</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">or</span> <span class="p">[</span><span class="n">b</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>因为[a]为非空列表，永远为 True，即使 a 是 0 或 ‘’。Python cookbook 还推荐将该运算封装成方法：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="ow">in</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span>
+
+<span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+	<span class="k">return</span> <span class="p">(</span><span class="nb">bool</span> <span class="ow">and</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">or</span> <span class="p">[</span><span class="n">b</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre>
+</div>
+
+          <br />
+<p id="signoff">
+  tonghs
+</p>
+
+        </section>
+      </div>
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/" >Home</a>
+  
+    <a target="_blank" class="main" href="/product" >Product</a>
+  
+    <a target="_top" class="main" href="/about" >About</a>
+  
+</div>
+    </div>
+    <footer class="muted">
+  Based on <a href="http://jekyllrb.com/" class="muted">Jekyll</a> & <a href="http://github.com/chloerei/scribble" class="muted">Scribble</a>
+</footer>
+
+  </body>
+</html>
