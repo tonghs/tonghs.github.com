@@ -99,7 +99,7 @@ a {
      -o-transition: all .3s; /* Opera */
 
     &:visited {
-        color: darken($brand-color, 30%);
+        color: lighten($brand-color, 50%);
     }
 
     &:hover {
