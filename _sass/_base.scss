@@ -91,7 +91,7 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-    color: lighten($brand-color, 15%);
+    color: lighten($brand-color, 20%);
     text-decoration: none;
         transition: all .3s;
    -moz-transition: all .3s; /* Firefox 4 */
@@ -99,7 +99,7 @@ a {
      -o-transition: all .3s; /* Opera */
 
     &:visited {
-        color: lighten($brand-color, 50%);
+        color: lighten($brand-color, 40%);
     }
 
     &:hover {
