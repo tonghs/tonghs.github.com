@@ -183,7 +183,8 @@
  * Page content
  */
 .page-content {
-    padding: $spacing-unit 0;
+    /*padding: $spacing-unit 0;*
+    padding: 80 0;
 }
 
 .page-heading {
@@ -206,7 +207,8 @@
 .post-meta {
     font-size: $small-font-size;
     color: $grey-color;
-    float: right;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .post-link {
@@ -223,10 +225,11 @@
 }
 
 .post-title {
-    font-size: 22px;
+    font-size: 24px;
     letter-spacing: -1px;
     line-height: 1;
     margin-top: 15px;
+    text-align: center;
 
     @include media-query($on-laptop) {
         font-size: 20px;
