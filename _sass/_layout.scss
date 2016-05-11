@@ -216,18 +216,19 @@ article.post{
     }
 }
 
-.post-link .post-meta{
-    font-size: $small-font-size;
-    color: $grey-color;
-    float: right;
-}
-
 .post-meta {
     font-size: $small-font-size;
     color: $grey-color;
     text-align: center;
     margin-top: 20px;
 }
+
+.post-link .post-meta{
+    font-size: $small-font-size;
+    color: $grey-color;
+    float: right;
+}
+
 
 .post-link {
     font-size: 18px;
