@@ -7,7 +7,10 @@
 
 */
 
-
+@viewport {
+  zoom: 1.0;
+  width: extend-to-zoom 100%;
+}
 
 body {
   text-align: justify; 
@@ -101,7 +104,7 @@ h1 + p {
 p + ul, p + ol, p + dl {margin-bottom:1.5em;}
 
 figure {margin: 2em 0 1.5em 0;}
-figure img {width: 100%;border: 1px solid #ccc;}
+figure img {width: 100%;}
 figcaption {font-size: 66%;padding: 1em; padding-top: 0.5em;color: #aaa;}
 
 blockquote {border-left:2em /*solid #eee*/; padding-left:2em; margin:1em 0;}
@@ -184,4 +187,14 @@ a:target, ol#footnotes li:target, sup a:target  {
     -webkit-animation-iteration-count: 1;
     -webkit-animation-timing-function: ease-in-out;
 }
+
+@media screen and (max-width: 800px){ 
+    body{
+      padding: 2em 0em 5em; 
+    }
+    p{
+      padding: 0 2em;
+    }
+}
+
 
