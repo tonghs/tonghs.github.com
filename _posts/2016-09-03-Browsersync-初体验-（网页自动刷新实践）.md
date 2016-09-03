@@ -3,6 +3,7 @@ published: true
 layout: post
 ---
 官网：[https://www.browsersync.io/](https://www.browsersync.io/)
+
 中文网站（非官方）：[http://www.browsersync.cn/](http://www.browsersync.cn/)
 
 页面开发自动刷新已经不是什么新鲜事情了，作为 Web 开发者，在调试/测试页面时不停的切换刷新是一件非常费时的事情，好在有比我们更懒的人做出了好用的工具，省时省力的工具，还是要学一下的。
