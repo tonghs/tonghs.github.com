@@ -86,5 +86,3 @@ browser-sync start --proxy "a.com" --files "css/*.css, js/**/*.js, template/**/*
 注意，此时要访问 http://localhost:3002 ，此时所有的请求需要由 BrwserSync 作为请求代理到真实的 a.com。
 
 enjoy it。
-
-
