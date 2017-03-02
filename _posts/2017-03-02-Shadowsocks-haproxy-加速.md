@@ -1,6 +1,7 @@
 ---
 published: true
 layout: post
+title: Shadowsocks HAProxy 加速
 ---
 
 安装 HAProxy:

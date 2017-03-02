@@ -5,17 +5,19 @@ import sys
 import datetime
 
 
-template = """---
+def main(title):
+    template = """---
 published: true
 layout: post
+title: {title}
 ---
 """
 
-
-def main(title):
     t = datetime.date.today()
     if not title:
         title = raw_input('请输入文章标题: ')
+
+    template = template.format(title=title)
 
     file_name = '_posts/{time}-{title}.md'.format(time=t, title=title.replace(' ', '-'))
 
