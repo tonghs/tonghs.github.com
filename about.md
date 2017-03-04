@@ -45,6 +45,7 @@ disqus: false
 
     C#、Java、SQLServer、MySQL、Liferay、Spotfire、Kettle
 
+
 #### 常混迹于
 
 ##### GitHub
@@ -52,9 +53,6 @@ disqus: false
 
 ##### V2EX
 [http://www.v2ex.com/member/tonghuashuai](http://www.v2ex.com/member/tonghuashuai)
-
-##### Bitbucket
-[https://bitbucket.org/tonghs](https://bitbucket.org/tonghs)
 
 #### 技术栈
     Mac/Linux Docker Vim
