@@ -6,7 +6,7 @@ disqus: false
 
 仝华帅，男，1988 年，电子信息工程
 
-现居北京，就职于`FellowPlus`（[fellowplus.com](http://fellowplus.com)），Python 技术经理，数据工程师。
+现居北京，就职于 `FellowPlus`（[fellowplus.com](http://fellowplus.com)），Python 技术经理，数据工程师。
 
 18601980445， [tonghuashuai#gmail.com](mailto:tonghuashuai@gmail.com)
 
