@@ -2,6 +2,7 @@
 layout: page
 title: About
 disqus: false
+published: true
 ---
 
 仝华帅，男，1988 年，电子信息工程
@@ -21,7 +22,9 @@ disqus: false
     * Python、Tornado、Flask
     * MySQL、MongoDB、Redis
     * Fabric、Celery、Sentry
-    * ElasticSearch、Kibana、Tableau
+    * 分布式爬虫
+    * ELK、Kettle、Spark
+    * Tableau、PowerBI
 
 2014.6 至 2016.10 北京天使汇金融信息服务有限公司
 
