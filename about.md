@@ -59,9 +59,10 @@ published: true
 
 #### 技术栈
     Mac/Linux Docker Vim
-    Python Tornado Mako Gearman Supervisor NGINX
+    Python Tornado Mako Supervisor Nginx
     HTML/CSS/Javascript CoffeeScript jQuery AvalonJS MVVM
     MongoDB Redis MySQL
+    ELK Spark Kettle
     Git HG
     Scrum
 
