@@ -24,16 +24,16 @@ published: true
     技术栈如下：
     
     * 数据收集和清洗
-    	分布式爬虫，Redis 做任务队列，数据存储在 MongoDB，Kettle 做数据清洗。
+      分布式爬虫，Redis 做任务队列，数据存储在 MongoDB，Kettle 做数据清洗。
         
     * 数据分析和展示
-    	Numpy、Pandas，少量的 HDFS、Spark 和 机器学习，部分数据存储在 MySQL。ELK 做 log 收集和展示，Tableau、PowerBI、Redash 做业务数据展示和分析。
+      Numpy、Pandas，少量的 HDFS、Spark 和 机器学习，部分数据存储在 MySQL。ELK 做 log 收集和展示，Tableau、PowerBI、Redash 做业务数据展示和分析。
         
     * API
-    	Tornado Flask 框架，Celery 做异步任务队列。
+      Tornado Flask 框架，Celery 做异步任务队列。
     
     * 其他
-    	阿里云（30 台左右），使用 Fabric 批量部署、Sentry 做异常收集、代码托管在 GitHub。
+      阿里云（30 台左右），使用 Fabric 批量部署、Sentry 做异常收集、代码托管在 GitHub。
      
 
 2014.6 至 2016.10 北京天使汇金融信息服务有限公司
@@ -47,16 +47,16 @@ published: true
     技术栈如下：
     
     * 后端
-    	Python、Tornado、Mako，Gearman 做异步任务。
+      Python、Tornado、Mako，Gearman 做异步任务。
         
     * 数据存储
-    	MongoDB、Redis。
+      MongoDB、Redis。
         
     * 前端
-    	CoffeeScript、AvalonJS、Gulp。
+      CoffeeScript、AvalonJS、Gulp。
         
     * 其他
-    	Jenkins 做持续集成，线上/开发环境使用 Docker + Supervisor + Nginx，代码托管在 GitHub、Gitlab。
+      Jenkins 做持续集成，线上/开发环境使用 Docker + Supervisor + Nginx，代码托管在 GitHub、Gitlab。
 
 2014.1 至 2014.6 42区团队
 
@@ -71,10 +71,10 @@ published: true
     职责：主程，企业系统、医疗感染监控系统、BI 开发
 
     * 企业应用开发
-    	C# + SQLServer
+      C# + SQLServer
         
     * 医疗系统、BI 开发
-    	Java、MySQL、Liferay、Spotfire、Kettle
+      Java、MySQL、Liferay、Spotfire、Kettle
 
 
 ##### GitHub
