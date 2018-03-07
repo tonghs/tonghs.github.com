@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## 使用 Conda 管理 Python 环境
 
