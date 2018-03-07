@@ -7,7 +7,7 @@ published: true
 
 仝华帅，男，1988 年，电子信息工程。
 
-现就职于 `FellowPlus`，任 Python 技术经理，数据工程师。
+现就职于 `下厨房`，Python 后端开发。
 
 18601980445， [tonghuashuai@gmail.com](mailto:tonghuashuai@gmail.com)
 
