@@ -13,7 +13,14 @@ published: true
 
 #### 工作经历
 
-2016.11 至今 FellowPlus 
+2017.12 至今 下厨房 
+
+    Python 后端开发
+
+    职责：下厨房电商（市集）后端开发
+
+
+2016.11 至 2017.12 FellowPlus 
 
     Python 技术经理， Data Engineer
 
