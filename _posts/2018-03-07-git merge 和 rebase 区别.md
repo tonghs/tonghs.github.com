@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## git merge 和 rebase 区别
 git merge 和 rebase 都是将一个分支的变更并入另一个分支，只是方式不一样。假设我们的代码库是这样的：
