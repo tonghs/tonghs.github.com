@@ -1,5 +1,7 @@
 ---
 published: true
+layout: post
+title: 使用 Conda 管理 Python 环境
 ---
 ## 使用 Conda 管理 Python 环境
 

@@ -3,8 +3,9 @@
  */
 .site-header {
     border-top: 5px solid $grey-color-dark;
-    border-bottom: 1px solid $grey-color-light;
+    border-bottom: 1px solid $grey-color-dark;
     min-height: 56px;
+    background-color: $grey-header-color-dark;
 
     // Positioning context for the mobile navigation icon
     position: relative;
@@ -17,11 +18,11 @@
     letter-spacing: -1px;
     margin-bottom: 0;
     float: left;
-    color: $grey-color-dark;
+    color: $grey-color-light;
 
     &,
     &:visited {
-        color: $grey-color-dark;
+        color: $grey-color-light;
     }
 
     &:hover {
@@ -68,7 +69,7 @@ hr{
         top: 9px;
         right: $spacing-unit / 2;
         background-color: $background-color;
-        border: 1px solid $grey-color-light;
+        border: 1px solid $grey-color-dark;
         border-radius: 5px;
         text-align: right;
 
@@ -86,7 +87,7 @@ hr{
                 height: 15px;
 
                 path {
-                    fill: $grey-color-dark;
+                    fill: $grey-color-light;
                 }
             }
         }
@@ -119,7 +120,7 @@ hr{
  * Site footer
  */
 .site-footer {
-    border-top: 1px solid $grey-color-light;
+    border-top: 1px solid $grey-color-dark;
     padding: $spacing-unit 0;
 }
 
@@ -155,13 +156,13 @@ hr{
 }
 
 .footer-col-2 {
-    width: -webkit-calc(20% - (#{$spacing-unit} / 2));
-    width:         calc(20% - (#{$spacing-unit} / 2));
+    width: -webkit-calc(30% - (#{$spacing-unit} / 2));
+    width:         calc(30% - (#{$spacing-unit} / 2));
 }
 
 .footer-col-3 {
-    width: -webkit-calc(45% - (#{$spacing-unit} / 2));
-    width:         calc(45% - (#{$spacing-unit} / 2));
+    width: -webkit-calc(35% - (#{$spacing-unit} / 2));
+    width:         calc(35% - (#{$spacing-unit} / 2));
     text-align: right;
 }
 

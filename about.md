@@ -9,15 +9,19 @@ published: true
 
 现就职于 `下厨房`，Python 后端开发。
 
-18601980445， [tonghuashuai@gmail.com](mailto:tonghuashuai@gmail.com)
+[tonghuashuai@gmail.com](mailto:tonghuashuai#gmail.com)
 
 #### 工作经历
 
 2017.12 至今 下厨房 
 
-    Python 后端开发
+    Python 后端开发，又不只是开发。
 
-    职责：下厨房电商（市集）后端开发
+    职责：
+
+    * 下厨房电商（市集）相关业务
+    * 广告相关业务广告产品/程序化广告/联盟广告
+    * 在线课程产品（厨 studio）相关业务
 
 
 2016.11 至 2017.12 FellowPlus 

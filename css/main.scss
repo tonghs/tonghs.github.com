@@ -6,21 +6,22 @@
 
 
 // Our variables
-$base-font-family: Georgia, "Songti SC", 宋体, Lato, "Helvetica Neue", "Microsoft YaHei", Arial, Helvetica, sans-serif !important;
+$base-font-family: "SF Pro SC","HanHei SC","SF Pro Text","Myriad Set Pro","SF Pro Icons","Apple Legacy Chevron","PingFang SC","Roboto","Noto Sans","Noto Sans JP","Noto Sans KR","Noto Naskh Arabic","Noto Sans Thai","Noto Sans Hebrew","Noto Sans Bengali","Helvetica Neue","Helvetica","Arial",sans-serif;
 $base-font-size:   12pt;
-$base-font-weight: 400;
+$base-font-weight: 300;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.6;
 
 $spacing-unit:     8px;
 
-$text-color:       #111;
-$background-color: rgb(253, 253, 253);
+$text-color:       #a9a9b3;
+$background-color: #292a2d;
 $brand-color:      rgb(10, 10, 10);
 
 $grey-color:       #828282;
-$grey-color-light: lighten($grey-color, 40%);
-$grey-color-dark:  darken($grey-color, 25%);
+$grey-color-dark: #222;
+$grey-color-light:  #a9a9b3;
+$grey-header-color-dark: #252627;
 
 // Width of the content area
 $content-width:    800px;

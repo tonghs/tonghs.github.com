@@ -91,7 +91,7 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-    color: lighten($brand-color, 20%);
+    color: $grey-color-light;
     text-decoration: none;
         transition: all .3s;
    -moz-transition: all .3s; /* Firefox 4 */
@@ -99,7 +99,7 @@ a {
      -o-transition: all .3s; /* Opera */
 
     &:visited {
-        color: lighten($brand-color, 40%);
+        color: $grey-color;
     }
 
     &:hover {
@@ -120,7 +120,7 @@ a {
  */
 blockquote {
     color: $grey-color;
-    border-left: 4px solid $grey-color-light;
+    border-left: 4px solid $grey-color-dark;
     padding-left: $spacing-unit / 2;
     font-size: 18px;
     letter-spacing: -1px;
@@ -138,10 +138,10 @@ blockquote {
  */
 pre,
 code {
-    border: 1px solid $grey-color-light;
+    border: 1px solid $grey-color-dark;
     border-radius: 3px;
-    background-color: #f7f7f7;
-    font-family: 'Courier New', Lato, "Helvetica Neue", "Microsoft YaHei", Arial, Helvetica, sans-serif !important;
+    background-color: #3b3d42;
+    font-family: 'Courier New', "Helvetica Neue", "Microsoft YaHei", Arial, Helvetica, sans-serif !important;
     font-size: 13px;
 }
 
