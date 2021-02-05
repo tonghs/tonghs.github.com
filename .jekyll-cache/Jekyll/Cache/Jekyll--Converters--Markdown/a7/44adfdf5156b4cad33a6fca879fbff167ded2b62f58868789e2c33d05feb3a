@@ -1,4 +1,0 @@
-I"À<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$sudo apt-get install libxml2-dev libxslt-dev python2.7-dev
-$sudo pip install lxml
-</code></pre></div></div>
-:ET

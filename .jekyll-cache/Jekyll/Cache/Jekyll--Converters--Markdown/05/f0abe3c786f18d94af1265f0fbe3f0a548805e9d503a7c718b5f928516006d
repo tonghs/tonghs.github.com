@@ -1,8 +1,0 @@
-I"<p>改了一些东西后，终于决定 beta 了，这个阅读器从8月份开始弄，断断续续的开发、维护、改 bug，到现在基本满足自己的需要了。</p>
-
-<p>我是 <code class="highlighter-rouge">RSS</code> 重度用户。决定写个自己的阅读器的想法，在 <code class="highlighter-rouge">Google Reader</code> 传出关闭的消息后就有了，只是一直在想。</p>
-
-<p>直到 <code class="highlighter-rouge">Google Reader</code> 真的关闭了，开始找替代产品，试了很多，最终在用<code class="highlighter-rouge">鲜果</code>一段时间后，将前面提到的想法付诸行动了。</p>
-
-<p>从基本功能开发完成到现在我更多的是再做减法，重构一部分代码，剪掉无用的功能，因为是自己用，所以用时有任何不爽的就改掉，发使用频率教少的功能不是删掉就是隐藏掉。我只要一款 RSS 阅读器，其他附属的什么东西对我来说没有价值，我就是要好好的阅读，越简单越好，这就是我最初的想法。在开发维护的那段时间一直是<code class="highlighter-rouge">鲜果</code>和 OnlyRSS 配合使用，而现在，已经完全转到了 OnlyRSS 上，<code class="highlighter-rouge">鲜果</code>也终于从我的收藏夹清掉。</p>
-:ET

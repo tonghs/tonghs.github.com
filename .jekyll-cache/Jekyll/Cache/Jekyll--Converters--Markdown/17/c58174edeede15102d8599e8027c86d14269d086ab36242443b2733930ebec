@@ -1,2 +1,0 @@
-I"�<p>在 <code class="highlighter-rouge">OnlyRSS</code> 项目中用到了 feedparser，在使用中发现在解析一些 badurl 时会 block 掉，于是想设置解析超时时间，但是查文档发现 parser 方法没有超时参数。最后 google 到了 feedparser 项目中的 <a href="https://code.google.com/p/feedparser/issues/detail?id=221">issue221</a> 说的就是这个问题，其中有解决办法：</p>
-:ET

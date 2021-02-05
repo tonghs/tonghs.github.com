@@ -1,2 +1,0 @@
-I"*<p>网页中的层叠规律是这样的：如果两个层都没有定义 position 属性为 absolute 或者 relative 属性，哪个层的HTML代码放在后面，哪个层就显示在上面。如果指定了 position 属性，并且设置了 z-index 属性，谁的值大，谁就在上面。</p>
-:ET
