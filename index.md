@@ -98,7 +98,7 @@ published: true
 #### 技术栈
     Mac/Linux Docker Vim
     Python Tornado Mako Supervisor Nginx Celery
-    __ HTML/CSS/Javascript CoffeeScript jQuery MVVM 框架 __
+    ~~HTML/CSS/Javascript CoffeeScript jQuery MVVM 框架~~
     MongoDB Redis MySQL
     ELK Spark Kettle
     Git HG
