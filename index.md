@@ -89,13 +89,17 @@ published: true
     * 医疗系统、BI 开发
       Java、MySQL、Liferay、Spotfire、Kettle
 
-
-##### GitHub
+####    
+#### GitHub
 [https://github.com/tonghuashuai](https://github.com/tonghuashuai)
 
-##### V2EX
+
+####    
+#### V2EX
 [https://www.v2ex.com/member/tonghuashuai](https://www.v2ex.com/member/tonghuashuai)
 
+
+####    
 #### 技术栈
     Mac/Linux Docker Vim
     Python Tornado Mako Supervisor Nginx Celery
