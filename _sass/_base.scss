@@ -138,6 +138,8 @@ blockquote {
  */
 pre,
 code {
+    white-space: break-spaces;
+    word-wrap: break-word;
     border: 1px solid $grey-color-dark;
     border-radius: 3px;
     background-color: #3b3d42;
