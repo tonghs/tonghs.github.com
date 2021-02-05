@@ -10,7 +10,7 @@ title: 仝华帅
 email: tonghuashuai#gmail.com
 description: Just a Pythoner.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://tonghs.com" # the base hostname & protocol for your site
+url: "https://tonghs.com" # the base hostname & protocol for your site
 twitter_username: tonghuashuai 
 github_username: tonghuashuai
 

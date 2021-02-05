@@ -93,7 +93,7 @@ published: true
 [https://github.com/tonghuashuai](https://github.com/tonghuashuai)
 
 ##### V2EX
-[http://www.v2ex.com/member/tonghuashuai](http://www.v2ex.com/member/tonghuashuai)
+[https://www.v2ex.com/member/tonghuashuai](https://www.v2ex.com/member/tonghuashuai)
 
 #### 技术栈
     Mac/Linux Docker Vim
