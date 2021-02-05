@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: 仝华帅
 disqus: false
 published: true
 ---
