@@ -1,0 +1,63 @@
+I"�<p>在 C 语言中，三目运算符 bool ? a : b 使用起来想当方便，遗憾的是 Python 中并没有这个运算，但是我们可以是用 and-or 实现。</p>
+
+<p><strong>and-or 技巧</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="ow">in</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="s">'aa'</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s">'bb'</span>
+<span class="n">w1</span> <span class="o">=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">a</span> <span class="ow">or</span> <span class="n">b</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">a</span> <span class="ow">or</span> <span class="n">b</span>
+
+<span class="k">print</span> <span class="n">w1</span>
+<span class="k">print</span> <span class="n">w2</span>
+
+<span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+<span class="n">aa</span>
+<span class="n">bb</span>
+</code></pre></div></div>
+
+<p>由此可见，and-or 可以实现 bool ? a : b.</p>
+
+<p><strong>and-or 陷阱</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="ow">in</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s">'bb'</span>
+<span class="n">w1</span> <span class="o">=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">a</span> <span class="ow">or</span> <span class="n">b</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">a</span> <span class="ow">or</span> <span class="n">b</span>
+
+<span class="k">print</span> <span class="n">w1</span>
+<span class="k">print</span> <span class="n">w2</span>
+
+<span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+
+<span class="n">bb</span>
+<span class="n">bb</span>
+</code></pre></div></div>
+
+<p>当 a 空字符串时（False），并没有实现想要的功能，此时 1 and a 用于为 False，所以此时只输出 b。所以，在使用此技巧时，注意 a 的值。</p>
+
+<p>Python cookbook 中提到一个优化方法可以避免 a 为空时的问题：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="ow">in</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s">'bb'</span>
+
+<span class="n">w1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="ow">and</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">or</span> <span class="p">[</span><span class="n">b</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>因为[a]为非空列表，永远为 True，即使 a 是 0 或 ‘’。Python cookbook 还推荐将该运算封装成方法：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="ow">in</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span>
+
+<span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+	<span class="k">return</span> <span class="p">(</span><span class="nb">bool</span> <span class="ow">and</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">or</span> <span class="p">[</span><span class="n">b</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div></div>
+:ET

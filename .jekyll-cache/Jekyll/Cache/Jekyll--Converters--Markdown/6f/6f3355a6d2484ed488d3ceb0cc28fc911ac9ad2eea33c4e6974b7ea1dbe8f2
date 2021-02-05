@@ -1,0 +1,6 @@
+I"�<p>Query对DOM的事件触发具有冒泡特性。有时利用这一特性可以减少重复代码，但有时候我们又不希望事件冒泡。这个时候就要阻止 jQuery.Event冒泡。</p>
+
+<p>在jQuery.Event 的文档 中的开头得知，jQuery.Event对象是符合W3C标准的一个事件对象，同时jQuery.Event免去了检查兼容IE的步骤。</p>
+
+<p>jQuery.Event提供了一个非常简单的方法来阻止事件冒泡：event.stopPropagation();</p>
+:ET

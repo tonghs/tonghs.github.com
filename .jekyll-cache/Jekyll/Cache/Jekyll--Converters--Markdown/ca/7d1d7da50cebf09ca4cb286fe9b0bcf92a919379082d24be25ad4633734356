@@ -1,0 +1,87 @@
+I"O<p>官网：<a href="https://www.browsersync.io/">https://www.browsersync.io/</a></p>
+
+<p>中文网站（非官方）：<a href="http://www.browsersync.cn/">http://www.browsersync.cn/</a></p>
+
+<p>页面开发自动刷新已经不是什么新鲜事情了，作为 Web 开发者，在调试/测试页面时不停的切换刷新是一件非常费时的事情，好在有比我们更懒的人做出了好用的工具，省时省力的工具，还是要学一下的。</p>
+
+<p><a href="https://www.browsersync.io/">Browsersync</a>，官方介绍：Time-saving synchronised browser testing。</p>
+
+<p><img src="http://www.browsersync.cn/img/sync-demo.gif" alt="" /></p>
+
+<p><img src="http://www.browsersync.cn/img/scroll-demo.gif" alt="" /></p>
+
+<p>简单来说，Browsersync 可以让浏览器实时、快速响应您的文件更改（html、js、css、sass、less等）并自动刷新页面，可以同时在PC、平板、手机等设备下进项调试。有了它，您不用在多个浏览器、多个设备间来回切换，频繁的刷新页面。更神奇的是您在一个浏览器中滚动页面、点击等行为也会同步到其他浏览器和设备中，这一切还可以通过可视化界面来控制。</p>
+
+<p>下面介绍个简单的例子：</p>
+
+<h2 id="安装">安装</h2>
+
+<ol>
+  <li>安装 Node.js，参见 <a href="http://nodejs.org/download/">http://nodejs.org/download/</a></li>
+  <li>安装 BrowserSync
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install -g browser-sync
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="使用">使用</h2>
+
+<p>BrowserSync 分两种使用场景，一种是静态网站（较少），另外一种是动态网站（较多）</p>
+
+<ol>
+  <li>静态网站（<a href="http://www.browsersync.cn/example/packages/BrowsersyncExample.zip">示例代码</a>)</li>
+</ol>
+
+<p>假设网站中只有 html、CSS 和 JavaScript。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd YOUR-SITE-DIR
+browser-sync start --server --files "css/*.css, js/**/*.js, *.html"
+</code></pre></div></div>
+
+<p>启动 log：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[BS] Access URLs:
+ --------------------------------------
+       Local: http://localhost:3002
+    External: http://10.173.12.189:3002
+ --------------------------------------
+          UI: http://localhost:3003
+ UI External: http://10.173.12.189:3003
+ --------------------------------------
+[BS] Serving files from: ./
+[BS] Watching files...
+</code></pre></div></div>
+
+<p>此时，BrowserSync 会启动一个 server（Serving files from: ./），并开始监听 –files 参数中制定的文件的变动。访问 http://localhost:3002 即可看到效果。</p>
+
+<ol>
+  <li>动态网站</li>
+</ol>
+
+<p>这也是最常见的使用场景，一般大家都已经或者将要使用一门动态语言（PHP，Python，Java）搭建网站，此时的使用略有不同，就要用到 BrowserSync 的 proxy 模式。</p>
+
+<p>首先假设你的网站的域名（也可以是 IP）是：http://a.com 。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>browser-sync start --proxy "a.com" --files "css/*.css, js/**/*.js, template/**/*.html"
+</code></pre></div></div>
+
+<p>启动 log：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[BS] Proxying: http://a.com
+[BS] Access URLs:
+ --------------------------------------
+       Local: http://localhost:3002
+    External: http://10.173.12.189:3002
+ --------------------------------------
+          UI: http://localhost:3003
+ UI External: http://10.173.12.189:3003
+ --------------------------------------
+[BS] Watching files...
+</code></pre></div></div>
+
+<p>此时看到第一行：Proxying: http://a.com 代表 BrowserSync 已经建立了到 baidu.com 的代理，并开始监听 a.com 下的的文件（css/<em>.css, js/<strong>/*.js, template/</strong>/</em>.html）。</p>
+
+<p>注意，此时要访问 http://localhost:3002 ，此时所有的请求需要由 BrwserSync 作为请求代理到真实的 a.com。</p>
+
+<p>enjoy it。</p>
+:ET

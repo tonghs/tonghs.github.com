@@ -1,0 +1,140 @@
+I"�<p>纠结于每次github提交代码后都要去vps中git pull一下，早就把持续集成提上了日程，无奈前端时间工作太忙，无暇顾及，简单折腾了一下没有成功，于是这个任务在我的任务列表了躺了好久。</p>
+
+<p>最经工作不算忙，就抽了一上午弄了一下，总算成功，特此记录。也对网上各种不加验证的方案抄袭表示鄙视！！！</p>
+
+<p>先说环境：Ubuntu(12.10) + Python + Django/web.py + nginx + uwsgi，工具用的Jenkins(1.538)。</p>
+
+<p>实现到什么程度：代码提交到github后，vps端自动pull，并且重启uwsgi，reload nginx。其实说持续集成方案有点儿大了，实际我只用到了自动部署，其他的自动测试，集成sonar review等后续再加。</p>
+
+<p>下面说步骤：</p>
+
+<p>一、<strong>安装</strong></p>
+
+<p><a href="http://pkg.jenkins-ci.org/debian/">http://pkg.jenkins-ci.org/debian/</a>，该地址下有安装方法和deb包下载。或看一下步骤：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+</code></pre></div></div>
+
+<p>然后</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo vim  /etc/apt/sources.list
+</code></pre></div></div>
+
+<p>加入以下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deb http://pkg.jenkins-ci.org/debian binary/
+</code></pre></div></div>
+
+<p>然后</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
+sudo apt-get install jenkins
+</code></pre></div></div>
+
+<p>安装成功后启动：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo service jenkins
+</code></pre></div></div>
+
+<p>在此我出了点问题，用该命令启动后提示：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Job filed to start
+</code></pre></div></div>
+
+<p>原因不详，但是用一下语句就能启动：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo /etc/init.d/jenkins start
+</code></pre></div></div>
+
+<p>启动后直接访问http://173.208.199.58:8080/(我的vps ip 是 173.208.199.58）</p>
+
+<p>如果能正常显示，至此安装完成。</p>
+
+<p>安装后workspace路径会建在：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/var/lib/jenkins/
+</code></pre></div></div>
+
+<p>log目录为：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/var/log/jenkins/
+</code></pre></div></div>
+
+<p>配置文件为：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/default/jenkins
+</code></pre></div></div>
+
+<p>二、<strong>配置</strong></p>
+
+<ul>
+  <li>装插件，由于代码托管在github，所有要装git plugin 和 github plugin</li>
+</ul>
+
+<p>依次点击：Manage Jenkins–Manage Plugins–Available标签，查找上述两个插件安装。（如果该标签为空，则点击Advanced标签，然后右下角点击”Check now” 按钮，完成后就有了）</p>
+
+<ul>
+  <li>
+    <p>配置，插件安装完成后，依次进入：Manage Jenkins–Configure System，该处主要配置github插件。找到GitHub Web Hook，然后选择一个mode，我选的“ Manually manage hook URLs”，选好后点击行末的问号，说明中有一个url，我的是http://173.208.199.58:8080/github-webhook/，记下来，后边有用。别忘了Save按钮。</p>
+  </li>
+  <li>
+    <p>设置github，打开github中的项目，比如我的是https://github.com/tonghuashuai/OnlyRSSWeb，然后点击Settings–Service Hooks，然后点击右侧的WebHook URLs，在打开的文本框中填入刚才记下的地址，也就是：http://173.208.199.58:8080/github-webhook/，然后Update settings。</p>
+  </li>
+</ul>
+
+<p>至此准备工作完成。</p>
+
+<p>三、<strong>建Job</strong></p>
+
+<p>回到Jenkins，点击 New Job，然后填写 Job Name，下面选项根据个人情况选择，我选的第一个，OK按钮，进入设置界面。有几个地方需要设置</p>
+
+<ul>
+  <li>
+    <p>Advanced Project Options 下的 Advanced 按钮，如果想改变工作区可以选择 Use custom workspace，然后填写新工作群的路径。如：/home/ftp/OnlyRSSWeb</p>
+  </li>
+  <li>
+    <p>Source Code Management 下选择 Git，Repository URL 填写项目地址：https://github.com/tonghuashuai/OnlyRSSWeb.git，Repository browser 选择githubweb，url填入：https://github.com/tonghuashuai/OnlyRSSWeb/，注意没有.git.</p>
+  </li>
+  <li>
+    <p>Build Triggers 下选择 Build when a change is pushed to GitHub，也就是当有代码push到github上时触发build。</p>
+  </li>
+  <li>
+    <p>Build 下的 Execute shell 要执行的脚本。脚本执行的地方有几点需要单独说，所以放到后面。</p>
+  </li>
+</ul>
+
+<p>至此，Save 后 Job建完。写别高兴，还没完。</p>
+
+<p>四、<strong>用户</strong></p>
+
+<p>jenkins 安装完成后会建一个jenkins的用户，用户目录在：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/var/lib/jenkins
+</code></pre></div></div>
+
+<p>不属于任何用户组，我们将其可以加入root组：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpasswd -a jenkins root
+</code></pre></div></div>
+
+<p>五、<strong>脚本问题</strong></p>
+
+<p>接下来就是启动脚本的问题了，由于代码更新后需要执行一些动作，比如：重启uwsgi、reload nginx或者清除pyc文件，那么就要把这些脚本放到第三步说的执行脚本中了。我的做法是把脚本写到一个文件中比如：start.sh中，然后在第三步的执行脚本中填入./start.sh。但是重启uwsgi，reload nginx需要root权限的，就目前的配置执行build会报 permission denied 错误，也就是 jenkins 启动用户的权限不够，方法就是我们一root用户启动jenkins，方法如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo vim /etc/default/jenkins
+</code></pre></div></div>
+
+<p>修改</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JENKINS_USER=jenkins
+</code></pre></div></div>
+
+<p>为</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JENKINS_USER=root
+</code></pre></div></div>
+
+<p>重启jenkins，全部完成。</p>
+
+<p>至于start.sh详细写法，可移步到我的github项目：<a href="https://github.com/tonghuashuai/OnlyRSSWeb">https://github.com/tonghuashuai/OnlyRSSWeb</a></p>
+:ET

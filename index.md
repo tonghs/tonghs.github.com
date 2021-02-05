@@ -5,7 +5,7 @@ disqus: false
 published: true
 ---
 
-仝华帅，男，1988 年，电子信息工程。
+仝华帅，男，1988 年，电子信息工程，aka tonghs。
 
 现就职于 `下厨房`，Python 后端开发。
 
@@ -22,6 +22,7 @@ published: true
     * 下厨房电商（市集）相关业务
     * 广告相关业务广告产品/程序化广告/联盟广告
     * 在线课程产品（厨 studio）相关业务
+    * 下厨房会员相关业务
 
 
 2016.11 至 2017.12 FellowPlus 
@@ -97,7 +98,7 @@ published: true
 #### 技术栈
     Mac/Linux Docker Vim
     Python Tornado Mako Supervisor Nginx Celery
-    HTML/CSS/Javascript CoffeeScript jQuery MVVM 框架
+    __ HTML/CSS/Javascript CoffeeScript jQuery MVVM 框架 __
     MongoDB Redis MySQL
     ELK Spark Kettle
     Git HG

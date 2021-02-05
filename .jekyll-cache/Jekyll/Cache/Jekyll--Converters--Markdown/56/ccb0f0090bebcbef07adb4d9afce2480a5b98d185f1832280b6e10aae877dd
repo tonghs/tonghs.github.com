@@ -1,0 +1,2 @@
+I"�<p>公司不同服务的不同 log 散落在不同的机器上，管理查看非常困难，于是考虑使用 ELK 来收集管理 log，<code class="highlighter-rouge">Elasicsearch</code> 和 <code class="highlighter-rouge">Kibana</code> 稍微学了下基本用没有什么问题，但是 Logstash 却苦苦 get 不到它的点在哪，于是，在某一个深夜下决心好好去研究下它的使用方法…</p>
+:ET

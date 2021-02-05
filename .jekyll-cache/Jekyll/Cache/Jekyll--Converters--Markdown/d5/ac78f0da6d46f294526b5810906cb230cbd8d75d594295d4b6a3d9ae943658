@@ -1,0 +1,49 @@
+I"c<p>编辑 /etc/network/interfaces
+原来内容为：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto em1
+iface em1 inet static
+
+address 192.168.10.170
+netmask 255.255.255.0
+gateway 192.168.10.1
+</code></pre></div></div>
+
+<p>比如要添加两个个新的 IP，追加以下信息信息即可：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+auto em1:0
+iface em1:0 inet static
+
+address 192.168.10.171
+netmask 255.255.255.0
+
+
+auto em1:1
+iface em1:1 inet static
+
+address 192.168.10.172
+netmask 255.255.255.0
+</code></pre></div></div>
+
+<p>然后启用</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+sudo ifup em1:0 &amp;&amp; sudo ifup em1:1
+</code></pre></div></div>
+
+<p><strong>注意</strong></p>
+
+<p>原来的重启方式为：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+sudo /etc/init.d/networking restart
+</code></pre></div></div>
+
+<p>该方式在 14.04 LTS 中使用无效。</p>
+:ET

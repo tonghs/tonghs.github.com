@@ -1,0 +1,10 @@
+I"5<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export LANG=en_US
+
+xdg-user-dirs-gtk-update
+</code></pre></div></div>
+
+<p>再切换回中文:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export LANG=zh_CN
+</code></pre></div></div>
+:ET

@@ -1,0 +1,2 @@
+I"�<p><code class="highlighter-rouge">Tornado</code> 不同于 <code class="highlighter-rouge">Flask</code> 其中之一就是路由的配置，有感于 Tornado 路由配置方式的不方便，决定实现与 <code class="highlighter-rouge">Flask</code> 一样的装饰器路由，其实网上已经有人实现了，详细 <a href="http://www.cnblogs.com/tonyseek/archive/2011/05/27/2062227.html">猛戳此处</a>。</p>
+:ET

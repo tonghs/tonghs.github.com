@@ -1,0 +1,59 @@
+I"�<p>今天，把公司的服务器从 ubuntu 14.04 升级到了 16.04，在这之前升级了家中的服务器，遇到了一些坑，主要是 MySQL 的问题，分享出来。</p>
+
+<p>首先提醒大家：</p>
+
+<ol>
+  <li>备份重要文件</li>
+  <li>备份 MySQL，备份 MySQL，备份 MySQL</li>
+  <li>把一些关键软件的配置文件备份一下（比如 nginx），因为升级过程中新版本会覆盖掉一些配置文件</li>
+</ol>
+
+<p>ubuntu 16.04 刚发布的时候，看大家都在升级，大概浏览下没有什么大的坑，于是决定先拿家里的服务器当小白鼠升级试试，公司的稍后再说。</p>
+
+<p>家里服务器中的东西比较少，nginx、Docker、MySQL、MongoDB，升级方法如下：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt-get upgrade
+<span class="nb">sudo </span>apt-get dist-upgrade
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>update-manager-core
+<span class="nb">sudo </span><span class="k">do</span><span class="nt">-release-upgrade</span> <span class="nt">-d</span>
+</code></pre></div></div>
+
+<p>升级过程很轻松，需要操作需要确认，只要要提示根据自己的实际情况选择就好了。</p>
+
+<p>出现问题是在升级 MySQL 的时候，需要重启 MySQL 服务，结果就一直卡在了启动的地方，等了好久无奈 ctrl-c 退出，然后重启机器，启动后查看得知，系统升级成功，MySQL 跪了。折腾了一下无奈放弃，重装了  MySQL。</p>
+
+<p>我以为我遇到的问题是个案。结果，今天升级公司服务器再次跪在了 MySQL 上。</p>
+
+<p>出现的问题跟上次一样，这次就不能卸载重装了，毕竟数据库中有业务数据的，于是 求助 Google。</p>
+
+<p>最后找到答案，我机器上的 MySQL 版本是 5.5，而升级 ubuntu 16.04 会把 MySQL 升级到 5.7，由于 5.7 中 my.cnf 中有些配置项有变化，导致升级后 MySQL 启动失败。具体可以<a href="https://bugs.launchpad.net/ubuntu/+source/mysql-5.7/+bug/1571865" title="mysql bug 1571865">参考这里</a>，具体受影响的是两个配置参数：key_buffer 变为了 key_buffer_size，myisam-recover 变为了 myisam-recover-options，于是去 /etc/mysql/my.cnf       中去替换就好了，MySQL 顺利启动。</p>
+
+<p>公司的服务器上运行着 Seafile 和 Confluence 需要连接 MySQL，升级后发现这两个系统都无法启动，第一个想法还是 MySQl 的问题。</p>
+
+<p>查看 Seafile 的 log 得到如下错误：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">OperationalError</span><span class="p">:</span> <span class="p">(</span><span class="mi">1193</span><span class="p">,</span> <span class="s">"Unknown system variable 'storage_engine'"</span><span class="p">)</span><span class="err"> </span>
+</code></pre></div></div>
+
+<p>随后搜索得知，在 MySQL 5.7 中 storage_engine 参数已经改为 default_storage_engine，于是去 /home/sunflower/app/seafile/conf seahub_settings.py 中找到如下行：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'init_command': 'SET storage_engine=INNODB',
+</code></pre></div></div>
+
+<p>修改为：</p>
+
+<p>```‘init_command’: ‘SET default_storage_engine=INNODB’,</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+保存，启动 Seafile 成功。Confluence 照方抓药，去 /var/atlassian/application-data/confluence/confluence.cfg.xml 中找到 MySQL 连接字符串：
+
+``` java
+jdbc:mysql://localhost/confluence?sessionVariables=storage_engine%3DInnoDB&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8
+</code></pre></div></div>
+
+<p>修改为：</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">jdbc:mysql:</span><span class="c1">//localhost/confluence?sessionVariables=default_storage_engine%3DInnoDB&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8</span>
+</code></pre></div></div>
+
+<p>Confluence 启动成功。</p>
+:ET

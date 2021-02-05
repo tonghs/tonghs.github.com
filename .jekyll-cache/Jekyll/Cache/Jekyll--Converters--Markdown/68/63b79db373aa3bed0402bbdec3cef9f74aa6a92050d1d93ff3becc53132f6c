@@ -1,0 +1,15 @@
+I"�<p>写入到 ElasticSearch 中的日期在 Kibana 中显示差 8 个小时，在 Kibana 中高级设置中可以往前设置 8 个时区，但是数据还是会出错。</p>
+
+<p>最终解决办法，是在向 ElasticSearch 写数据的时候就带上时区信息。</p>
+
+<p>需要安装 pytz</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install </span>pytz
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytz</span>
+
+<span class="n">tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s">'Asia/Shanghai'</span><span class="p">)</span>
+<span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">tz</span><span class="p">)</span>
+</code></pre></div></div>
+:ET
