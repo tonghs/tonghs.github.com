@@ -7,7 +7,7 @@ published: true
 
 仝华帅，男，1988 年，电子信息工程，aka tonghs。
 
-现就职于 `下厨房`，Python 后端开发。
+现就职于 `下厨房`，Python 后端开发，也做一些产品和增长的事情。
 
 [tonghuashuai@gmail.com](mailto:tonghuashuai#gmail.com)
 
