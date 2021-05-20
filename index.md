@@ -11,6 +11,8 @@ published: true
 
 [tonghuashuai@gmail.com](mailto:tonghuashuai#gmail.com)
 
+18601980445
+
 ####     
 #### 工作经历
 
@@ -20,10 +22,21 @@ published: true
 
     职责：
 
-    * 下厨房电商（市集）相关业务
-    * 广告相关业务广告产品/程序化广告/联盟广告
-    * 在线课程产品（厨 studio）相关业务
-    * 下厨房会员相关业务
+    下厨房电商（市集）业务
+    
+    广告相关业务广告产品/程序化广告/联盟广告
+    * 高并发广告系统开发维护
+    * 程序化广告接入（联盟广告、天猫 Tanx 系统）
+    * 也做一些广告产品的事情
+    
+    在线课程产品（厨 studio）业务
+    * 业务流程效率优化&系统性能提升
+    * 带三人团队独立支撑在线课程业务
+    * 产品梳理、技术选型、数据分析
+    
+    下厨房会员业务
+    * 会员业务产品&开发（Apple 和微信的单月/年和包月/年会员）
+    * 数据分析和可视化
 
 
 2016.11 至 2017.12 FellowPlus 
@@ -104,7 +117,7 @@ published: true
     Mac/Linux Docker Vim
     Python Tornado Mako Supervisor Nginx Celery
     ~~HTML/CSS/Javascript CoffeeScript jQuery MVVM 框架~~
-    MongoDB Redis MySQL
-    ELK Spark Kettle
-    Git HG
+    Redis MySQL MongoDB
+    ELK Spark Kettle Tableau Power BI
+    Git
     Scrum
