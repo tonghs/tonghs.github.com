@@ -18,27 +18,31 @@ published: true
 
 2017.12 至今 下厨房 
 
-    Python 后端开发，又不只是开发。
+    职责：开发和产品
 
-    职责：
+    1. 广告相关业务：广告产品/品牌广告/程序化广告/联盟广告
+    高并发广告系统，分层保价规则和 Bidding 规则。程序化广告接入（联盟广告、天猫 Tanx 系统）。也做一些广告产品的事情。
 
-    下厨房电商（市集）业务
-    
-    广告相关业务广告产品/程序化广告/联盟广告
-    * 高并发广告系统开发维护
-    * 程序化广告接入（联盟广告、天猫 Tanx 系统）
-    * 也做一些广告产品的事情
-    
-    在线课程产品（厨 studio）业务
-    * 业务流程效率优化&系统性能提升
-    * 带三人团队独立支撑在线课程业务
-    * 产品梳理、技术选型、数据分析
-    * 增长相关：用户分层实验
-    
-    下厨房会员业务
-    * 会员业务产品&开发（Apple 和微信的单月/年和包月/年会员）
-    * 数据分析和可视化
+    贡献：支持日千万请求，程序化广告接入和优化，每日收入 10万+
+    技术栈：Python/Go/Redis
 
+    
+    2. 在线课程产品（厨 studio）业务
+    带领三人团队独立支持在线课程业务，包括项目管理、进度跟踪、产品梳理、系统架构、需求开发和性能优化、数据分析。产品梳理、技术选型、数据分析。增长相关的用户分层实验
+
+    贡献：在线课程业务显著提升业务人员效率，制定流程提升开发效率，数据可视化从 0 到 1
+    技术栈：Python/Elasticsearch
+
+    
+    3. 下厨房会员业务
+    会员业务产品&开发（Apple 和微信的单月/年和包月/年会员）， 数据分析和可视化
+    
+    贡献：会员增值业务日收入 3w+
+    技术栈：Python/Hive/Spark SQL/Quick BI/Tableau
+    
+    
+    4. 下厨房电商（市集）业务
+    
 
 2016.11 至 2017.12 FellowPlus 
 
@@ -116,8 +120,9 @@ published: true
 ####    
 #### 技术栈
     Mac/Linux Docker Vim
-    Python Tornado Mako Supervisor Nginx Celery
-    ~~HTML/CSS/Javascript CoffeeScript jQuery MVVM 框架~~
+    Python Tornado Flask Mako Supervisor Nginx Celery
+    Golang Gin
+    HTML/CSS/Javascript CoffeeScript jQuery MVVM 框架
     Redis MySQL MongoDB
     ELK Spark Kettle Tableau Power BI
     Git
