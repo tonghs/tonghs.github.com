@@ -69,12 +69,9 @@ published: true
 
 2011.2 - 2014.1 北京利达智通信息技术有限公司
 
-    R&D @ 中国业务事业部
-
-    职责：主程，企业系统、医疗感染监控系统、BI 开发
+    R&D @ 中国业务事业部。职责：主程，企业系统、医疗感染监控系统、BI 开发
 
     * 企业应用开发，C# + SQLServer
-        
     * 医疗系统、BI 开发，Java、MySQL、Liferay、Spotfire、Kettle
 
 ####    
