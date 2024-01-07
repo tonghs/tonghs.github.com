@@ -31,10 +31,10 @@ published: true
     
     
     3. 在线课程业务
-    带领三人团队支持在线课程业务，包括项目管理、进度跟踪、产品梳理、系统架构、需求开发和性能优化。也曾经做了一些增长相关的事情。
+    带领三人小组支持在线课程业务，包括项目管理、进度跟踪、产品梳理、系统架构、需求开发和性能优化。也曾经做了一些增长相关的事情。
     
     贡献：在线课程业务显著提升业务人员效率，制定流程提升开发效率。
-    技术栈：Python/Elasticsearch。
+    技术栈：Python/Elasticsearch/腾讯云直播
     
     
     4. 下厨房电商业务
@@ -45,7 +45,7 @@ published: true
     Python 技术经理， Data Engineer。职责：数据平台搭建
     一级市场数据分析平台，带 4 人小组，数据的收集、清洗、分析、API 和可视化展示，以及建立数据组的文档和知识库。
     
-    技术栈：Python/分布式爬虫/Redis/MongoDB/MySQL/Kettle/HDFS/ELK/Tableau/PowerBI/线性回归、朴素贝叶斯做文本分析。
+    技术栈：Python/分布式爬虫/Redis/MongoDB/MySQL/Kettle/HDFS/ELK/Tableau/PowerBI/线性回归、朴素贝叶斯做文本分析
      
 
 2014.6 至 2016.10 北京天使汇金融信息服务有限公司（一级市场股权交易平台）
@@ -60,7 +60,7 @@ published: true
 	后端开发（全栈）。
     职责：Python 周刊业务。
 
-    技术栈：Python/Tornado/Mako/CoffeeScript/GAE。
+    技术栈：Python/Tornado/Mako/CoffeeScript/GAE
     
 
 2011.2 - 2014.1 北京利达智通信息技术有限公司
@@ -68,7 +68,7 @@ published: true
     中国业务事业部研发。
     职责：主程，企业系统、医疗系统、BI 开发。
 
-	技术栈：C#/SQLServer/Java/MySQL/Liferay/Spotfire/Kettle。
+	技术栈：C#/SQLServer/Java/MySQL/Liferay/Spotfire/Kettle
 
 ####    
 #### GitHub
