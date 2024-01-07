@@ -7,7 +7,7 @@ published: true
 
 仝华帅，男，1988 年，电子信息工程专业毕业。现就职于 `下厨房`，Python 后端开发，也做一些产品经理的事情。
 
-邮箱：[tonghs@outlook.com](mailto:tonghs#outlook.com)，电话：18601980445
+邮箱：[tonghs@outlook.com](mailto:tonghs#outlook.com)，电话：18601980445。
 
 ####     
 #### 工作经历
